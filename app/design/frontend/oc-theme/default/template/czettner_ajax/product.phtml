@@ -1,0 +1,35 @@
+<?php $_product = $this->getProduct(); ?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+
+<div class="product-essential">
+    <div class="product-img-box">
+		<?php echo $this->getChildHtml('media') ?>
+    </div>
+
+    <div class="product-shop">
+        <h3 class="product-name"><?php echo $_product->getName(); ?></h3>
+
+        <h4><?php echo $this->__('Quick Overview') ?></h4>
+        <div class='short-description'><?php echo $_product->getShortDescription(); ?></div>
+
+        <div class='divider'></div>
+                <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                    <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                <?php endif;?>
+                
+                <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                <?php endif;?>
+        <div class="col2-set">
+            <div class="col-1">
+                <?php //echo $this->getPriceHtml($_product); ?>
+            </div>
+            <div class="col-2">
+                <?php if ($_product->isSaleable()): ?>
+                    <button class="button" onclick="setLocation('<?php echo Mage::helper('checkout/cart')->getAddUrl($_product); ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>

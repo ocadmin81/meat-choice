@@ -1,0 +1,57 @@
+<?php
+$post = $this->getPost();
+$connection = Mage::getSingleton('core/resource')->getConnection('core_write');
+$prefix = Mage::getConfig()->getTablePrefix();
+$tblname=$prefix.'aw_blog';
+$recipes_str = $post->getAdditional_recipes();
+$recipes_arr=explode(",",$recipes_str);
+$mediaDir = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, true) . 'media/';
+?>
+<?php if($recipes_str): ?>
+<div class="related_recipes home-blog-content">
+	<h3 class="title"><span><?php echo $this->__('Additional intersting Recipes'); ?></span></h3>
+	<div class="container">
+		<div class="owl-carousel owl-theme related_recipes_carousel">
+			<?php $i=1; foreach($recipes_arr as $recipe): ?>
+				<?php $sql = $connection->query("select * from $tblname where $recipe=post_id"); ?>
+				<?php $row = $sql->fetch(); ?>		
+				<?php $bUrl = $this->getUrl().'recipes/'.$row['identifier']; ?>
+				<div class="item">
+					<div class="post-img">
+						<a href="<?php echo $bUrl; ?>"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$row['thumbnail'] ?>" alt="<?php echo $row['title']; ?>" /></a>
+					</div>
+					<div class="name"><a href="<?php echo $bUrl; ?>"><?php echo $row['title']; ?></a></div>
+					<div class="content"><?php echo $row['short_content']; ?></div>
+				</div>
+			<?php $i++; endforeach; ?>
+		</div>
+	</div>
+</div>
+<?php endif; ?>
+<script type="text/javascript">
+	$j( document ).ready(function() {
+		$j('.related_recipes_carousel').owlCarousel({
+			margin:30,
+			responsiveClass:true,
+			rtl:true,
+			navigation:true,
+			nav:true,
+			dots:false,
+			loop:true,
+			responsive:{
+				0:{
+					items:1
+				},
+				768:{
+					items:2
+				},
+				992:{
+					items:3
+				},				
+				1450:{
+					items:4
+				}
+			}
+		});	
+	});		
+</script>

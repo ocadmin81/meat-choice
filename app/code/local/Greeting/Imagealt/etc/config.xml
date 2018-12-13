@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+<modules>
+<Greeting_Imagealt>
+<version>0.1.0</version>  <!-- This is an important section to note. It is the version of the module -->
+</Greeting_Imagealt>
+</modules>
+<global>
+<helpers>
+<greeting_imgalt>
+<class>Greeting_Imagealt_Helper</class>
+</greeting_imgalt>
+</helpers>
+</global>
+</config>

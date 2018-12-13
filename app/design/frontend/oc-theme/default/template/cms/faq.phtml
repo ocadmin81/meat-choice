@@ -1,0 +1,28 @@
+<?php
+$storeId = Mage::app()->getStore()->getStoreId();
+$collection = Mage::getModel('cms/block')->getCollection()
+    ->addFieldToFilter('identifier', array('like'=>'faq-'.'%'))
+    ->addFieldToFilter('is_active', 1)
+	->addStoreFilter($storeId, false);
+?>
+<div class="faqs">
+<?php
+$blockNum = 1;
+foreach($collection as $key => $value){
+	$_block = Mage::getModel('cms/block')->load($key);
+	echo "<div class='faq'>";
+	echo "<h3 class='question'>".$_block->getTitle()."</h3>";
+	echo "<div class='answer' style='display: none;'>".$_block->getContent()."</div>";
+	echo "</div>";
+	$blockNum++;
+}
+?>
+</div>
+<script type="text/javascript">
+$j(".faq").click(function () {
+	$j('.answer').slideUp();
+	$j('.question').removeClass('raw-open');
+	$j(this).find('.answer').slideToggle();
+	$j(this).find('.question').toggleClass('raw-open');
+});
+</script>

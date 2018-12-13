@@ -1,0 +1,92 @@
+<style>
+<?php if(Mage::getStoreConfigFlag('giftcards/default/split_amount')):?>
+.card-amount {
+border-bottom: solid 1px;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+<?php endif; ?>
+#edit-div {
+    display: none;
+}
+#apply-btn img {
+    vertical-align: middle !important;
+    margin-top: 5px;
+    margin-left: 3px;
+    cursor: pointer;
+}
+</style>
+
+<?php $_session = Mage::getSingleton('giftcards/session'); ?>
+<?php $loadFromSSL = $_SERVER['SERVER_PORT']==443?true:false; ?>
+<?php $isGiftCard = $this->isGiftCard(); ?>
+
+<div class="discount">
+    <div class="discount-form">
+	<label for="coupon_code"><?php echo $this->__('Gift Card') ?></label>
+    <?php if(!$isGiftCard) : ?>
+        <form method="post" action="<?php echo $this->getUrl('giftcards/cart/activateGiftCard', array( '_secure'=>$loadFromSSL)); ?>" id="activateGiftCard">
+            <div class="input-box">
+                <input value="" name="giftcard_code" placeholder="<?php echo $this->__('Enter your card code') ?>" id="giftcard_code" class="input-text">
+            </div>
+            <div class="button-set">
+                <button value="<?php echo $this->__('Add Card') ?>" onclick="giftCardForm.submit(true)" class="button couponButton"
+                        title="Activate" type="button"><?php echo $this->__('Add Card') ?>
+                </button>
+            </div>
+        </form>
+
+        <?php $currencySymbol = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol();
+              $temp = 0;
+        ?>
+        <?php if($_session->getActive())
+                    echo '<br/>';
+                    $amounts = $_session->getAmounts();
+                    foreach($_session->getCards() as $_id => $_value)
+                    {
+                        if($temp) {
+                            echo '<br/><br/>';
+                        }
+                        if(isset($amounts[$_id])){
+                            $_value['card_balance'] = $_value['original_card_balance'] - $amounts[$_id];
+                        }
+                        echo '<div id="edit-div""><input id="edit-card-amount-'.$_id.'" style="width:50px;text-align:right;" value="'. ($_value['original_card_balance']-$_value['card_balance']). '" />';
+                        echo '<span id="apply-btn"><a onclick="applyAmount('.$_id.'); return false;"><img src="'.$this->getSkinUrl('images/giftcard_apply.gif').'" alt=""></a></span>';
+                        echo '</div><span id="card-amount" class="card-amount" onclick="editAmount()">'.$currencySymbol.($_value['original_card_balance']-$_value['card_balance']).'</span> '.$this->__('applied from Gift Card').' '.$_value['card_code'].'.';
+                        echo '<input id="edit-card-code-'.$_id.'" style="display:none;" value="'.$_value['card_code'].'">';
+                        echo '<br/>';
+                        echo $this->__('Remaining card balance').': '.$currencySymbol.$_value['card_balance'].'. (<a href="'.$this->getUrl("giftcards/cart/deActivateGiftCard/id/$_id", array( '_secure'=>$loadFromSSL)).'">'.$this->__('Remove').'</a>)';
+                        $temp = 1;
+                    }
+        ?>
+    <?php else : ?>    
+        <?php echo $this->__('Gift cards cannot be used to purchase gift cards'); ?>
+    <?php endif; ?>
+    </div>
+    <script type="text/javascript">
+        //&lt;![CDATA[
+        var deActivateGiftCardForm = new VarienForm('deActivateGiftCard');
+        var giftCardForm = new VarienForm('activateGiftCard');
+        //]]&gt;
+    </script>
+
+</div>
+
+<script type="text/javascript">
+    function editAmount(){
+      <?php if(Mage::getStoreConfigFlag('giftcards/default/split_amount')):?>
+        $('card-amount').hide();
+        $('edit-div').setStyle({display : 'inline-flex'});
+      <?php endif;?>
+      return true;
+    }
+
+    function applyAmount(id){
+        var code = $('edit-card-code-'+id).value;
+        var amount = $('edit-card-amount-'+id).value;
+        setLocation("<?php echo $this->getUrl("giftcards/cart/deActivateGiftCard", array( '_secure'=>$loadFromSSL))?>id/"+id);
+        setLocation("<?php echo $this->getUrl('giftcards/cart/activateGiftCard', array( '_secure'=>$loadFromSSL))?>giftcard_code/"+code+"/giftcard_amount/"+amount);
+        return false;
+    }
+</script>

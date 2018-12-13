@@ -1,0 +1,81 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Layerednavigation
+ * @version    1.3.2
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Layerednavigation_Block_Filter_Type_Decimal $this; */?>
+<?php $filterHtmlID = "aw-ln-filter-" . $this->getFilter()->getId() . "-options"?>
+<div id="<?php echo $filterHtmlID?>" class="aw-ln-filter-options-range">
+    <div class="aw-ln-filter-options-range-slider">
+        <div class="aw-ln-filter-options-range-slider-wrapper">
+            <div class="aw-ln-filter-options-range-slider-wrapper-left">
+                <div class="aw-ln-filter-options-range-slider-wrapper-right">
+                    <span class="aw-ln-filter-options-range-slider-min" title="<?php echo $this->__("Scroll to set minimum value");?>"></span>
+                    <span class="aw-ln-filter-options-range-slider-active"></span>
+                    <span class="aw-ln-filter-options-range-slider-max" title="<?php echo $this->__("Scroll to set maximum value");?>"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    <div class="aw-ln-filter-options-range-status">
+        <div class="aw-ln-filter-options-range-status-from">
+            <?php echo $this->getMinimumValuePrefix();?>
+            <span class="aw-ln-filter-options-range-status-from-value"><?php echo $this->getMinimumAppliedValue();?></span>
+            <input type="hidden" disabled="disabled" name="<?php echo $this->getFilter()->getCode();?>" value="<?php echo $this->getMinimumAppliedValue();?>"/>
+        </div>
+        <div class="aw-ln-filter-options-range-status-to">
+            <?php echo $this->getMaximumValuePrefix();?>
+            <span class="aw-ln-filter-options-range-status-to-value"><?php echo $this->getMaximumAppliedValue();?></span>
+            <input type="hidden" disabled="disabled" name="<?php echo $this->getFilter()->getCode();?>" value="<?php echo $this->getMaximumAppliedValue();?>"/>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var awLNFilterOptionRangeInstance = new awLNFilterOptionRange({
+        trackElSelector:        "#<?php echo $filterHtmlID?> .aw-ln-filter-options-range-slider-wrapper",
+        minHandleElSelector:    "#<?php echo $filterHtmlID?> .aw-ln-filter-options-range-slider-min",
+        maxHandleElSelector:    "#<?php echo $filterHtmlID?> .aw-ln-filter-options-range-slider-max",
+        activeStatusElSelector: "#<?php echo $filterHtmlID?> .aw-ln-filter-options-range-slider-active",
+        minStatusElSelector:    "#<?php echo $filterHtmlID?> .aw-ln-filter-options-range-status-from-value",
+        maxStatusElSelector:    "#<?php echo $filterHtmlID?> .aw-ln-filter-options-range-status-to-value",
+        minValue:               <?php echo Zend_Json::encode($this->getMinimumAppliedValue());?>,
+        maxValue:               <?php echo Zend_Json::encode($this->getMaximumAppliedValue());?>,
+        rangeMinValue:          <?php echo Zend_Json::encode($this->getMinimumValue());?>,
+        rangeMaxValue:          <?php echo Zend_Json::encode($this->getMaximumValue());?>
+    });
+</script>
+
+<script type="text/javascript">
+    awLnUpdaterInstance.registerFilter(
+        new awLnFilterTypeRange({
+            name: <?php echo Zend_Json::encode($this->getFilter()->getCode());?>,
+            containerElSelector: <?php echo Zend_Json::encode("#" . $filterHtmlID); ?>
+        })
+    );
+
+    Event.observe(window, 'resize', function(){
+        awLNFilterOptionRangeInstance.initSlider();
+    });
+</script>

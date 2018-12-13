@@ -1,0 +1,342 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Layerednavigation
+ * @version    1.3.2
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div class="entity-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Manage Ranges') ?></h4>
+    </div>
+    <div class="box">
+        <div class="grid">
+            <table class="data" cellspacing="0" cellpadding="0">
+                <colgroup>
+                    <col width="100"<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?> />
+                    <col width="100"<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?> />
+                    <col width="300" />
+                    <col width="100"<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?> />
+                    <col />
+                    <col width="100"<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?> />
+                    <col width="70"<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?> />
+                    <col width="50"<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?> />
+                </colgroup>
+                <thead >
+                <tr class="headings">
+                    <th<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?>><?php echo $this->__('From'); ?><span class="required">*</span></th>
+                    <th<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?>><?php echo $this->__('To'); ?><span class="required">*</span></th>
+                    <th><?php echo $this->__('Title'); ?><span class="required">*</span></th>
+                    <th<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?>><?php echo $this->__('Enabled'); ?></th>
+                    <th><?php echo $this->__('Description'); ?></th>
+                    <th<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?>><?php echo $this->__('Image'); ?></th>
+                    <th<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?>><?php echo $this->__('Sort'); ?></th>
+                    <th<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?> class="last"><?php echo $this->__('Action') ?></th>
+                </tr>
+                </thead>
+                <tbody id="aw-ln-option-list"></tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="8" class="a-right"><?php echo $this->getAddButtonHtml(); ?></td>
+                    </tr>
+                </tfoot>
+
+            </table>
+            <script type="text/javascript">
+            //<![CDATA[
+                var awLayerednavigationRowTemplate =
+                    '<tr>' +
+                        '<td {{hideCell}}><input type="text" name="option[{{id}}][additional_data][from]" value="{{from}}" class="input-text required-entry" style="width: 98%;" /></td>' +
+                        '<td {{hideCell}}><input type="text" name="option[{{id}}][additional_data][to]"   value="{{to}}"   class="input-text required-entry" style="width: 98%;" /></td>' +
+
+                        '<td>{{titleCellHtml}}</td>' +
+
+                        '<td {{hideCell}}><?php echo $this->getRangeIsEnabledSelectHtml(); ?></td>' +
+
+                        '<td>{{descriptionCellHtml}}</td>' +
+
+                        '<td {{hideCell}}>{{imageCellHtml}}</td>' +
+
+                        '<td {{hideCell}}>' +
+                            '<div class="aw-ln-position-el">' +
+                                '<input type="hidden" id="filter_{{id}}_position" name="option[{{id}}][position]" value="{{position}}">' +
+                            '</div>' +
+                        '</td>' +
+
+                        '<td {{hideCell}} class="last">' +
+                            '<input type="hidden" class="delete" id="option_{{id}}_delete" name="option[{{id}}][delete]" value="">' +
+                            '<button title="<?php echo $this->__('Delete Range'); ?>" type="button" id="option_{{id}}_delete_button" onclick="return awLayerednavigationControl.deleteItem(event);" class="scalable delete icon-btn delete-product-option">' +
+                            '<span><?php echo $this->__('Delete'); ?></span>' +
+                            '</button>' +
+                        '</td>' +
+                    '</tr>';
+
+
+                var awLayerednavigationImageCellTemplate = {
+                    'image'  :
+                        '<a href="{{original_image}}" onclick="awLayerednavigationControl.imagePreview(\'preview_image_{{id}}\');return false;" id="preview_image_{{id}}" target="_blank">' +
+                            '<img src="{{resized_image}}" title="{{name}}" alt="{{name}}" height="22" width="22" class="small-image-preview v-middle">' +
+                        '</a>',
+                    'input'  : '<input type="file" accept="image/*" class="input-file" id="option_{{id}}_image" name="option_{{id}}_image" value="{{image}}">',
+                    'delete' :
+                        '<span class="delete-image">' +
+                            '<input type="checkbox" value="1" class="checkbox" id="option_{{id}}_image_delete" name="option[{{id}}][image_delete]">' +
+                            '<label for="option_{{id}}_image_delete"><?php echo $this->__('Delete Image'); ?></label>' +
+                        '</span>'
+                };
+
+                var awLnTitleAttributeCellTemplate = {
+                    'input'       : '<input type="text" name="option[{{id}}][title]" value="{{title}}" class="input-text required-entry {{titleDisabledClass}}" {{titleDisabledAttrbiute}} style="width: 98%;" />',
+                    'use_default' :
+                        '<input type="checkbox" name="option[{{id}}][use_default][title]" id="title_default_{{id}}" {{titleCheckedStatus}} onclick="toggleValueElements(this, this.parentNode)" value="1"/>' +
+                        '<label for="title_default_{{id}}" class="normal"><?php echo $this->__('Use Default Value') ?></label>'
+                };
+
+                var awLnDescriptionAttributeCellTemplate = {
+                    'input'       : '<textarea name="option[{{id}}][description]" class="textarea {{descriptionDisableClass}}" {{descriptionDisabledAttribute}} style="width:99%;resize:vertical;">{{description}}</textarea>',
+                    'use_default' :
+                        '<input type="checkbox" name="option[{{id}}][use_default][description]" id="description_default_{{id}}" {{descriptionCheckedStatus}} onclick="toggleValueElements(this, this.parentNode)" value="1"/>' +
+                        '<label for="description_default_{{id}}" class="normal"><?php echo $this->__('Use Default Value') ?></label>'
+                };
+
+
+                var awLayerednavigationControl = {
+                    template: new Template(awLayerednavigationRowTemplate, new RegExp('(^|.|\\r|\\n)({{\\s*(\\w+)\\s*}})', '')),
+
+                    imageCellTemplate : {
+                        'image'  : new Template(awLayerednavigationImageCellTemplate['image'], new RegExp('(^|.|\\r|\\n)({{\\s*(\\w+)\\s*}})', '')),
+                        'input'  : new Template(awLayerednavigationImageCellTemplate['input'], new RegExp('(^|.|\\r|\\n)({{\\s*(\\w+)\\s*}})', '')),
+                        'delete' : new Template(awLayerednavigationImageCellTemplate['delete'], new RegExp('(^|.|\\r|\\n)({{\\s*(\\w+)\\s*}})', ''))
+                    },
+
+                    titleCellTemplate : {
+                        'input'       : new Template(awLnTitleAttributeCellTemplate['input'], new RegExp('(^|.|\\r|\\n)({{\\s*(\\w+)\\s*}})', '')),
+                        'use_default' : new Template(awLnTitleAttributeCellTemplate['use_default'], new RegExp('(^|.|\\r|\\n)({{\\s*(\\w+)\\s*}})', ''))
+                    },
+
+                    descriptionCellTemplate : {
+                        'input'       : new Template(awLnDescriptionAttributeCellTemplate['input'], new RegExp('(^|.|\\r|\\n)({{\\s*(\\w+)\\s*}})', '')),
+                        'use_default' : new Template(awLnDescriptionAttributeCellTemplate['use_default'], new RegExp('(^|.|\\r|\\n)({{\\s*(\\w+)\\s*}})', ''))
+                    },
+
+
+                    itemsCount: 0,
+
+
+                    addItem : function (optionData) {
+                        if (arguments.length == 0) {
+                            var awOptionUniqueId = new Date().getTime();
+
+                            var maxSortOrder = 0;
+                            $$('#aw-ln-option-list input[id$=sort_order]').each(function(item) {
+                                if (parseInt(item.getValue()) > maxSortOrder) {
+                                    maxSortOrder = parseInt(item.getValue())
+                                }
+                            });
+
+                            optionData = {
+                                'id'         : 'new_option_' + awOptionUniqueId,
+                                'sort_order' : maxSortOrder + 1,
+                                'default'    : ''
+                            };
+                        }
+
+                        optionData.imageCellHtml = this.evaluateImageCellTemplate(optionData);
+                        optionData.titleCellHtml = this.evaluateTitleCellTemplate(optionData);
+
+                        console.log(optionData.titleCellHtml);
+
+                        optionData.descriptionCellHtml = this.evaluateDescriptionCellTemplate(optionData);
+
+                        Element.insert($('aw-ln-option-list'), {
+                            bottom : this.template.evaluate(optionData)
+                        });
+
+                        $$('#aw-ln-option-list tr').last().select("select").each(function(el){
+                            var pattern = new RegExp("option_" + optionData.id + "_(.*)");
+                            var match = el.id.match(pattern);
+                            if (!match[1] || !optionData[match[1]]) {
+                                return;
+                            }
+                            var value = optionData[match[1]];
+                            el.setValue(value);
+                        });
+
+                        $('aw-ln-option-list').select('input', 'select').each(function(element) {
+                            Event.observe(element, 'change', element.setHasChanges.bind(element));
+                        });
+                    },
+
+                    evaluateImageCellTemplate: function(optionData) {
+                        var imageCellHtmlResult = '';
+                        if (optionData.image) {
+                            imageCellHtmlResult += this.imageCellTemplate['image'].evaluate(optionData);
+                        }
+                        imageCellHtmlResult += this.imageCellTemplate['input'].evaluate(optionData);
+                        if (optionData.image) {
+                            imageCellHtmlResult += this.imageCellTemplate['delete'].evaluate(optionData);
+                        }
+                        return imageCellHtmlResult;
+                    },
+
+                    evaluateTitleCellTemplate: function(optionData) {
+                        var titleCellHtmlResult = '';
+
+                        if (optionData.isTitleDefault) {
+                            optionData.titleDisabledClass = 'disabled';
+                            optionData.titleDisabledAttrbiute = 'disabled="disabled"';
+                            optionData.titleCheckedStatus = 'checked="checked"';
+                        } else {
+                            optionData.titleDisabledClass = '';
+                            optionData.titleDisabledAttrbiute = '';
+                            optionData.titleCheckedStatus = '';
+                        }
+                        titleCellHtmlResult += this.titleCellTemplate['input'].evaluate(optionData);
+                        if (<?php echo (int)$this->canDisplayUseDefault(); ?>) {
+                            titleCellHtmlResult += this.titleCellTemplate['use_default'].evaluate(optionData);
+                        }
+                        return titleCellHtmlResult;
+                    },
+
+                    evaluateDescriptionCellTemplate: function(optionData) {
+                        var descriptionCellHtmlResult = '';
+
+                        if (optionData.isDescriptionDefault) {
+                            optionData.descriptionDisabledClass = 'disabled';
+                            optionData.descriptionDisabledAttrbiute = 'disabled="disabled"';
+                            optionData.descriptionCheckedStatus = 'checked="checked"';
+                        } else {
+                            optionData.descriptionDisabledClass = '';
+                            optionData.descriptionDisabledAttrbiute = '';
+                            optionData.descriptionCheckedStatus = '';
+                        }
+                        descriptionCellHtmlResult += this.descriptionCellTemplate['input'].evaluate(optionData);
+                        if (<?php echo (int)$this->canDisplayUseDefault(); ?>) {
+                            descriptionCellHtmlResult += this.descriptionCellTemplate['use_default'].evaluate(optionData);
+                        }
+                        return descriptionCellHtmlResult;
+                    },
+
+                    deleteItem: function(event) {
+                        var tr = Event.findElement(event, 'tr');
+                        if (tr) {
+                            Element.select(tr, '.delete').each(function(element) {
+                                element.value='1';
+                            });
+                            Element.select(tr, ['input', 'select']).each(function(element) {
+                                element.hide();
+                            });
+                            Element.hide(tr);
+                            Element.addClassName(tr, 'no-display template');
+                        }
+                        return false;
+                    },
+
+                    imagePreview: function(elementSelector) {
+                        if ($(elementSelector)) {
+                            var win = window.open('', 'preview', 'width=400,height=400,resizable=1,scrollbars=1');
+                            win.document.open();
+                            win.document.write('<body style="padding:0;margin:0"><img src="' + $(elementSelector).href + '" id="image_preview"/></body>');
+                            win.document.close();
+                            Event.observe(win, 'load', function(){
+                                var img = win.document.getElementById('image_preview');
+                                win.resizeTo(img.width+40, img.height+80)
+                            });
+                        }
+                    }
+                };
+
+                <?php foreach ($this->getOptionList() as $option) : ?>
+                    var awOptionData = {
+                        'id'             : <?php echo (int)$option->getId(); ?>,
+
+                        'from'           : '<?php echo $option->getFrom(); ?>',
+                        'to'             : '<?php echo $option->getTo(); ?>',
+
+                        'title'          : '<?php echo htmlentities($option->getTitle(), ENT_QUOTES); ?>',
+                        'isTitleDefault' : <?php echo (int)$this->isAttributeDefault($option->getId(), 'title'); ?>,
+
+                        'is_enabled'     : '<?php echo $option->getIsEnabled(); ?>',
+                        'description'    : <?php echo Zend_Json::encode($option->getDescription()); ?>,
+                        'isDescriptionDefault' : <?php echo (int)$this->isAttributeDefault($option->getId(), 'description'); ?>,
+
+                        'image'          : '<?php echo $option->getImage(); ?>',
+                        <?php if (!is_null($option->getImage())) : ?>
+                        'original_image' : '<?php echo $option->getData('original_image'); ?>',
+                        'resized_image'  : '<?php echo $option->getData('resized_image'); ?>',
+                        <?php endif; ?>
+                        'sort_order'     : <?php echo intval($option->getSortOrder()) ? intval($option->getSortOrder()) : 0; ?>,
+
+                        'hideCell'       : '<?php echo ($this->getIsDefaultStore()) ? '' : 'style="display:none;"' ?>'
+                    };
+                    awLayerednavigationControl.addItem(awOptionData);
+                <?php endforeach; ?>
+
+
+                <?php if ($this->getIsDefaultStore()) : ?>
+                    var awLnSortableTrInitFn = function() {
+                        var container = $('aw-ln-option-list');
+                        if (!container) {
+                            return;
+                        }
+                        Sortable.create(container, {
+                                tag:"tr",
+                                dropOnEmpty:false,
+                                overlap:'vertical',
+                                constraint:'vertical',
+                                containment: [container],
+                                handle: 'aw-ln-position-el',
+                                onChange: function(item) {
+                                    var inputSelector = ".aw-ln-position-el input[type=hidden]";
+                                    var value = 1;
+                                    container.select(inputSelector).each(function(input){
+                                        input.setValue(value);
+                                        value++;
+                                    });
+                                },
+                                starteffect: function(element){
+                                    element.addClassName('aw-ln-tr-ondrag');
+                                    element.up('table').addClassName('aw-ln-table-ondrag');
+                                },
+                                endeffect: function(element){
+                                    element.removeClassName('aw-ln-tr-ondrag');
+                                    element.up('table').removeClassName('aw-ln-table-ondrag');
+                                }
+                            }
+                        );
+                    };
+                    awLnSortableTrInitFn();
+                <?php endif; ?>
+
+                if ($('aw_layerednavigation_add_new_row')) {
+                    $('aw_layerednavigation_add_new_row').observe('click', function(event){
+                        awLayerednavigationControl.addItem();
+                        <?php if ($this->getIsDefaultStore()) : ?>
+                            awLnSortableTrInitFn();
+                        <?php endif; ?>
+                    });
+                }
+            //]]>
+            </script>
+        </div>
+    </div>
+</div>

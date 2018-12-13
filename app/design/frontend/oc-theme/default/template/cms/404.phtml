@@ -1,0 +1,98 @@
+<?php
+$noroutCatid = Mage::getStoreConfig('webthemeoptions/norout/noroutcatid');
+$noroutTitle = Mage::getStoreConfig('webthemeoptions/norout/norouttitle');
+$products = Mage::getModel('catalog/category')->load($noroutCatid)
+ ->getProductCollection()
+ ->addAttributeToSelect('*')
+ ->addAttributeToFilter('status', 1)
+ ->addAttributeToFilter('visibility', 4);
+$storeId = Mage::app()->getStore()->getStoreId();
+$productBlock = new Mage_Catalog_Block_Product;
+$themeDirection = Mage::getStoreConfig('webthemeoptions/general/appthemedir');
+?>
+<?php $catalogSearchHelper =  $this->helper('catalogsearch'); ?>
+<div class="noRount-main check check-padfix">
+	<div class="container">
+		<div class="page-title">
+			<h1><?php echo $this->__('How did you get here?'); ?></h1>
+			<h2><?php echo $this->__('This is really rare'); ?>...</h2>
+		</div>
+		<div class="top-404">
+			<p><?php echo $this->__('The page you were looking for could not be found, perhaps you were looking for a page that no longer exists on the site, or you typed the wrong address.'); ?></p>
+			<a href="<?php echo $this->getUrl(); ?>"><?php echo $this->__('Back to home page'); ?> ></a>
+		</div>
+	</div>
+
+	<div class="box-collateral">
+		<div class="container">
+			<div class="main-404">
+				<div class="search-404">
+					
+					<form id="search_mini_form_404" class="search_mini_form_404" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
+						<div class="input-box searcbox">
+							<input type="search" name="<?php echo $catalogSearchHelper->getQueryParamName() ?>" placeholder="<?php echo $this->__('Search in site') ?>" value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>" class="input-text required-entry" maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>" />
+							<button type="submit" title="<?php echo $this->quoteEscape($this->__('Search')) ?>" class="button search-button"><span><span><?php echo $this->__('Search') ?></span></span></button>
+						</div>
+					</form>
+				</div>
+				<div class="data-404">
+					<div class="title"><?php echo $this->__('Nees help?'); ?></div>
+					<div class="contact-us-block">
+						<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('contact-us-404')->toHtml(); ?>
+					</div>
+				</div>
+			</div>
+			<div class="home-top product-404">
+				<div class="home-section">
+				<div class="title">
+					<h2><?php echo $noroutTitle; ?></h2>  
+				</div>				
+					<div id="owl-404-products" class="owl-carousel product-grid owl-home">
+						<?php $i=0; foreach ($products as $_product): $i++;  ?>
+							<?php $_product = Mage::getModel('catalog/product')->load($_product->getId()); ?>
+							<div class="item">
+								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>" class="product-image">
+									<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(276,258) ?>" />
+								</a>
+								<p class="product-name">
+									<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>"><?php echo $this->escapeHtml($_product->getName()) ?></a>
+								</p>
+								<?php if($_product->getPrice() > 0): ?>
+									<?php echo $productBlock->getPriceHtml($_product, true) ?>
+								<?php endif; ?>
+							</div>							
+						<?php endforeach; ?>
+					</div>
+				</div>	
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$j( document ).ready(function() {
+	$j("#owl-404-products").owlCarousel({
+			nav: true,
+			autoplay: false,
+			autoplayHoverPause: true,
+            navigation: true,
+            lazyLoad: true,
+            loop: true,
+            dots: false,
+            margin: 20,
+            smartSpeed: 600,
+			<?php if($themeDirection == 'rtl'): ?>
+                rtl: true,
+			<?php endif; ?>
+            responsive: {
+                0: {
+                    items: 2
+                },
+                768: {
+					items: 3
+                },
+                1025: {
+                    items: 4
+                }
+            }
+	});	
+});
+</script>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MageMill_OrderImages>
+            <active>true</active>
+            <codePool>local</codePool>
+        </MageMill_OrderImages>
+    </modules>
+</config>

@@ -1,0 +1,42 @@
+<?php
+$mediaDir = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, true) . 'media/theme/';
+$dotonbackground = Mage::getStoreConfig('webthemeoptions/slider/dotonbackground');
+$dotoffbackground = Mage::getStoreConfig('webthemeoptions/slider/dotoffbackground');
+$proceedbuttoncolor = Mage::getStoreConfig('webthemeoptions/cart/proceedbuttoncolor');
+$proceedbuttoncolorh = Mage::getStoreConfig('webthemeoptions/cart/proceedbuttoncolorh');
+$checkoutproceedbuttoncolor = Mage::getStoreConfig('webthemeoptions/checkout/checkoutproceedbuttoncolor');
+$checkoutproceedbuttoncolorh = Mage::getStoreConfig('webthemeoptions/checkout/checkoutproceedbuttoncolorh');
+$homecatsbg = Mage::getStoreConfig('webthemeoptions/homecats/homecatsbg');
+//popular products
+$showProds = Mage::getStoreConfig('webthemeoptions/homeprods/enable');
+$homeprodsbg = Mage::getStoreConfig('webthemeoptions/homeprods/sectionbg');
+$size = list($width, $height) = getimagesize($mediaDir.$homeprodsbg);
+//how works
+$worksbg = Mage::getStoreConfig('webthemeoptions/howworks/worksbg');
+//footer
+$footerbg = Mage::getStoreConfig('webthemeoptions/footer/bg');
+$footertextcolor = Mage::getStoreConfig('webthemeoptions/footer/textcolor');
+$newsletterbg = Mage::getStoreConfig('webthemeoptions/footer/newsletterbg');
+$sizeN = list($widthN, $heightN) = getimagesize($mediaDir.$newsletterbg);
+?>
+<style>
+.owl-carousel .owl-controls .owl-dot span,.bx-wrapper .bx-pager.bx-default-pager a{background:#<?php echo $dotoffbackground; ?>;}
+.owl-carousel .owl-controls .owl-dot.active span,.bx-wrapper .bx-pager.bx-default-pager a.active{background:#<?php echo $dotonbackground; ?>;}
+.checkout-types button.button{background:#<?php echo $proceedbuttoncolor; ?>;}
+.checkout-types button.button:hover{background:#<?php echo $proceedbuttoncolorh; ?>;}
+.opc-wrapper-opc .btn-checkout{background:#<?php echo $checkoutproceedbuttoncolor; ?>;}
+.opc-wrapper-opc .btn-checkout:hover{background:#<?php echo $checkoutproceedbuttoncolorh; ?>;}
+.home-cats{background:#<?php echo $homecatsbg; ?>}
+<?php if($homeprodsbg && $showProds): ?>
+	.home-block.home-prods{background: url(<?php echo $mediaDir.$homeprodsbg; ?>) 0 0 no-repeat;height:auto;background-size: cover;min-height:<?php echo $height; ?>px;}
+<?php endif; ?>
+.how-works{background:#<?php echo $worksbg; ?>}
+<?php if($footerbg): ?>
+	.footer-container{background:#<?php echo $footerbg; ?>;padding: 50px 0;}
+<?php endif; ?>
+<?php if($newsletterbg): ?>
+	.newsletter-container{background: url(<?php echo $mediaDir.$newsletterbg; ?>) 0 0 no-repeat;height:<?php echo $heightN; ?>px;}
+<?php endif; ?>
+.footer-right li,.footer-right a{color:#<?php echo $footertextcolor; ?>}
+.footer-right{border-color:#<?php echo $footertextcolor; ?>;height:<?php echo $heightN; ?>px;}
+</style>

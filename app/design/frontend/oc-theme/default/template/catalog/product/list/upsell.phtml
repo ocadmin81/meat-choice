@@ -1,0 +1,88 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+$title = Mage::getStoreConfig('webthemeoptions/product/upselltitle');
+$themeDirection = Mage::getStoreConfig('webthemeoptions/general/appthemedir');
+?>
+<?php if(count($this->getItemCollection()->getItems())): ?>
+<?php $_columnCount = $this->getColumnCount(); ?>
+<?php $_product = $this->getProduct(); ?>
+<div class="box-collateral box-up-sell">
+    <h4>
+		<?php if($_product->getSource1()): ?>
+			<span><?php echo $_product->getSource1(); ?></span>
+		<?php endif; ?>
+		<?php if($_product->getSource2()): ?>
+			<span class="sep">|</span> <span><?php echo $_product->getSource2(); ?></span>
+		<?php endif; ?>			
+	</h4>
+    <div id="owl-upsell" class="product-grid owl-carousel">
+    <?php $this->resetItemsIterator() ?>
+    <?php foreach ($this->getItemCollection()->getItems() as $_link): ?>
+        <div class="item">
+			<img src="<?php echo $this->helper('catalog/image')->init($_link, 'small_image')->resize(315,206) ?>" />
+			<p class="tab-prod-item">
+				<?php echo $this->escapeHtml($_link->getName()) ?><br/><span><?php echo $this->escapeHtml($_link->getShort_description()) ?></span>
+			</p>
+        </div>
+    <?php endforeach; ?>
+    </div>
+</div>
+<?php endif ?>
+        <script type="text/javascript">
+			$j(document).ready(function() {	
+				if($j( window ).width()<768){
+					var margin = 0;
+				}
+				else{
+					var margin = 17;
+				}
+				$j("#owl-upsell").owlCarousel({
+                    nav: true,
+                    autoplay: false,
+                    autoplayHoverPause: true,
+                    navigation: true,
+                    lazyLoad: true,
+                    loop: true,
+                    dots: true,
+                    margin: margin,
+                    smartSpeed: 600,
+					<?php if($themeDirection == 'rtl'): ?>
+                    rtl: true,
+					<?php endif; ?>
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        768: {
+                            items: 2
+                        },
+                        1025: {
+                            items: 3
+                        }
+                    }
+				});			 
+			});
+        </script>	

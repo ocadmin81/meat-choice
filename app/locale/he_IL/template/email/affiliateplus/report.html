@@ -1,0 +1,44 @@
+<!--@subject {{var store.getFrontendName()}}: Affiliate Statistic Report@-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"htmlescape var=$transaction.getReferralName()":"Referral Name",
+"var store.getFrontendName()":"Store Name",
+"store url=\"customer/account/\"":"Customer Account Url"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+<table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+<tr>
+    <td align="center" valign="top">
+        <!-- [ header starts here] -->
+        <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+                <!--edit by Sally-->
+                <td valign="top"><a href="{{store url=""}}"><img src="{{var logo_url}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
+            </tr>
+        </table>
+        <!-- [ middle starts here] -->
+        <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+                <td valign="top">
+                    <p>
+                    	<strong>שלום {{htmlescape var=$account.getName()}}</strong>,<br/>
+                    	להלן סטטיסטיקה אודות חשבון השותף שלך מתאריך {{var from}} ועד {{var to}}:
+					</p>
+					{{layout handle="affiliateplus_email_report" account=$account statistic=$statistic store=$store}}
+					<p>
+						 לראות פרטים נוספים <a href="{{store url="affiliates/account/edit"}}">התחבר</a> לחשבונך.<br />
+						להסרה מהרשימה כנס לעמוד <a href="{{store url="affiliateplus/account/login"}}">פרטי חשבון</a> וערוך הגדרות שליחת מיילים.
+					</p>
+					<p>תודה,<br/><strong>{{var sender_name}}</strong></p>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+</table>
+</div>

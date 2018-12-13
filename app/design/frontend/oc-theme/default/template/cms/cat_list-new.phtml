@@ -1,0 +1,94 @@
+<?php
+//check if products block
+$themeDirection = Mage::getStoreConfig('webthemeoptions/general/appthemedir');
+$homecatid = Mage::getStoreConfig('webthemeoptions/home/homecatid');
+$p_cat = $_category = Mage::getModel('catalog/category')->load($homecatid);
+$products = Mage::getModel('catalog/category')->load($homecatid)
+        ->getProductCollection()
+        ->addAttributeToSelect('*')
+        ->addAttributeToFilter('status', 1)
+        ->addAttributeToFilter('visibility', 4);
+
+//load first level category list
+$categories = Mage::getModel('catalog/category')->getCollection()
+        ->addAttributeToSelect('*')
+        ->addAttributeToFilter('level', 2)
+        ->addAttributeToFilter('is_active', 1);
+?>
+<style>
+    .swiper-container {
+        width: 100%;
+        height: 300px;
+        margin: 20px auto;
+    }
+    .swiper-slide {
+        width: 250px;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+</style>
+<?php if ($homecatid): ?>
+    <div class="home-section">
+        <h2><?php echo $p_cat->getName(); ?></h2>
+        <div class="home-block swiper-container" dir="rtl">
+            <div class="swiper-wrapper product-grid">
+                <?php $i = 0;
+                foreach ($products as $_product): $i++;
+                    ?>
+                    <div class="item swiper-slide">
+                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image">
+                            <div class="product-image">
+                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+                            </div>
+                        </a>
+                        <div class="new-description">
+                            <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $_product->getName(); ?></a></h3>
+        <?php echo $this->getPriceHtml($_product, true) ?>
+                            <div style="clear: both;"></div>
+                        </div>
+                    </div>					
+    <?php endforeach; ?>
+                <!-- Add Scrollbar -->
+                <div class="swiper-scrollbar"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var swiper = new Swiper('.swiper-container', {
+            scrollbar: '.swiper-scrollbar',
+            scrollbarHide: true,
+            slidesPerView: '2',
+            centeredSlides: false,
+            spaceBetween: 30,
+            grabCursor: true
+        });
+    </script>	
+<?php endif; ?>
+
+<div class="home-section">
+    <h2><?php echo $this->__('Categories'); ?></h2>
+    <div class="home-block">
+<?php foreach ($categories as $category): ?>
+            <div class="sub-cat">
+                <a href="<?php echo $category->getUrl() ?>"><?php echo $category->getName(); ?>
+                    <?php if ($themeDirection == 'rtl'): ?>
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    <?php else: ?>
+                        <i class="fa fa-chevron-right ltr-chevron" aria-hidden="true"></i>
+    <?php endif; ?>
+                </a>
+            </div>
+<?php endforeach; ?>
+    </div>
+</div>

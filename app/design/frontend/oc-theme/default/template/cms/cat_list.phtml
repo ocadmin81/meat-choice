@@ -1,0 +1,260 @@
+<?php
+$mediaDir = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, true) . 'media/theme/';
+$themeDirection = Mage::getStoreConfig('webthemeoptions/general/appthemedir');
+//Categories Block
+$showCats = Mage::getStoreConfig('webthemeoptions/homecats/enable');
+//first cat
+$cat1banner = Mage::getStoreConfig('webthemeoptions/homecats/cat1banner');
+$cat1icon = Mage::getStoreConfig('webthemeoptions/homecats/cat1icon');
+$cat1text = Mage::getStoreConfig('webthemeoptions/homecats/cat1text');
+$cat1sub = Mage::getStoreConfig('webthemeoptions/homecats/cat1sub');
+$cat1link = Mage::getStoreConfig('webthemeoptions/homecats/cat1link');
+//second cat
+$cat2banner = Mage::getStoreConfig('webthemeoptions/homecats/cat2banner');
+$cat2icon = Mage::getStoreConfig('webthemeoptions/homecats/cat2icon');
+$cat2text = Mage::getStoreConfig('webthemeoptions/homecats/cat2text');
+$cat2sub = Mage::getStoreConfig('webthemeoptions/homecats/cat2sub');
+$cat2link = Mage::getStoreConfig('webthemeoptions/homecats/cat2link');
+//third cat
+$cat3banner = Mage::getStoreConfig('webthemeoptions/homecats/cat3banner');
+$cat3icon = Mage::getStoreConfig('webthemeoptions/homecats/cat3icon');
+$cat3text = Mage::getStoreConfig('webthemeoptions/homecats/cat3text');
+$cat3sub = Mage::getStoreConfig('webthemeoptions/homecats/cat3sub');
+$cat3link = Mage::getStoreConfig('webthemeoptions/homecats/cat3link');
+//How works Block
+$showHowWorks = Mage::getStoreConfig('webthemeoptions/howworks/enable');
+$Workstitleimg = Mage::getStoreConfig('webthemeoptions/howworks/titleimg');
+$Workstitletext = Mage::getStoreConfig('webthemeoptions/howworks/titletext');
+//first
+$works1banner = Mage::getStoreConfig('webthemeoptions/howworks/works1banner');
+$works1text = Mage::getStoreConfig('webthemeoptions/howworks/works1text');
+$works1sub = Mage::getStoreConfig('webthemeoptions/howworks/works1sub');
+//second
+$works2banner = Mage::getStoreConfig('webthemeoptions/howworks/works2banner');
+$works2text = Mage::getStoreConfig('webthemeoptions/howworks/works2text');
+$works2sub = Mage::getStoreConfig('webthemeoptions/howworks/works2sub');
+//third
+$works3banner = Mage::getStoreConfig('webthemeoptions/howworks/works3banner');
+$works3text = Mage::getStoreConfig('webthemeoptions/howworks/works3text');
+$works3sub = Mage::getStoreConfig('webthemeoptions/howworks/works3sub');
+//fours
+$works4banner = Mage::getStoreConfig('webthemeoptions/howworks/works4banner');
+$works4text = Mage::getStoreConfig('webthemeoptions/howworks/works4text');
+$works4sub = Mage::getStoreConfig('webthemeoptions/howworks/works4sub');
+//check if products block
+$showProds = Mage::getStoreConfig('webthemeoptions/homeprods/enable');
+$homecatid = Mage::getStoreConfig('webthemeoptions/homeprods/homecatid');
+$titletext = Mage::getStoreConfig('webthemeoptions/homeprods/titletext');
+$titleimg = Mage::getStoreConfig('webthemeoptions/homeprods/titleimg');
+$products = Mage::getModel('catalog/category')->load($homecatid)
+ ->getProductCollection()
+ ->addAttributeToSelect('*')
+ ->addAttributeToFilter('status', 1)
+ ->addAttributeToFilter('visibility', 4);
+//blog
+$showBlog = Mage::getStoreConfig('webthemeoptions/blog/enable');
+//get customer and load wishlist
+$customerId = null;
+$wishlist = null;
+if (Mage::getSingleton('customer/session')->isLoggedIn()) {
+    $customer = Mage::getSingleton('customer/session')->getCustomer();
+    $customerId = $customer->getId();
+}
+if (isset($customerId) && $customerId) {
+    $wishlist = Mage::getModel('wishlist/wishlist')->loadByCustomer($customerId, true);
+}
+?>
+<?php echo $this->getChildHtml('banner') ?>
+<?php if($showCats): ?>
+	<div class="home-block home-cats">
+		<div class="container">
+			<div class="row">
+				<div class="item col-md-4 col-xs-4">
+					<div class="block">
+						<div class="banner">
+							<img src="<?php echo $mediaDir . $cat1banner; ?>" alt="<?php echo $cat1text ?>" />
+						</div>
+						<div class="text">
+							<img src="<?php echo $mediaDir . $cat1icon; ?>" alt="<?php echo $cat1text ?>" />
+							<h3><?php echo $cat1text ?></h3>
+							<div class="subTitle"><?php echo $cat1sub ?></div>
+							<div class="link"><a href="<?php echo $cat1link ?>"><?php echo $this->__('Watch products'); ?> >></a></div>
+						</div>
+					</div>
+				</div>
+				<div class="item col-md-4 col-xs-4">
+					<div class="block">
+						<div class="banner">
+							<img src="<?php echo $mediaDir . $cat2banner; ?>" alt="<?php echo $cat2text ?>" />
+						</div>
+						<div class="text">
+							<img src="<?php echo $mediaDir . $cat2icon; ?>" alt="<?php echo $cat2text ?>" />
+							<h3><?php echo $cat2text ?></h3>
+							<div class="subTitle"><?php echo $cat2sub ?></div>
+							<div class="link"><a href="<?php echo $cat2link ?>"><?php echo $this->__('Watch products'); ?> >></a></div>
+						</div>						
+					</div>
+				</div>
+				<div class="item col-md-4 col-xs-4">
+					<div class="block">
+						<div class="banner">
+							<img src="<?php echo $mediaDir . $cat3banner; ?>" alt="<?php echo $cat3text ?>" />
+						</div>
+						<div class="text">
+							<img src="<?php echo $mediaDir . $cat3icon; ?>" alt="<?php echo $cat3text ?>" />
+							<h3><?php echo $cat3text ?></h3>
+							<div class="subTitle"><?php echo $cat3sub ?></div>
+							<div class="link"><a href="<?php echo $cat3link ?>"><?php echo $this->__('Watch products'); ?> >></a></div>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php endif; ?>
+<?php if($showProds): ?>
+	<div class="home-block home-prods">
+		<div class="container">
+			<div class="title">
+				<?php if($titleimg): ?>
+					<img src="<?php echo $mediaDir . $titleimg; ?>" alt="<?php echo $titletext ?>" />
+				<?php else: ?>
+					<h3><?php echo $titletext; ?></h3>
+				<?php endif; ?>
+			</div>
+			<div class="home-block sale-block container-products product-grid">
+				<div id="owl-products" class="owl-carousel">
+					<?php $i=0; foreach ($products as $_product): $i++;  ?>
+						<div class="item">
+							<div class="product-image-basket">
+								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image">
+									<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(300,400); ?>" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+								</a>
+							<div class="cart-block">
+								<?php if($_product->isSaleable()): ?>
+									<a href="javascript:void(0);" data-href="<?php echo $this->getUrl('ajax/product/view/id/' . $_product->getId()) ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="ajax quick-view"><?php echo $this->__('Add to Cart') ?> >></a>
+								<?php endif; ?>
+									<span class="hidden wishlistSubmitUrl"><?php echo $this->helper('wishlist')->getAddUrl($_product); ?></span>
+									<span class="hidden productId"><?php echo $_product->getId(); ?></span>						
+									<ul class="add-to-links">
+										<?php
+										$hasProduct = false;
+										if (isset($customerId) && isset($wishlist) && $customerId) {
+											$collection = Mage::getModel('wishlist/item')->getCollection()
+													->addFieldToFilter('wishlist_id', $wishlist->getId())
+													->addFieldToFilter('product_id', $_product->getId());
+											$hasProduct = ($collection->count() ? true : false);
+										}
+										$_wishlistItem = Mage::getModel('wishlist/item')->loadByProductWishlist(
+												$this->helper('wishlist')->getWishlist()->getId(), $_product->getId(), $_product->getStoreId()
+										);
+										?>
+										<?php if ($hasProduct): ?>
+											<li id="item-<?php echo $_product->getId(); ?>" class="in-wishlist"><a href="<?php echo $this->helper('wishlist')->getRemoveUrl($_wishlistItem); ?>" title="<?php echo $this->__('WHISHLIST') ?>" class="link-wishlist wishItem-<?php echo $_product->getId(); ?>">&nbsp;</a></li>
+										<?php else: ?>
+											<li id="item-<?php echo $_product->getId(); ?>"><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" title="<?php echo $this->__('WHISHLIST') ?>" class="link-wishlist wishItem-<?php echo $_product->getId(); ?>">&nbsp;</a></li>
+										<?php endif; ?>
+									</ul>								
+							</div>
+							</div>	
+							<div class="name-price">
+								<p class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $_product->getName(); ?></a></p>
+								<div><?php echo $this->getPriceHtml($_product, true) ?></div>
+							</div>							
+						</div>					
+					<?php endforeach; ?>
+				</div>		
+			</div>	
+		</div>
+	</div>
+	<script type="text/javascript">
+	$j( document ).ready(function() {
+		$j("#owl-products").owlCarousel({
+			nav:true,
+			autoplay : false,
+			autoplayHoverPause : true,
+			singleItem:true,
+			pagination:false,
+			navigation:true,
+			lazyLoad : false,
+			loop:false,
+			dots:false,
+			rtl:true,
+			margin : 25,
+			responsive:{
+				0:{
+					items:1
+				},
+				767:{
+					items:3
+				},				
+				1400:{
+					items:4
+				}
+			}
+		});	
+	});
+	</script>
+<?php endif; ?>
+<?php if($showHowWorks): ?>
+	<div class="home-block how-works">
+		<div class="container">
+			<div class="title">
+				<?php if($Workstitleimg): ?>
+					<img src="<?php echo $mediaDir . $Workstitleimg; ?>" alt="<?php echo $Workstitletext ?>" />
+				<?php else: ?>
+					<h3><?php echo $Workstitletext; ?></h3>
+				<?php endif; ?>
+			</div>		
+			<div class="row">
+				<div class="item col-md-3 col-xs-6 first">
+					<div class="block">
+						<div class="banner">
+							<img src="<?php echo $mediaDir . $works1banner; ?>" alt="<?php echo $works1text ?>" />
+						</div>
+						<div class="text">
+							<h3><?php echo $works1text ?></h3>
+							<div class="subTitle"><?php echo $works1sub ?></div>
+						</div>
+					</div>
+				</div>
+				<div class="item col-md-3 col-xs-6 second">
+					<div class="block">
+						<div class="banner">
+							<img src="<?php echo $mediaDir . $works2banner; ?>" alt="<?php echo $works2text ?>" />
+						</div>
+						<div class="text">
+							<h3><?php echo $works2text ?></h3>
+							<div class="subTitle"><?php echo $works2sub ?></div>
+						</div>						
+					</div>
+				</div>
+				<div class="item col-md-3 col-xs-6 third">
+					<div class="block">
+						<div class="banner">
+							<img src="<?php echo $mediaDir . $works3banner; ?>" alt="<?php echo $works3text ?>" />
+						</div>
+						<div class="text">
+							<h3><?php echo $works3text ?></h3>
+							<div class="subTitle"><?php echo $works3sub ?></div>
+						</div>						
+					</div>
+				</div>
+				<div class="item col-md-3 col-xs-6 fours">
+					<div class="block">
+						<div class="banner">
+							<img src="<?php echo $mediaDir . $works4banner; ?>" alt="<?php echo $works4text ?>" />
+						</div>
+						<div class="text">							
+							<h3><?php echo $works4text ?></h3>
+							<div class="subTitle"><?php echo $works4sub ?></div>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php endif; ?>
+<?php if($showBlog): ?>
+	<?php echo $this->getChildHtml('blog-homepage'); ?>	
+<?php endif; ?>

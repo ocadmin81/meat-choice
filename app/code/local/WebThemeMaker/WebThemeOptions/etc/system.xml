@@ -1,0 +1,876 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<tabs>
+		<webthememaker translate="label" module="webthemeoptions">
+ 			<label>Theme Options</label>
+ 			<sort_order>140</sort_order>
+		</webthememaker>
+	</tabs>
+	<sections>
+		<webthemeoptions translate="label" module="webthemeoptions">
+			<label>Theme Options</label>
+			<tab>webthememaker</tab>
+			<frontend_type>text</frontend_type>
+ 			<sort_order>1000</sort_order>
+ 			<show_in_default>1</show_in_default>
+ 			<show_in_website>1</show_in_website>
+ 			<show_in_store>1</show_in_store>
+ 			<groups>
+				<general translate="label">
+ 					<label>Theme Direction</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>8</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<appthemedir translate="label">
+                            <label>Web Theme Direction</label>
+                            <frontend_type>select</frontend_type>       
+                            <source_model>webthemeoptions/theme_direction</source_model>                     
+                            <comment>Choose right to left direction for right to left languages.</comment>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </appthemedir>					
+					</fields>
+				</general>
+				<homecats translate="label">
+ 					<label>Home Categories</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>9</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<enable translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>       
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                     
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+						<homecatsbg translate="label">
+                            <label>Block background color</label>
+                            <frontend_type>text</frontend_type>
+							<validate>color</validate>               
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </homecatsbg>						
+						<cat1banner translate="label">
+                            <label>First category Banner</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cat1banner>
+						<cat1icon translate="label">
+                            <label>First category Icon</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cat1icon>					
+						<cat1text translate="label">
+							<label>First category Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cat1text>
+						<cat1sub translate="label">
+							<label>First category Sub Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cat1sub>
+						<cat1link translate="label">
+							<label>First category Link</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cat1link>
+						<cat2banner translate="label">
+                            <label>Second category Banner</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cat2banner>
+						<cat2icon translate="label">
+                            <label>Second category Icon</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cat2icon>					
+						<cat2text translate="label">
+							<label>Second category Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cat2text>
+						<cat2sub translate="label">
+							<label>Second category Sub Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cat2sub>
+						<cat2link translate="label">
+							<label>Second category Link</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cat2link>
+						<cat3banner translate="label">
+                            <label>Third category Banner</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cat3banner>
+						<cat3icon translate="label">
+                            <label>Third category Icon</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cat3icon>					
+						<cat3text translate="label">
+							<label>Third category Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>14</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cat3text>
+						<cat3sub translate="label">
+							<label>Third category Sub Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cat3sub>
+						<cat3link translate="label">
+							<label>Third category Link</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>16</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cat3link>						
+					</fields>
+				</homecats>	
+				<homeprods translate="label">
+ 					<label>Home Popular prodcuts</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>9</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<enable translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>       
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                     
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+						<homecatid translate="label">
+							<label>Category id for products</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</homecatid>						
+						<sectionbg translate="label">
+                            <label>Section Background</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sectionbg>
+						<titletext translate="label">
+							<label>Title Text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</titletext>						
+						<titleimg translate="label">
+                            <label>Title Image</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>4</sort_order>
+							<comment>Will show instead ot text title</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </titleimg>							
+					</fields>
+				</homeprods>
+				<howworks translate="label">
+ 					<label>Home How Works</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>9</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<enable translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>       
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                     
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+						<titletext translate="label">
+							<label>Title Text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</titletext>						
+						<titleimg translate="label">
+                            <label>Title Image</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>1</sort_order>
+							<comment>Will show instead ot text title</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </titleimg>							
+						<worksbg translate="label">
+                            <label>Block background color</label>
+                            <frontend_type>text</frontend_type>
+							<validate>color</validate>               
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </worksbg>						
+						<works1banner translate="label">
+                            <label>Banner</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </works1banner>				
+						<works1text translate="label">
+							<label>Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</works1text>
+						<works1sub translate="label">
+							<label>Sub Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</works1sub>
+						<works2banner translate="label">
+                            <label>Banner</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </works2banner>					
+						<works2text translate="label">
+							<label>Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</works2text>
+						<works2sub translate="label">
+							<label>Sub Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</works2sub>
+						<works3banner translate="label">
+                            <label>Banner</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </works3banner>				
+						<works3text translate="label">
+							<label>Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>14</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</works3text>
+						<works3sub translate="label">
+							<label>Sub Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</works3sub>
+						<works4banner translate="label">
+                            <label>Banner</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </works4banner>				
+						<works4text translate="label">
+							<label>Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>17</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</works4text>
+						<works4sub translate="label">
+							<label>Sub Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>18</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</works4sub>						
+					</fields>
+				</howworks>	
+				<blog translate="label">
+ 					<label>Home Blog</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>9</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<enable translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>       
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                     
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+						<titletext translate="label">
+							<label>Title Text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</titletext>						
+						<title translate="label">
+                            <label>Title Image</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+						<firstblogcatload translate="label">
+                            <label>First blog category load in home page</label>
+                            <frontend_type>text</frontend_type>                         
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </firstblogcatload>
+						<subtitle translate="label">
+                            <label>Sub Title</label>
+                            <frontend_type>text</frontend_type>                         
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </subtitle>						
+					</fields>
+				</blog>						
+				<norout>
+ 					<label>404 Page</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>9</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+					<fields>
+						<noroutcatid translate="label">
+							<label>Category id for 404 page</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</noroutcatid>
+						<norouttitle translate="label">
+							<label>Title for 404 product block</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</norouttitle>	
+					</fields>
+				</norout>				
+				<header>
+ 					<label>Header</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<desktoplogo translate="label">
+                            <label>Desktop Logo</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </desktoplogo>	
+						<mobilelogo translate="label">
+							<label>Mobile Logo</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</mobilelogo>						
+					</fields>					
+				</header>
+				<catalog>
+ 					<label>Catalog Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>11</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>				
+					<fields>
+						<subhasproducts translate="label">
+						<label>Show Second Level Category has Sub Categories</label>
+                            <frontend_type>select</frontend_type>       
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</subhasproducts>
+						<subcatstyle translate="label">
+                            <label>Show Second Level Category with Thumbnail</label>
+                            <frontend_type>select</frontend_type>       
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<comment>Apply only if above option is set to yes</comment>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </subcatstyle>
+                    	<lineincat translate="label">
+                            <label>Show seperate lines in Category</label>
+                            <frontend_type>select</frontend_type>       
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                     
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </lineincat>
+						<fixlayred translate="label">
+                            <label>Active Layered Navigation fix position</label>
+                            <frontend_type>select</frontend_type>      
+							<source_model>adminhtml/system_config_source_yesno</source_model>      							
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </fixlayred>
+						<dcount translate="label">
+                            <label>Desktop - Number of product in a row</label>
+                            <frontend_type>select</frontend_type>      
+							<source_model>webthemeoptions/theme_desktop</source_model> 
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </dcount>
+						<tcount translate="label">
+                            <label>Tablet - Number of product in a row</label>
+                            <frontend_type>select</frontend_type>      
+							<source_model>webthemeoptions/theme_tablet</source_model> 
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tcount>
+						<mcount translate="label">
+                            <label>Mobile - Number of product in a row</label>
+                            <frontend_type>select</frontend_type>      
+							<source_model>webthemeoptions/theme_mobile</source_model> 
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mcount>					
+					</fields>
+				</catalog>
+				<product>
+ 					<label>Product Page Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>12</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>				
+					<fields>
+						<upselltitle translate="label">
+                            <label>Upsell Title</label>
+                            <frontend_type>text</frontend_type>             
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </upselltitle>
+						<relatedtitle translate="label">
+                            <label>Related Title</label>
+                            <frontend_type>text</frontend_type>             
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </relatedtitle>
+						<croselltitle translate="label">
+                            <label>Crossell Title</label>
+                            <frontend_type>text</frontend_type>             
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </croselltitle>
+						<addtocartcolor translate="label">
+                            <label>Add to Cart Button Color</label>
+                            <frontend_type>text</frontend_type>
+							<validate>color</validate>               
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </addtocartcolor>
+						<addtocartcolorh translate="label">
+                            <label>Add to Cart Button Click Color</label>
+                            <frontend_type>text</frontend_type>
+							<validate>color</validate>               
+                            <sort_order>17</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </addtocartcolorh>
+						<watsappmessage translate="label">
+                            <label>Whatsapp Message</label>
+                            <frontend_type>text</frontend_type>             
+                            <sort_order>18</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </watsappmessage>
+						<tab1title translate="label">
+                            <label>Tab 1 Title</label>
+                            <frontend_type>text</frontend_type>             
+                            <sort_order>19</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab1title>
+						<tab2title translate="label">
+                            <label>Tab 2 Title</label>
+                            <frontend_type>text</frontend_type>             
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab2title>
+						<tab3title translate="label">
+                            <label>Tab 3 Title</label>
+                            <frontend_type>text</frontend_type>             
+                            <sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tab3title>						
+					</fields>					
+				</product>
+				<slider>
+ 					<label>Slider Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>13</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>				
+					<fields>
+						<dotonbackground translate="label">
+                            <label>Slider Dot Active</label>
+                            <frontend_type>text</frontend_type>
+							<validate>color</validate>               
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </dotonbackground>
+						<dotoffbackground translate="label">
+                            <label>Slider Dot not Active</label>
+                            <frontend_type>text</frontend_type>
+							<validate>color</validate>               
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </dotoffbackground>
+					</fields>
+				</slider>
+				<footer translate="label">
+ 					<label>Footer</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>9</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<bg translate="label">
+                            <label>Background Color</label>
+                            <frontend_type>text</frontend_type>             
+                            <sort_order>1</sort_order>
+							<validate>color</validate> 
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bg>
+						<logo translate="label">
+                            <label>Logo</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </logo>	
+						<textcolor translate="label">
+                            <label>Text and Links Color</label>
+                            <frontend_type>text</frontend_type>
+							<validate>color</validate>               
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </textcolor>
+                    	<enable translate="label">
+                            <label>Show Newsletter?</label>
+                            <frontend_type>select</frontend_type>       
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                     
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+						<newsletterbg translate="label">
+                            <label>Newsletter BG</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </newsletterbg>
+						<newslettertitle translate="label">
+                            <label>Newsletter Title</label>
+                            <frontend_type>text</frontend_type>           
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </newslettertitle>
+						<newslettersubtitle translate="label">
+                            <label>Newsletter Sub Title</label>
+                            <frontend_type>text</frontend_type>           
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </newslettersubtitle>						
+					</fields>
+				</footer>
+				<cart>
+ 					<label>Cart Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>16</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>				
+					<fields>
+						<floatingTotals translate="label">
+                            <label>Floating Totals in Cart</label>
+                            <frontend_type>select</frontend_type>       
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </floatingTotals>
+						<proceedbuttoncolor translate="label">
+                            <label>Proceed to Checkout Button Color</label>
+                            <frontend_type>text</frontend_type>
+							<validate>color</validate>               
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </proceedbuttoncolor>
+						<proceedbuttoncolorh translate="label">
+                            <label>Proceed to Checkout Button Hover Color</label>
+                            <frontend_type>text</frontend_type>
+							<validate>color</validate>               
+                            <sort_order>17</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </proceedbuttoncolorh>	
+						<proceedbuttontext translate="label">
+                            <label>Proceed to Checkout Button Text</label>
+                            <frontend_type>text</frontend_type>             
+                            <sort_order>18</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </proceedbuttontext>							
+					</fields>
+				</cart>
+				<checkout>
+ 					<label>Checkout Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>17</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>				
+					<fields>
+						<checkoutproceedbuttoncolor translate="label">
+                            <label>Pay Now Button Color</label>
+                            <frontend_type>text</frontend_type>
+							<validate>color</validate>               
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </checkoutproceedbuttoncolor>
+						<checkoutproceedbuttoncolorh translate="label">
+                            <label>Pay Now Button Hover Color</label>
+                            <frontend_type>text</frontend_type>
+							<validate>color</validate>               
+                            <sort_order>17</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </checkoutproceedbuttoncolorh>	
+						<checkoutproceedbuttontext translate="label">
+                            <label>Pay Now Button Text</label>
+                            <frontend_type>text</frontend_type>             
+                            <sort_order>18</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </checkoutproceedbuttontext>							
+					</fields>
+				</checkout>				
+ 			</groups>
+		</webthemeoptions>
+	</sections>
+</config>

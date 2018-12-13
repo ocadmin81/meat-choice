@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+<modules>
+<Greeting_Imagealt>
+<active>true</active>
+<codePool>local</codePool>
+</Greeting_Imagealt>
+</modules>
+</config>

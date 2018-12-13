@@ -1,0 +1,29 @@
+<div class="my-account">
+<div class="page-title">
+    <h1 style="font-size: 18px;"><?php echo $this->__('My Gift Cards') ?></h1>
+</div>
+<form name="giftcardForm" action="<?php echo $this->getUrl('customer/giftcards/balance') ?>" method="post">
+    <div class="fieldset gift-check">
+		<h3><?php echo $this->__('Check Gift Card Balance') ?></h3>
+        <ul class="form-list">
+			<li class="fields">
+				<label><?php echo $this->__('Enter the Gift Card code') ?></label>
+				<div class="input-box">
+					<input class="input-text" id="giftcard_code" name="giftcard_code" value=""/>
+				</div>
+			</li>
+        <?php if(($aResult = $this->getCurrentBalance()) !== false): ?>
+            <li class="results">
+                <?php echo $this->__('Gift Card'); ?>:
+				<?php echo $aResult['card_code'].' '.Mage::helper('core')->currency($aResult['card_balance']); ?>
+            </li>
+        <?php endif;?>
+		</ul>
+        <div class="buttons-set">
+                <button type="button" title="<?php echo $this->__('Check') ?>" class="button"
+                        onclick="document.forms['giftcardForm'].submit()" value="<?php echo $this->__('Redeem') ?>">
+                    <span><span><?php echo $this->__('Check') ?></span></span></button>
+        </div>
+    </div>
+</form>
+</div>

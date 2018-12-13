@@ -1,0 +1,97 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento community edition
+ * aheadWorks does not guarantee correct work of this extension
+ * on any other Magento edition except Magento community edition.
+ * aheadWorks does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Blog
+ * @version    1.2.1
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?> 
+<?php
+$connection = Mage::getSingleton('core/resource')->getConnection('core_write');
+$prefix = Mage::getConfig()->getTablePrefix();
+$tblname=$prefix.'aw_blog';
+$_product = $this->getProduct();
+$recipes_str = $_product->getRelated_recipes();
+$recipes_arr=explode(",",$recipes_str);
+$mediaDir = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, true) . 'media/';
+?>
+<?php if($_product->getRelated_recipes()): ?>
+<div class="related_recipes blog-home">
+	<div class="title">
+		<img src="<?php echo $this->getSkinUrl(); ?>images/blog-related-title.png" />		
+		<div class="subtitle"><?php echo $this->__('Related Recipes'); ?></div>
+	</div>
+	<div class="container-re home-blog-content">
+		<div class="owl-carousel owl-theme related_recipes_carousel">
+			<?php $i=1; foreach($recipes_arr as $recipe): ?>
+				<?php $sql = $connection->query("select * from $tblname where $recipe=post_id"); ?>
+				<?php $row = $sql->fetch(); ?>		
+				<div class="item">
+					<div class="post-img">
+						<a href="<?php echo $this->getUrl().'recipes/'.$row['identifier']; ?>"><img src="<?php echo $mediaDir.$row['thumbnail']; ?>" alt="<?php echo $row['title']; ?>" /></a>
+						<div class="post-details">
+							<ul>
+								<?php if($row['cooking_type'] != ''): ?>
+									<li class="cooking_type"><?php echo $this->__('Cooking Type').': '.$this->__($row['cooking_type']); ?></li>
+								<?php endif; ?>
+								<?php if($row['making_time'] != ''): ?>
+									<li class="making_time"><?php echo $this->__('Making Time').': '.$this->__($row['making_time']).' '.$this->__('minutes'); ?></li>
+								<?php endif; ?>
+							</ul>
+						</div>
+					</div>
+					<div class="name"><a href="<?php echo $this->getUrl().'recipes/'.$row['identifier']; ?>"><?php echo $row['title']; ?></a></div>					
+				</div>
+			<?php $i++; endforeach; ?>
+		</div>
+	</div>
+</div>
+<?php endif; ?>
+<script type="text/javascript">
+	$j( document ).ready(function() {
+		$j('.related_recipes_carousel').owlCarousel({
+			nav:true,
+			autoplay : false,
+			autoplayHoverPause : true,
+			singleItem:true,
+			pagination:false,
+			navigation:true,
+			lazyLoad : false,
+			loop:true,
+			dots:false,
+			rtl:true,
+			margin : 30,
+			responsive:{
+				0:{
+					items:1
+				},
+				767:{
+					items:2
+				},				
+				992:{
+					items:3
+				}
+			}
+		});	
+	});		
+</script>

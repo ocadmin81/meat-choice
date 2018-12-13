@@ -1,0 +1,37 @@
+<?php
+ /*
+ * @category   Mageho
+ * @package    Mageho_Sortproducts
+ * @copyright  Copyright (c) 2012  Mageho (http://www.mageho.com)
+ * @license    http://www.mageho.com/license  Proprietary License
+ * @version    1.0.0
+ */
+?>
+<?php $_product = Mage::registry('current_product'); ?>
+<div>
+	<ul class="square-list">
+		<li><small><?php echo $this->__('ID'); ?> : <?php echo $_product->getId(); ?></small></li>
+
+		<?php if ($_product->getSku()): ?>
+		<li><small><?php echo $this->__('SKU'); ?> : <?php echo $_product->getSku(); ?></small></li>
+		<?php endif; ?>
+      
+		<li>
+        	<?php echo $this->__('Price'); ?> : 
+			<?php if ($_product->getSpecialPrice()): ?>
+            	<del><?php echo $this->helper('core')->currency($_product->getPrice()); ?></del>
+      			<ins><?php echo $this->helper('core')->currency($_product->getSpecialPrice()); ?></ins>
+                
+                <?php echo $this->getSavePercentage($_product); ?>
+      		<?php else: ?>
+            	<?php echo $this->helper('core')->currency($_product->getPrice()); ?>
+            <?php endif; ?>
+		</li>
+        
+        <?php if ($attributes = $this->getAttributesToShow()): ?>
+			<?php foreach($attributes as $attribute): ?>
+            <li><?php echo $this->getAttributeFrontendLabel($_product, $attribute); ?> : <?php echo $this->getAttributeFrontendValue($_product, $attribute); ?></li>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </ul>
+</div>

@@ -1,0 +1,67 @@
+<?php $product_info = Mage::registry('current_product'); ?>
+    <div class="ask-details content container">
+        <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+        <form class="jqueryValidation"  action="<?php echo $this->getFormAction(); ?>" id="askexpertForm" method="post" style="display:none;">
+
+            <div class="view-contant"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('view-contant')->toHtml(); ?></div>
+
+            <input name="prod_id" type="hidden" value="<?php echo $product_info->getId(); ?>" />
+            <fieldset>
+				<input name="prod_name" type="hidden" value="<?php echo $product_info['name'] ?>" />
+                <input name="sku" type="hidden" value="<?php echo $product_info['sku'] ?>" />					
+                <div class="fields clearfix">
+                    <div class="field">
+                        <input type="text" placeholder="<?php echo $this->__('Full Name'); ?>:" name="name" value="" id="id_name" class="input-text required-entry">
+                    </div>
+                    <div class="field">
+                        <input type="text" placeholder="<?php echo $this->__('Phone Number'); ?>:" name="phone" value="" id="id_phone" class="input-text required-entry">
+                    </div>					
+                </div>
+                <div class="field-one clearfix">
+					<div class="field">
+                       <input type="email" placeholder="<?php echo $this->__('E-mail Address'); ?>:" name="email" value="" id="id_email" class="input-text required-entry validate-email">
+					</div>
+                </div>
+					<div class="field actions">
+						<div class="control">
+							<button class="button askfordetails-button" type="submit"><?php echo $this->__('Send'); ?></button>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+			<ul class="messages askfordetails-message" id="formSuccess" style="display:none;"><li class="success-msg"><ul><li><span><?php echo $this->__('Thank you for contacting us, we will get back to you as soon as possible.'); ?></span></li></ul></li></ul>
+		</div>
+<script type="text/javascript">
+    //<![CDATA[
+    var formId = 'askexpertForm';
+    var myForm = new VarienForm(formId, true);
+    var postUrl = '<?php echo $this->getUrl("askfordetails/askfordetails/post") ?>';
+    function doAjax() {
+        if (myForm.validator.validate()) {
+            new Ajax.Updater(
+                { success:'formSuccess' }, postUrl, {
+                    method:'post',
+                    asynchronous:true,
+                    evalScripts:false,
+                    onComplete:function(request, json) {
+                        Element.show('formSuccess');
+						Element.hide('formLoader');
+                    },
+                    onLoading:function(request, json){
+                        Element.show('formLoader');
+                    },
+                    parameters: $(formId).serialize(true),
+                }
+            );
+        }
+    }
+    
+    new Event.observe(formId, 'submit', function(e){
+        e.stop();
+        doAjax();
+    });
+    //]]>
+$j( document ).ready(function() {
+	$j('#askexpertForm').show();
+});	
+</script>

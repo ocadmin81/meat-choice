@@ -1,0 +1,32 @@
+<?php
+$topCategory = Mage::getResourceModel('catalog/category_collection')
+    ->addFieldToFilter('parent_id', array('eq' => '2')) 
+	->addFieldToFilter('is_active', array('eq' => '1'));
+$subcatstyle = Mage::getStoreConfig('webthemeoptions/general/subcatstyle');
+?>
+	<div class="parent_block">
+		<?php if($subcatstyle == 1): ?>
+			<?php foreach ($topCategory as $_category): ?>
+					<?php $cur_category = Mage::getModel('catalog/category')->load($_category->getId()); ?>
+					<div class="parent_cat">
+						<div class="linkimage">
+							<a href="<?php echo $cur_category->getUrl()?>" class="product-image">
+								<?php if($_imgUrl=$cur_category->getThumbnail()):?>
+									<img src="<?php echo Mage::getBaseUrl('media').'catalog/category/'.$_imgUrl ?>" style="" alt="<?php echo $this->htmlEscape($cur_category->getName()) ?>" />
+								<?php endif; ?>
+							</a>
+						</div>
+						<div class="linktext" onclick="location.href='<?php echo $cur_category->getUrl()?>'">
+							<a class="parent_name" href="<?php echo $cur_category->getUrl()?>"><?php echo $cur_category->getName(); ?></a>	
+						</div>					
+					</div>
+			<?php endforeach; ?>
+		<?php else: ?>
+			<?php foreach ($topCategory as $_category): ?>
+				<?php $cur_category = Mage::getModel('catalog/category')->load($_category->getId()); ?>
+				<div class="sub-cat">
+					<a class="parent_name" href="<?php echo $cur_category->getUrl()?>"><?php echo $cur_category->getName(); ?></a>	
+				</div>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	</div>

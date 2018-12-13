@@ -1,0 +1,111 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Layerednavigation
+ * @version    1.3.2
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+$cat  = Mage::registry('current_category');
+$minPrice = Mage::getModel('catalog/category')->load($cat->getId())
+	->getProductCollection()
+	->setOrder('price', 'ASC')
+	->getFirstItem();
+$maxPrice = Mage::getModel('catalog/category')->load($cat->getId())
+	->getProductCollection()
+	->setOrder('price', 'ASC')
+	->getLastItem();
+$CurrentMin = $minPrice->getFinalPrice();
+$CurrentMax = $maxPrice->getFinalPrice();
+if($_GET["price"]){
+	$priceArr = explode(",", $_GET["price"]);
+	$CurrentMin = $priceArr[0];
+	$CurrentMax = $priceArr[1];			
+}
+?>
+<div class="price-nav">
+	<div class="price-finder">
+		<div id="price-range-filter"></div>
+		<input type="text" id="amount1" readonly />
+		<input type="text" id="amount2" readonly />
+	</div>		
+</div>
+<script type="text/javascript">
+	$j(document).ready(function() {
+		$j( "#price-range-filter" ).slider({
+			range: true,
+			min: <?php echo $minPrice->getFinalPrice(); ?>,
+			max: <?php echo $maxPrice->getFinalPrice(); ?>,
+			step: 5,
+			values: [ <?php echo $CurrentMin; ?>, <?php echo $CurrentMax; ?> ],
+			slide: function( event, ui ) {
+				$j( "#amount1" ).val( "₪ " + ui.values[ 0 ].toLocaleString('us-US') );
+				$j( "#amount2" ).val( "₪ " + ui.values[ 1 ].toLocaleString('us-US') );
+			},
+			stop: function( event, ui ) {
+				var url = '<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>';
+				url = url.replace("&amp;", "&");
+				var priceRange = $j( "#price-range-filter" ).slider( "option", "values" );
+				var minPrice = priceRange[0];
+				var maxPrice = priceRange[1];
+				if (!url.match(/\?./)) {
+					//console.log('params not found');
+					var linkResult = url+"?price="+minPrice+"%2C"+maxPrice;
+					window.location = linkResult;
+				}
+				else if(window.location.search.indexOf('price') > -1){
+					//console.log('params price found');
+					urlN = removeParam('price', url);
+					var matches = window.location.search.indexOf('&');
+					//console.log(matches);
+					if(matches>-1)
+						var linkResult = urlN+"&price="+minPrice+"%2C"+maxPrice;
+					else
+						var linkResult = urlN+"price="+minPrice+"%2C"+maxPrice;
+					window.location = linkResult;
+				}
+				else{
+					//console.log('params found');
+					var linkResult = url+"&price="+minPrice+"%2C"+maxPrice;	
+					window.location = linkResult;	
+				}
+			}
+		});
+		$j( "#amount1" ).val( "₪ " + $j( "#price-range-filter" ).slider( "values", 0 ).toLocaleString('us-US'));
+		$j( "#amount2" ).val( "₪ " + $j( "#price-range-filter" ).slider( "values", 1 ).toLocaleString('us-US'));	
+	});
+	function removeParam(key, sourceURL) {
+		var rtn = sourceURL.split("?")[0],
+			param,
+			params_arr = [],
+			queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+		if (queryString !== "") {
+			params_arr = queryString.split("&");
+			for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+				param = params_arr[i].split("=")[0];
+				if (param === key) {
+					params_arr.splice(i, 1);
+				}
+			}
+			rtn = rtn + "?" + params_arr.join("&");
+		}
+		return rtn;
+	}	
+</script>

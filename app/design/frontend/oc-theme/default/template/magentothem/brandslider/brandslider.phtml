@@ -1,0 +1,66 @@
+<div class="box-padding">
+    <div class="ma-brand-slider-contain">
+        <div class="owl-carousel owl-theme">
+            <?php
+            $slide = $this->getDataBrandslider();
+            $path = Mage::getBaseUrl('media');
+            ?>
+            <?php
+            $i = 1;
+            foreach ($slide as $s) {
+                //Get images slide show
+                $st1 = $s['image'];
+                $p1 = strpos($st1, 'brandslider');
+                $st2 = substr($st1, $p1 + 11);
+                $p2 = strpos($st2, '"');
+                $imag = substr($st2, 0, $p2);
+                ?>
+                <div class="item">
+                    <div class="reviwe-img-wrap">
+                        <img class="review-img" src="<?php echo $path . 'magentothem/brandslider' . $imag; ?>" alt="" />																													             
+                    </div>
+                    <div class="review-cont">
+
+                        <div class="review-desc">
+                            <?php echo $s['description'] ?>
+                        </div>
+                        <div class="review-title">
+                            <?php echo $s['title'] ?>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+                <?php
+                $i++;
+            } // end foreach
+            ?>
+        </div> 
+    </div> 
+</div> 
+<script type="text/javascript">
+    $j(document).ready(function () {
+        $j('.ma-brand-slider-contain .owl-carousel').owlCarousel({
+            nav: true,
+            autoplay: false,
+            autoplayHoverPause: true,
+            singleItem: true,
+            pagination: true,
+            navigation: true,
+            lazyLoad: false,
+            loop: true,
+            rtl: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 2
+                }
+            }
+        });
+    });
+</script>

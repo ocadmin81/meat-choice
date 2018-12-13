@@ -1,0 +1,70 @@
+<?php
+$_zoom_w = Mage::getStoreConfig('prozoom/prozoom_config/zoom_w');
+$_zoom_h = Mage::getStoreConfig('prozoom/prozoom_config/zoom_h');
+$_border_w = Mage::getStoreConfig('prozoom/prozoom_config/zoom_border_w');
+$_border_color = Mage::getStoreConfig('prozoom/prozoom_config/zoom_border_color');
+$_lightbox_w = Mage::getStoreConfig('prozoom/prozoom_config/lightbox_w');
+$_lightbox_h = Mage::getStoreConfig('prozoom/prozoom_config/lightbox_h');
+$_thumbnail_qty = Mage::getStoreConfig('prozoom/prozoom_config/thumbnail_qty');
+$_thumbnail_w = Mage::getStoreConfig('prozoom/prozoom_config/thumbnail_w');
+$_thumbnail_h = Mage::getStoreConfig('prozoom/prozoom_config/thumbnail_h');
+$_scroll_qty = Mage::getStoreConfig('prozoom/prozoom_config/scroll_qty');
+$_auto = Mage::getStoreConfig('prozoom/prozoom_config/auto_scroll');
+$themeDirection = Mage::getStoreConfig('themeoptions/general/themedir');
+?>
+<?php
+$_product = $this->getProduct();
+$_helper = $this->helper('catalog/output');
+$themeDirection = Mage::getStoreConfig('webthemeoptions/general/appthemedir');
+$showInsta = $_product->getShow_insta();
+$video = $_product->getVideo_code();
+?>
+	<?php $_images = $this->getGalleryImages(); ?>
+		<div class="product-img-box more-images slider-small-img-wrap">
+			<div class="more-views ma-thumbnail-container product-image">
+				<div class="owl-carousel" id="owl-media">
+					<?php $i=0; foreach ($_images as $_image): ?>
+						<div class="item">
+							<a data-slide-index="<?php echo $i; ?>" href="#">
+								<img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(); ?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" />
+							</a>
+						</div>
+					<?php $i++; endforeach; ?>
+				</div>
+				<?php if($video): ?><a class="video-pop" href="http://www.youtube.com/v/<?php echo $video; ?>?fs=1&autoplay=1"><img src="<?php echo $this->getSkinurl(); ?>images/prod-video.png" /></a><?php endif; ?>
+			</div>
+		</div>		
+		<script type="text/javascript">
+			$j(document).ready(function() {		
+				$j('#owl-media').owlCarousel({
+					<?php if(count($_images) > 1): ?>
+					nav:false,
+					<?php else: ?>
+					nav:false,
+					<?php endif; ?>
+					dots:true,
+					autoplay : false,
+					autoplayHoverPause : true,
+					singleItem:true,
+					pagination:false,
+					navigation:false,
+					lazyLoad : false,
+					<?php if($themeDirection == 'rtl'): ?>
+					rtl:true,
+					<?php endif; ?>
+					loop:false,
+					margin : 0,
+					responsive:{
+						0:{
+							items:1
+						},
+						768:{
+							items:1
+						},
+						992:{
+							items:1
+						}
+					}
+				});
+			});
+		</script>			

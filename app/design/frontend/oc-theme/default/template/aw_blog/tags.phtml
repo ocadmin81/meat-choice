@@ -1,0 +1,83 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento community edition
+ * aheadWorks does not guarantee correct work of this extension
+ * on any other Magento edition except Magento community edition.
+ * aheadWorks does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Blog
+ * @version    1.2.1
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+$recipes_tags_first_group = Mage::getModel('cms/block')->load("recipes_tags_first_group");
+$recipes_tags_second_group = Mage::getModel('cms/block')->load("recipes_tags_second_group");
+$recipes_tags_third_group = Mage::getModel('cms/block')->load("recipes_tags_third_group");
+$recipes_tags_fours_group = Mage::getModel('cms/block')->load("recipes_tags_fours_group");
+$recipes_tags_fives_group = Mage::getModel('cms/block')->load("recipes_tags_fives_group");
+?>
+<?php $path = $_SERVER['REQUEST_URI']; ?>
+<?php $urlP = strtok($path, '?'); ?>
+<?php $Cpath = str_replace('/', '', $urlP); ?>
+<div class="path" style="display:none;"><?php echo $Cpath; ?></div>
+<?php //if (Mage::getStoreConfig(AW_Blog_Helper_Config::XML_TAGCLOUD_SIZE) && $this->getCollection()->count()): ?>
+    <div class="block-title"><?php echo $this->__('Filter Recipes By') ?><span>:</span></div>
+	<div class="block-content toggle-content">
+		<dl id="aw-ln-filters-container">
+			<div class="blog-tag-group">
+				<div class="option-block">
+					<dt class="odd"><span><?php echo $recipes_tags_first_group->getTitle(); ?></span></dt>
+					<dd><?php echo $recipes_tags_first_group->getContent(); ?></dd>
+				</div>
+				<div class="option-block">
+					<dt class="odd"><span><?php echo $recipes_tags_second_group->getTitle(); ?></span></dt>
+					<dd><?php echo $recipes_tags_second_group->getContent(); ?></dd>
+				</div>
+			</div>
+			<div class="blog-tag-group">
+				<div class="option-block">
+					<dt class="odd"><span><?php echo $recipes_tags_third_group->getTitle(); ?></span></dt>
+					<dd><?php echo $recipes_tags_third_group->getContent(); ?></dd>
+				</div>
+				<div class="option-block">
+					<dt class="odd"><span><?php echo $recipes_tags_fours_group->getTitle(); ?></span></dt>
+					<dd><?php echo $recipes_tags_fours_group->getContent(); ?></dd>
+				</div>
+				<div class="option-block">
+					<dt class="odd"><span><?php echo $recipes_tags_fives_group->getTitle(); ?></span></dt>
+					<dd><?php echo $recipes_tags_fives_group->getContent(); ?></dd>
+				</div>
+			</div>
+        </dl>
+		<div class="clear-btn"><a href="<?php echo $this->getUrl(); ?>recipes"><?php echo $this->__('Clear Filter') ?></a></div>
+    </div>
+<?php //endif; ?>
+<script type="text/javascript">
+	$j(document).ready(function() {
+		$j( ".block-layered-nav dd li a" ).each(function( index ) {
+			var str = $j(this).attr('href');
+			var str = str.replace(/\s+/g, '-');
+			$j(this).attr('href',str);
+		});
+		$j( ".block-layered-nav dd li" ).each(function( index ) {
+			var classN = $j(this).attr('class');
+			if('<?php echo $Cpath; ?>' == classN)
+				$j(this).addClass('ptionChecked');
+		});		
+	});
+</script>

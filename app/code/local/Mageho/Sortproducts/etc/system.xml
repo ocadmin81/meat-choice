@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * @category   Mageho
+ * @package    Mageho_Sortproducts
+ * @version    1.0.0
+ * @copyright  Copyright (c) 2012  Mageho (http://www.mageho.com)
+ * @license    http://www.mageho.com/license  Proprietary License
+ */
+-->
+<config>
+	<sections>
+		<mageho_sortproducts translate="label" module="mageho_sortproducts">
+			<label>Merchandising</label>
+			<tab>catalog</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>45</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>0</show_in_website>
+			<show_in_store>0</show_in_store>
+			<groups>
+				<general translate="label">
+					<label>General</label>
+					<show_in_default>1</show_in_default>
+					<show_in_website>0</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<limit_products translate="label comment">
+							<label>Limit number of products in iframe</label>
+							<comment>Enter 0 for no limit - This parameter can improve performance loading</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</limit_products>
+						<image_width translate="label">
+							<label>Image Width</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</image_width>
+                        <show_attributes translate="label">
+                            <label>Show Attributes</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>Mageho_Sortproducts_Model_System_Config_Source_Attributes</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+                        </show_attributes>
+						<display_only_enabled_products translate="label">
+							<label>Display Only Enabled Products</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</display_only_enabled_products>
+						<display_out_stock_products translate="label">
+							<label>Display Out of Stock Products</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</display_out_stock_products>
+					</fields>
+                </general>	
+			</groups>
+		</mageho_sortproducts>
+	</sections>
+</config>

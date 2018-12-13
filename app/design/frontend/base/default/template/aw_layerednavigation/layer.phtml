@@ -1,0 +1,94 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Layerednavigation
+ * @version    1.3.2
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php /** @var AW_Layerednavigation_Block_Layer $this */ ?>
+<?php if($this->canShowBlock()): ?>
+    <div class="block block-layered-nav" id="aw-ln-filters">
+        <div class="block-title">
+            <strong><span><?php echo $this->__('Shop By') ?></span></strong>
+        </div>
+        <div class="block-content toggle-content">
+            <script type="text/javascript">
+                var awLnUpdaterInstance = new awLnUpdater();
+            </script>
+            <?php if($this->isLayerHasAppliedValue()): ?>
+                <span class="aw-ln-clear-all">
+                    (<a href="javascript:void(0)"><?php echo $this->__("Clear All");?></a>)
+                </span>
+            <?php endif;?>
+            <p class="block-subtitle block-subtitle--filter"">
+                <?php echo $this->__('Shopping Options') ?>
+            </p>
+            <dl id="aw-ln-filters-container">
+                <?php foreach ($this->getFilterList() as $_filter): ?>
+                    <?php if($this->getItemCountByFilter($_filter)): ?>
+                        <dt>
+                            <span><?php echo $_filter->getTitle() ?></span>
+                            <?php if ($this->isFilterHasAppliedValues($_filter)):?>
+                                <span class="aw-ln-filter-clear">
+                                    (<a href="javascript:void(0)"><?php echo $this->__("Clear");?></a>)
+                                </span>
+                            <?php else : ?>
+                                <?php echo $this->renderHelp($_filter); ?>
+                            <?php endif;?>
+                        </dt>
+                        <dd>
+                            <?php echo $this->renderFilter($_filter); ?>
+                        </dd>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </dl>
+            <script type="text/javascript">
+                <?php foreach ($this->getFilterList() as $_filter): ?>
+                    <?php if($this->getItemCountByFilter($_filter) == 0): ?>
+                        awLnUpdaterInstance.registerNoItemsFilterCode(<?php echo Zend_Json::encode($_filter->getCode());?>);
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </script>
+
+            <script type="text/javascript">
+                decorateDataList('aw-ln-filters-container');
+                //decorateDataList('aw-ln-filters');
+                awLnUpdaterInstance.init({
+                    layerContainerElSelector: ".block-layered-nav",
+                    productsContainerElSelectorList: [".category-view", ".results-view", ".category-products", ".category_cms_block"],
+                    emptyProductsContainerElSelectorList: [".note-msg"],
+                    toolbarContainerElSelectorList: [
+                        ".category-view .toolbar",
+                        ".results-view .toolbar",
+                        ".category-products .toolbar"
+                    ],
+                    clearAllElSelector: '.aw-ln-clear-all',
+                    clearFilterElSelector: '.aw-ln-filter-clear',
+                    isAjax: <?php echo Zend_Json::encode($this->isAjax());?>,
+                    canAddNonFilteredParams: <?php echo Zend_Json::encode($this->canAddNonFilteredParams());?>,
+                    overlaySettings: <?php echo Zend_Json::encode($this->getOverlaySettings());?>,
+                    overlayCssClass: 'aw-ln-overlay',
+                    searchQueryParamCode: <?php echo Zend_Json::encode($this->getSearchQueryParamCode());?>
+                });
+            </script>
+        </div>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,20 @@
+<?php $post = $this->getPost(); ?>
+<?php $_productName = urlencode(trim($post->getTitle()))?>
+<?php $_productImageUrl = urlencode(trim($post->getThumbnail()))?>
+<?php $_productUrl = urlencode(trim($post->getAddress()))?>
+<?php $_productDesc = urlencode(trim($post->getShort_content()))?>
+<div class="prod-social-wrap">
+<ul class="social-prod-logos">
+	<li class="social-text"><?php echo $this->__('Loved? <b>Share</b>') ?></li>
+	<li class="pin">
+        <a href="http://pinterest.com/pin/create/button/?url=<?php echo $_productUrl; ?>&media=<?php echo $_productImageUrl; ?>&description=<?php echo $_productDesc; ?>" target="_blank" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Share on pinterest')) ?>"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+    </li>
+    <li class="twitt">
+        <a href="<?php echo 'http://twitter.com/home?status=' . $_productName . '+' . $_productUrl; ?>" target="_blank" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Share on Twitter')) ?>" class="link-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+    </li>
+    <li class="face">
+        <?php $_u = 'p[url]=' . $_productUrl . '&p[images][0]=' . $_productImageUrl . '&p[title]=' . $_productName . '&p[summary]=' . $_productDesc; ?>
+        <a href="<?php echo 'http://www.facebook.com/sharer.php?s=100&' . $_u; ?>" target="_blank" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Share on Facebook')) ?>" class="link-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+    </li>
+</ul>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AW_Layerednavigation>
+            <active>true</active>
+            <codePool>local</codePool>
+        </AW_Layerednavigation>
+    </modules>
+</config>

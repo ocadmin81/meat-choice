@@ -1,0 +1,99 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento community edition
+ * aheadWorks does not guarantee correct work of this extension
+ * on any other Magento edition except Magento community edition.
+ * aheadWorks does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Blog
+ * @version    1.2.1
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+require_once 'Mobile_Detect.php';
+$detect = new Mobile_Detect_List;
+if ($detect->isMobile() && !$detect->isTablet()) {
+    $mcount = Mage::getStoreConfig('webthemeoptions/catalog/mcount');
+	if($mcount == "1"){
+		$count = 'col-xs-12 col-md-12 col-sm-12 col-sms-12 mobile';
+	}
+	elseif($mcount == "2"){
+		$count = 'col-xs-6 col-md-6 col-sm-6 col-sms-6 mobile clear-third';
+	}	
+    //Tablet
+} elseif ($detect->isTablet()) {
+    $tcount = Mage::getStoreConfig('webthemeoptions/catalog/tcount');
+	if($tcount == "1"){
+		$count = 'col-xs-12 col-md-12 col-sm-12 col-sms-12 tablet';
+	}
+	elseif($tcount == "2"){
+		$count = 'col-xs-6 col-md-6 col-sm-6 col-sms-6 tablet clear-third';
+	}
+	elseif($tcount == "3"){
+		$count = 'col-xs-4 col-md-4 col-sm-4 col-sms-4 tablet clear-four';
+	}
+	elseif($tcount == "4"){
+		$count = 'col-xs-3 col-md-3 col-sm-3 col-sms-3 tablet clear-fivth';
+	}
+	else{
+		$count = 'col-xs-3 col-md-3 col-sm-3 col-sms-3 tablet clear-fivth';
+	}	
+    //Desktop
+} else {
+    $dcount = Mage::getStoreConfig('webthemeoptions/catalog/dcount');
+	if($dcount == "1"){
+		$count = 'col-xs-12 col-md-12 col-sm-12 col-sms-12 desktop';
+	}
+	elseif($dcount == "2"){
+		$count = 'col-xs-6 col-md-6 col-sm-6 col-sms-6 desktop clear-third';
+	}
+	elseif($dcount == "3"){
+		$count = 'col-xs-4 col-md-4 col-sm-4 col-sms-4 desktop clear-four';
+	}
+	elseif($dcount == "4"){
+		$count = 'col-xs-3 col-md-3 col-sm-3 col-sms-3 desktop clear-fivth';
+	}
+	else{
+		$count = 'col-xs-3 col-md-3 col-sm-3 col-sms-3 desktop clear-fivth';
+	}
+}
+?> <?php $posts = $this->getPosts(); ?><div id="messages_product_view">    <?php Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true)); ?>     <?php echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml(); ?> </div>
+<div class="home-blog-content main-blog-content category-products row">
+	<div class="product-grid">		<?php foreach ($posts as $post): ?>
+					<div class="item <?php echo $count; ?>">
+						<div class="post-img">
+							<a href="<?php echo $post->getAddress(); ?>"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$post->getThumbnail() ?>" alt="<?php echo $post->getTitle(); ?>" /></a>
+							<?php if($post->getMaking_time()): ?>
+							<div class="post-details">
+								<ul>
+									<li class="making_time"><?php echo $post->getMaking_time(); ?></li>
+									<?php if($post->getDifficulty() != ''): ?>
+										<li class="difficulty"><?php echo $this->__('Difficulty level').': '.$this->__($post->getDifficulty()); ?></li>
+									<?php endif; ?>
+									<?php if($post->getCooking_type() != ''): ?>
+										<li class="cooking_type"><?php echo $this->__('Cooking Type').': '.$this->__($post->getCooking_type()); ?></li>
+									<?php endif; ?>
+								</ul>
+							</div>
+							<?php endif;?>
+						</div>
+						<div class="name"><a href="<?php echo $post->getAddress(); ?>"><?php echo $post->getTitle(); ?></a></div>
+						<div class="content"><?php echo $post->getShort_content(); ?></div>
+					</div>		<?php endforeach; ?> 
+	</div>
+</div> <?php echo $this->getChildHtml('aw_blog_comments_toolbar'); ?><?php //$this->getPages(); ?>

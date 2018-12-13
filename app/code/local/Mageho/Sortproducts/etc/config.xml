@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * @category   Mageho
+ * @package    Mageho_Sortproducts
+ * @version     1.1.1
+ * @copyright  Copyright (c) 2013  Mageho (http://www.mageho.com)
+ * @license      http://www.mageho.com/license  Proprietary License
+ */
+-->
+<config>
+    <modules>
+        <Mageho_Sortproducts>
+            <version>1.1.1</version>
+        </Mageho_Sortproducts>
+    </modules>
+    <global>
+        <blocks>
+            <mageho_sortproducts>
+                <class>Mageho_Sortproducts_Block</class>
+            </mageho_sortproducts>
+        </blocks>
+        <helpers>
+            <mageho_sortproducts>
+                <class>Mageho_Sortproducts_Helper</class>
+            </mageho_sortproducts>
+        </helpers>
+        <models>
+            <mageho_sortproducts>
+                <class>Mageho_Sortproducts_Model</class>
+                <resourceModel>mageho_sortproducts_resource</resourceModel>
+            </mageho_sortproducts>
+			<mageho_sortproducts_resource>
+                <class>Mageho_Sortproducts_Model_Resource</class>
+			</mageho_sortproducts_resource>
+        </models>
+        <resources>
+            <mageho_sortproducts_setup>
+                <setup>
+                    <module>Mageho_Sortproducts</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mageho_sortproducts_setup>
+            <mageho_sortproducts_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </mageho_sortproducts_write>
+            <mageho_sortproducts_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </mageho_sortproducts_read>
+        </resources>
+		<events>
+			<adminhtml_catalog_category_tabs>
+				<observers>
+					<mageho_sortproducts>
+						<type>singleton</type>
+						<class>mageho_sortproducts/observer</class>
+						<method>addTabToCategoryPage</method>
+					</mageho_sortproducts>
+				</observers>
+			</adminhtml_catalog_category_tabs>
+		</events>
+    </global>
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<Mageho_Sortproducts before="Mage_Adminhtml">Mageho_Sortproducts_Adminhtml</Mageho_Sortproducts>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Mageho_Sortproducts>
+                    <files>
+                        <default>Mageho_Sortproducts.csv</default>
+                    </files>
+                </Mageho_Sortproducts>
+            </modules>
+        </translate>
+		<layout>
+			<updates>
+				<mageho_sortproducts>
+					<file>mageho/sortproducts.xml</file>
+				</mageho_sortproducts>
+			</updates>
+		</layout>
+    </adminhtml>
+	<default>
+		<mageho_sortproducts>
+			<general>
+				<limit_products>0</limit_products>
+				<image_width>50</image_width>
+				<display_only_enabled_products>0</display_only_enabled_products>
+				<display_out_stock_products>0</display_out_stock_products>
+			</general>
+		</mageho_sortproducts>
+	</default>
+</config>

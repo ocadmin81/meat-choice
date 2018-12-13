@@ -1,0 +1,5 @@
+.cart-table .product-name {font-size: 18px;}
+#order_review_form{float: left;clear: left;width: 35%;padding-right: 40px;margin-top: 10px;}
+@media (max-width: 767px){
+	#order_review_form{float: none;clear: both;width: 100%;padding-right: 0;}
+}

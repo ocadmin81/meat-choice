@@ -1,0 +1,51 @@
+<layout version="0.1.0">
+    <adminhtml_awln_filter_index>
+        <reference name="content">
+            <block type="adminhtml/store_switcher" name="store_switcher" before="-" />
+            <block type="aw_layerednavigation/adminhtml_filter" />
+        </reference>
+    </adminhtml_awln_filter_index>
+    <adminhtml_awln_filter_edit>
+        <update handle="editor"/>
+        <reference name="head">
+            <action method="setCanLoadRulesJs"><flag>1</flag></action>
+            <action method="setCanLoadTinyMce"><flag>1</flag></action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>aw_layerednavigation/js/aw_field_dependence.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>aw_layerednavigation/css/style.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="aw_layerednavigation/adminhtml_filter_edit" name="filter_edit" />
+        </reference>
+        <reference name="left">
+            <block type="adminhtml/store_switcher" name="store_switcher" before="-" />
+            <block type="aw_layerednavigation/adminhtml_filter_edit_tabs" name="filter_edit_tabs" />
+        </reference>
+    </adminhtml_awln_filter_edit>
+    <adminhtml_awln_filter_categories>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="aw_layerednavigation/adminhtml_filter_edit_tab_categories" name="tab.categories" />
+        </block>
+    </adminhtml_awln_filter_categories>
+    <adminhtml_catalog_category_edit>
+        <reference name="js">
+            <block type="core/template" template="aw_layerednavigation/catalog/category/js.phtml" name="aw.ln.js" />
+        </reference>
+    </adminhtml_catalog_category_edit>
+    <adminhtml_catalog_product_attribute_edit>
+        <reference name="js">
+            <block type="aw_layerednavigation/adminhtml_catalog_attribute_js" template="aw_layerednavigation/catalog/attribute/js.phtml" name="aw.ln.js" />
+        </reference>
+    </adminhtml_catalog_product_attribute_edit>
+    <adminhtml_system_config_edit>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>aw_layerednavigation/js/aw_synchronize.js</name></action>
+            <action method="addItem"><type>skin_css</type><name>aw_layerednavigation/css/config.css</name></action>
+        </reference>
+    </adminhtml_system_config_edit>
+</layout>

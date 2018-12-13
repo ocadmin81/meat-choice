@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addCss" ifconfig="orderimages/lightbox/enabled"><stylesheet>css/orderimages/lightbox.css</stylesheet></action>
+
+            <action method="addJs" ifconfig="orderimages/lightbox/include_jquery"><script>magemill/orderimages/jquery-1.11.0.min.js</script></action>
+            <action method="addJs" ifconfig="orderimages/lightbox/include_jquery"><script>magemill/orderimages/jquery.noConflict.js</script></action>
+            <action method="addJs" ifconfig="orderimages/lightbox/enabled"><script>magemill/orderimages/lightbox.min.js</script></action>
+        </reference>
+    </default>
+
+    <sales_order_view>
+        <reference name="order_items">
+            <action method="setTemplate" ifconfig="orderimages/general/enabled">
+                <template>orderimages/sales/order/items.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>default</type>
+                <block>sales/order_item_renderer_default</block>
+                <template>orderimages/sales/order/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>grouped</type>
+                <block>sales/order_item_renderer_grouped</block>
+                <template>orderimages/order/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/sales_order_items_renderer</block>
+                <template>orderimages/bundle/sales/order/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </sales_order_view>
+
+    <sales_order_invoice>
+        <reference name="invoice_items">
+            <action method="setTemplate" ifconfig="orderimages/general/enabled">
+                <template>orderimages/sales/order/invoice/items.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>default</type>
+                <block>sales/order_item_renderer_default</block>
+                <template>orderimages/sales/order/invoice/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>grouped</type>
+                <block>sales/order_item_renderer_grouped</block>
+                <template>orderimages/sales/order/invoice/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/sales_order_items_renderer</block>
+                <template>orderimages/bundle/sales/order/invoice/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </sales_order_invoice>
+
+    <sales_order_shipment>
+        <reference name="shipment_items">
+            <action method="setTemplate" ifconfig="orderimages/general/enabled">
+                <template>orderimages/sales/order/shipment/items.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>default</type>
+                <block>sales/order_item_renderer_default</block>
+                <template>orderimages/sales/order/shipment/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/sales_order_items_renderer</block>
+                <template>orderimages/bundle/sales/order/shipment/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </sales_order_shipment>
+
+    <sales_order_creditmemo>
+        <reference name="creditmemo_items">
+            <action method="setTemplate" ifconfig="orderimages/general/enabled">
+                <template>orderimages/sales/order/creditmemo/items.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>default</type>
+                <block>sales/order_item_renderer_default</block>
+                <template>orderimages/sales/order/creditmemo/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>grouped</type>
+                <block>sales/order_item_renderer_grouped</block>
+                <template>orderimages/sales/order/creditmemo/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/sales_order_items_renderer</block>
+                <template>orderimages/bundle/sales/order/creditmemo/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </sales_order_creditmemo>
+
+    <!--<sales_email_order_items>
+        <reference name="items">
+            <action method="setTemplate" ifconfig="orderimages/general/enabled">
+                <template>orderimages/email/order/items.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>default</type>
+                <block>sales/order_email_items_order_default</block>
+                <template>orderimages/email/order/items/order/default.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>grouped</type>
+                <block>sales/order_email_items_order_grouped</block>
+                <template>orderimages/email/order/items/order/default.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/sales_order_items_renderer</block>
+                <template>orderimages/bundle/email/order/items/order/default.phtml</template>
+            </action>
+        </reference>
+        <reference name="order_totals">
+            <action method="setLabelProperties" ifconfig="orderimages/general/enabled">
+                <value>colspan="4" align="right" style="padding:3px 9px"</value>
+            </action>
+        </reference>
+    </sales_email_order_items>
+
+    <sales_email_order_invoice_items>
+        <reference name="items">
+            <action method="setTemplate" ifconfig="orderimages/general/enabled">
+                <template>orderimages/email/order/invoice/items.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>default</type>
+                <block>sales/order_email_items_default</block>
+                <template>orderimages/email/order/items/invoice/default.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>grouped</type>
+                <block>sales/order_email_items_order_grouped</block>
+                <template>orderimages/email/order/items/invoice/default.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/sales_order_items_renderer</block>
+                <template>orderimages/bundle/email/order/items/invoice/default.phtml</template>
+            </action>
+        </reference>
+    </sales_email_order_invoice_items>
+
+    <sales_email_order_shipment_items>
+        <reference name="items">
+            <action method="setTemplate" ifconfig="orderimages/general/enabled">
+                <template>orderimages/email/order/shipment/items.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>default</type>
+                <block>sales/order_email_items_default</block>
+                <template>orderimages/email/order/items/shipment/default.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/sales_order_items_renderer</block>
+                <template>orderimages/bundle/email/order/items/shipment/default.phtml</template>
+            </action>
+        </reference>
+    </sales_email_order_shipment_items>
+
+    <sales_email_order_creditmemo_items>
+        <reference name="items">
+            <action method="setTemplate" ifconfig="orderimages/general/enabled">
+                <template>orderimages/email/order/creditmemo/items.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>default</type>
+                <block>sales/order_email_items_default</block>
+                <template>orderimages/email/order/items/creditmemo/default.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>grouped</type>
+                <block>sales/order_email_items_order_grouped</block>
+                <template>orderimages/email/order/items/creditmemo/default.phtml</template>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/sales_order_items_renderer</block>
+                <template>orderimages/bundle/email/order/items/creditmemo/default.phtml</template>
+            </action>
+        </reference>
+    </sales_email_order_creditmemo_items>-->
+</layout>

@@ -1,0 +1,13 @@
+.aw-ln-position-el{
+    width: 100%;
+    height: 36px;
+    background: url('../images/drag-icon.png') center no-repeat;
+    background-size: 36px;
+    cursor: pointer;
+}
+.aw-ln-tr-ondrag{
+    background-color: #fdf6b1!important;
+}
+.aw-ln-table-ondrag *{
+    cursor: move;
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /*
+ * @category   Mageho
+ * @package    Mageho_Sortproducts
+ * @copyright  Copyright (c) 2012  Mageho (http://www.mageho.com)
+ * @license    http://www.mageho.com/license  Proprietary License
+ * @version    1.0.0
+ */
+ -->
+<layout version="0.1.0">
+    <adminhtml_mageho_sortproducts_index>
+		<update handle="popup" />
+		<remove name="head.calendar" />
+		<remove name="notifications" />
+		<remove name="footer" />
+		
+		<reference name="head">
+            <action method="addJs"><script>mageho/sortproducts/dragdrop.js</script></action>
+            <action method="addJs"><script>mageho/sortproducts/opentip.js</script></action>
+			<action method="addItem"><type>js_css</type><name>mageho/sortproducts/opentip.css</name></action>
+
+			<action method="addCss"><name>mageho/sortproducts/sortproducts.css</name></action>
+		</reference>
+		
+		<reference name="content">
+			<block type="mageho_sortproducts/adminhtml_sortgrid" name="mageho.sortgrid" />
+		</reference>
+    </adminhtml_mageho_sortproducts_index>
+</layout>

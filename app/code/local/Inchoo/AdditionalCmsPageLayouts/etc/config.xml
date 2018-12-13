@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+ <global>
+  <page>
+   <layouts>
+    <custom_static_page_one>
+     <label>Home</label>
+     <template>page/home.phtml</template>
+    </custom_static_page_one>
+   </layouts>
+  </page>
+ </global>
+</config>

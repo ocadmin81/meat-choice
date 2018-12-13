@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<layout>
+    <aw_layerednavigation_handle>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>aw_layerednavigation/css/style.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>aw_layerednavigation/js/core.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>aw_layerednavigation/js/type/abstract.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>aw_layerednavigation/js/type/input.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>aw_layerednavigation/js/type/fromto.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>aw_layerednavigation/js/type/range.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>aw_layerednavigation/js/custom.js</name></action>
+        </reference>
+    </aw_layerednavigation_handle>
+    <catalog_category_layered>
+        <update handle="aw_layerednavigation_handle"/>
+    </catalog_category_layered>
+    <catalogsearch_result_index>
+        <update handle="aw_layerednavigation_handle"/>
+    </catalogsearch_result_index>
+    <awadvancedsearch_result_index>
+        <update handle="aw_layerednavigation_handle"/>
+    </awadvancedsearch_result_index>
+    <awshopbybrand_index_brandpageview>
+        <update handle="aw_layerednavigation_handle"/>
+    </awshopbybrand_index_brandpageview>
+</layout>

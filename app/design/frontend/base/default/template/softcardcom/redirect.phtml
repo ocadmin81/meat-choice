@@ -1,0 +1,73 @@
+﻿<?php
+
+
+
+	$standard = Mage::getModel('softcardcom/payment');
+
+	$fields = $standard->setOrder($this->getOrder())->getStandardCheckoutFormFields();
+
+	if(isset($fields["profile"]))
+	{
+
+?>
+
+	<div class="page-title">
+		<h1> </h1>
+
+	</div>
+
+
+
+<?php
+        $mode = $this->getMode();
+        if($mode == "1")
+		{
+			$formHTML.='<iframe name="my_iframe" src="'.$standard->getCardcomUrl()."&lowprofilecode=".$fields["profile"].'" width="100%" height="1124px" style="border:0px"></iframe>';
+		}
+		else
+		{
+		echo "<br/>";
+		$formHTML = "<form  action='".$standard->getCardcomUrl()."&lowprofilecode=".$fields["profile"]."' id='softcardcomForm' name='softcardcom_payment_checkout' method='post'>";
+		$formHTML .="</form>";
+
+// Secipt:
+		$formHTML .='<script type="text/javascript">';
+		$formHTML .='var frm = document.getElementById("softcardcomForm");';
+		$formHTML .='frm.submit();';
+		$formHTML .='</script>';
+	}
+	echo $formHTML;
+	if (isset($fields["languageCode"]))
+	{
+			echo "<div style='display:none'> languageCode: ".$fields["languageCode"]."</div>";
+	}
+?>
+
+<?php
+	}else
+	{
+?>
+	<div class="page-title">
+		<h1>We cant process your order !</h1>
+		<?php
+		if (isset($fields["RequestURL"]))
+		{
+			echo $fields["RequestURL"];
+			echo "<br/>";
+		}
+
+		if (isset($fields["Response"]))
+		{
+			echo $fields["Response"];
+			echo "<br/>";
+		}
+ 
+
+		?>
+	</div>
+
+<?php
+	}
+
+?>
+

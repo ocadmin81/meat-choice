@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addCss" ifconfig="orderimages/lightbox/enabled"><name>orderimages/css/lightbox.css</name></action>
+
+            <action method="addJs" ifconfig="orderimages/lightbox/admin_jquery"><script>magemill/orderimages/jquery-1.11.0.min.js</script></action>
+            <action method="addJs" ifconfig="orderimages/lightbox/admin_jquery"><script>magemill/orderimages/jquery.noConflict.js</script></action>
+            <action method="addJs" ifconfig="orderimages/lightbox/enabled"><script>magemill/orderimages/lightbox.min.js</script></action>
+        </reference>
+    </default>
+
+    <!-- Sales Order -->
+    <adminhtml_sales_order_view>
+        <reference name="order_items">
+            <action method="addColumnRender" ifconfig="orderimages/general/enabled">
+                <column>name</column>
+                <block>adminhtml/sales_items_column_name</block>
+                <template>orderimages/sales/items/column/name.phtml</template>
+            </action>
+            <action method="addColumnRender" ifconfig="orderimages/general/enabled">
+                <column>name</column>
+                <block>adminhtml/sales_items_column_name_grouped</block>
+                <template>orderimages/sales/items/column/name.phtml</template>
+                <type>grouped</type>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/adminhtml_sales_order_view_items_renderer</block>
+                <template>orderimages/bundle/sales/order/view/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
+
+    <!-- Sales Invoice -->
+    <adminhtml_sales_order_invoice_new>
+        <reference name="order_items">
+            <action method="addColumnRender" ifconfig="orderimages/general/enabled">
+                <column>name</column>
+                <block>adminhtml/sales_items_column_name</block>
+                <template>orderimages/sales/items/column/name.phtml</template>
+            </action>
+            <action method="addColumnRender" ifconfig="orderimages/general/enabled">
+                <column>name</column>
+                <block>adminhtml/sales_items_column_name_grouped</block>
+                <template>orderimages/sales/items/column/name.phtml</template>
+                <type>grouped</type>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/adminhtml_sales_order_items_renderer</block>
+                <template>orderimages/bundle/sales/invoice/create/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_invoice_new>
+
+    <adminhtml_sales_order_invoice_view>
+        <reference name="invoice_items">
+            <action method="addColumnRender" ifconfig="orderimages/general/enabled">
+                <column>name</column>
+                <block>adminhtml/sales_items_column_name</block>
+                <template>orderimages/sales/items/column/name.phtml</template>
+            </action>
+            <action method="addColumnRender" ifconfig="orderimages/general/enabled">
+                <column>name</column>
+                <block>adminhtml/sales_items_column_name_grouped</block>
+                <template>orderimages/sales/items/column/name.phtml</template>
+                <type>grouped</type>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/adminhtml_sales_order_items_renderer</block>
+                <template>orderimages/bundle/sales/invoice/view/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_invoice_view>
+
+    <!-- Sales Shipment -->
+    <adminhtml_sales_order_shipment_new>
+        <reference name="order_items">
+            <action method="addColumnRender" ifconfig="orderimages/general/enabled">
+                <column>name</column>
+                <block>adminhtml/sales_items_column_name</block>
+                <template>orderimages/sales/items/column/name.phtml</template>
+            </action>
+            <action method="addColumnRender" ifconfig="orderimages/general/enabled">
+                <column>name</column>
+                <block>adminhtml/sales_items_column_name_grouped</block>
+                <template>orderimages/sales/items/column/name.phtml</template>
+                <type>grouped</type>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/adminhtml_sales_order_items_renderer</block>
+                <template>orderimages/bundle/sales/shipment/create/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_shipment_new>
+
+    <adminhtml_sales_order_shipment_view>
+        <reference name="shipment_items">
+            <action method="addColumnRender" ifconfig="orderimages/general/enabled">
+                <column>name</column>
+                <block>adminhtml/sales_items_column_name</block>
+                <template>orderimages/sales/items/column/name.phtml</template>
+            </action>
+            <action method="addColumnRender" ifconfig="orderimages/general/enabled">
+                <column>name</column>
+                <block>adminhtml/sales_items_column_name_grouped</block>
+                <template>orderimages/sales/items/column/name.phtml</template>
+                <type>grouped</type>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/adminhtml_sales_order_items_renderer</block>
+                <template>orderimages/bundle/sales/shipment/view/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_shipment_view>
+
+    <!-- Sales Creditmemo -->
+    <adminhtml_sales_order_creditmemo_new>
+        <reference name="order_items">
+            <action method="addColumnRender" ifconfig="orderimages/general/enabled">
+                <column>name</column>
+                <block>adminhtml/sales_items_column_name</block>
+                <template>orderimages/sales/items/column/name.phtml</template>
+            </action>
+            <action method="addColumnRender" ifconfig="orderimages/general/enabled">
+                <column>name</column>
+                <block>adminhtml/sales_items_column_name_grouped</block>
+                <template>orderimages/sales/items/column/name.phtml</template>
+                <type>grouped</type>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/adminhtml_sales_order_items_renderer</block>
+                <template>orderimages/bundle/sales/creditmemo/create/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_creditmemo_new>
+
+    <adminhtml_sales_order_creditmemo_view>
+        <reference name="creditmemo_items">
+            <action method="addColumnRender" ifconfig="orderimages/general/enabled">
+                <column>name</column>
+                <block>adminhtml/sales_items_column_name</block>
+                <template>orderimages/sales/items/column/name.phtml</template>
+            </action>
+            <action method="addColumnRender" ifconfig="orderimages/general/enabled">
+                <column>name</column>
+                <block>adminhtml/sales_items_column_name_grouped</block>
+                <template>orderimages/sales/items/column/name.phtml</template>
+                <type>grouped</type>
+            </action>
+            <action method="addItemRender" ifconfig="orderimages/general/enabled">
+                <type>bundle</type>
+                <block>bundle/adminhtml_sales_order_items_renderer</block>
+                <template>orderimages/bundle/sales/creditmemo/view/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_creditmemo_view>
+    
+</layout>

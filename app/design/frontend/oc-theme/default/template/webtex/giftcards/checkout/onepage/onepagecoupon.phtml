@@ -1,0 +1,93 @@
+<style type="text/css">
+<?php if(Mage::getStoreConfigFlag('giftcards/default/split_amount')):?>
+.card-amount {
+    border-bottom: solid 1px;
+    cursor: pointer;
+}
+<?php endif;?>
+#edit-div {
+    display: none;
+}
+#apply-btn img {
+    vertical-align: middle !important;
+    margin-top: 5px;
+    margin-left: 3px;
+    cursor: pointer;
+}
+</style>
+
+<?php $_session = Mage::getSingleton('giftcards/session'); ?>
+<?php $loadFromSSL = $_SERVER['SERVER_PORT']==443?true:false; ?>
+<?php $isGiftCard = $this->isGiftCard(); ?>
+
+<div class="discount">
+<?php if(!$isGiftCard) : ?>
+    <div class="discount-form giftcard-payment-method">
+			
+            <h2>Gift Cards</h2>
+            <div class="input-box">
+                <input value="" name="giftcard_code" id="giftcard_code" class="input-text required-entry" placeholder="<?php echo $this->__('Redeem and use your Gift Card now'); ?>">
+            </div>
+            <div class="buttons-set">
+                <button value="<?php echo $this->__('Add New Gift Card') ?>" onclick="activateGiftCard();" class="button left"
+                        title="Activate" type="button"><span><span><?php echo $this->__('Add New Gift Card') ?></span></span>
+                </button>
+            </div>
+
+        <?php $currencySymbol = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol();
+              $temp = 0;
+        ?>
+        <?php if($_session->getActive()) {
+                    echo '<div class="cart-e">';
+                    $amounts = $_session->getAmounts();
+                    foreach($_session->getCards() as $_id => $_value)
+                    {
+                        if($temp) {
+                            echo '<br/><br/>';
+                        }
+                        if(isset($amounts[$_id])){
+                            $_value['card_balance'] = $_value['original_card_balance'] - $amounts[$_id];
+                        }
+                        echo '<div id="edit-div""><input id="edit-card-amount-'.$_id.'" style="width:50px;text-align:right;" value="'. ($_value['original_card_balance']-$_value['card_balance']). '" />';
+                        echo '<span id="apply-btn"><a onclick="applyAmount('.$_id.'); return false;"><img src="'.$this->getSkinUrl('images/giftcard_apply.gif').'" alt=""></a></span></div>';
+                        echo '<div id="card-amount" class="card-amount" onclick="editAmount()">'.$currencySymbol.($_value['original_card_balance']-$_value['card_balance']).'</div>';
+                        echo '<input id="edit-card-code-'.$_id.'" style="display:none;" value="'.$_value['card_code'].'">';
+                        echo '<div class="balance">'.$this->__('נותר בכרטיס זה').': '.$currencySymbol.$_value['card_balance'].' <span>(<a href="'.$this->getUrl("giftcards/cart/deActivateGiftCard/id/$_id", array( '_secure'=>$loadFromSSL)).'">'.$this->__('Remove').'</a>)</span></div>';
+                        $temp = 1;
+                    }
+					echo '</div>';
+        }
+        ?>
+    </div>
+    <script type="text/javascript">
+        //&lt;![CDATA[
+             function activateGiftCard()
+             {
+                    var coupon = $('giftcard_code').getValue();
+                    var url = '<?php echo $this->getUrl('giftcards/cart/activateCheckoutGiftCard', array('_secure'=>true)); ?>';
+                    var parameters = {giftcard_code: coupon};
+                    if(coupon == '')
+                    {
+                        alert('<?php echo $this->__('אנא הכניסי קוד כרטיס תקין.'); ?>');
+                        return;
+                    }
+
+                    new Ajax.Request(url, {
+                        method: 'post',
+                        parameters: parameters,
+                        onSuccess: function(transport) {
+                            if(transport.status == 200) {
+                                window.location = '<?php echo $this->getUrl('*/*/*', array('_secure'=>true)); ?>';
+                            }
+                        }
+                        
+                   });                 
+             }
+
+        //]]&gt;
+    </script>
+<?php else : ?>    
+    <?php echo $this->__('Gift cards cannot be used to purchase gift cards'); ?>
+<?php endif; ?>
+
+</div>

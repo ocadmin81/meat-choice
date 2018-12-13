@@ -1,0 +1,146 @@
+<config>
+    <tabs>
+        <magemillall translate="label" module="orderimages">
+            <label>MageMill</label>
+            <sort_order>101</sort_order>
+        </magemillall>
+    </tabs>
+	
+    <sections>
+        <orderimages translate="label" module="orderimages">
+            <label>Product Images in Orders</label>
+            <tab>magemillall</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>0</show_in_store>
+			
+            <groups>
+                <about translate="label">
+                    <label>About</label>
+					<comment><![CDATA[<p class="grand-total"><b>MageMill Product Images in Orders</b></p>
+<p>If you need any help with installation or configuration you can contact us at <a href="mailto:support@magemill.com">support@magemill.com</a> or use <a href="http://support.magemill.com">Support System</a>.</p>]]></comment>
+					<frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                </about>
+                
+				<general translate="label">
+                    <label>General Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enabled translate="label" module="orderimages">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <admin_width translate="label" module="orderimages">
+                            <label>Image Width in px (admin)</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Width od the product image in admin area</comment>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </admin_width>
+                        <admin_height translate="label" module="orderimages">
+                            <label>Image Height in px (admin)</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Width od the product image in admin area</comment>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </admin_height>
+                        <front_width translate="label" module="orderimages">
+                            <label>Image Width in px (frontend)</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Width od the product image on frontend</comment>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </front_width>
+                        <front_height translate="label" module="orderimages">
+                            <label>Image Height in px (frontend)</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Width od the product image on frontend</comment>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </front_height>
+                        <email_width translate="label" module="orderimages">
+                            <label>Image Width in px (email)</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Width od the product image in transactional emails</comment>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_width>
+                        <email_height translate="label" module="orderimages">
+                            <label>Image Height in px (email)</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Width od the product image in transactional emails</comment>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_height>
+                    </fields>
+                </general>
+
+                <lightbox translate="label">
+                    <label>Lightbox image popup</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enabled translate="label" module="orderimages">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <include_jquery translate="label" module="orderimages">
+                            <label>Include jQuery on frontend</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Disable if you have jQuery already included in your template</comment>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </include_jquery>
+                        <admin_jquery translate="label" module="orderimages">
+                            <label>Include jQuery on backend</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Disable if you have jQuery already included in your template</comment>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </admin_jquery>
+                    </fields>
+                </lightbox>
+           </groups>
+        </orderimages>
+    </sections>
+</config>

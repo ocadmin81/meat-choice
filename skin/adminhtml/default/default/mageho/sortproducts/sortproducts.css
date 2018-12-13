@@ -1,0 +1,6 @@
+#sortlist-wrapper { overflow:hidden; margin:15px 0; }
+	#sortlist li { list-style:none; float:right; margin:4px; padding:4px 4px 2px; border:1px solid #ccc; position:relative; }
+	#sortlist li:hover, li.over { border-color:#666; }
+	
+	.product_container { position:relative; }
+	.saleable { position:absolute; bottom:0; font-variant:small-caps; font-size:10px; background:#fff; opacity:0.9; padding:0 2px; }

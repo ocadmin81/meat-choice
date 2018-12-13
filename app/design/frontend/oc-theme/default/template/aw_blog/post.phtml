@@ -1,0 +1,361 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento community edition
+ * aheadWorks does not guarantee correct work of this extension
+ * on any other Magento edition except Magento community edition.
+ * aheadWorks does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Blog
+ * @version    1.2.1
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+$carpaccio = Mage::getStoreConfig('webthemeoptions/product/carpaccio');
+?><?php $post = $this->getPost(); ?>
+<?php $product_id = $post->getRelated_product(); ?><div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div><div class="postWrapper">
+	<div class="container">		<div class="postTitle">			<h1><?php echo $post->getTitle(); ?></h1>			<?php echo $post->getShort_content(); ?>
+			<div class="print-share">
+				<a href="javascript:void(0);" onclick="printPageArea('postPrintContent')" class="print_link"><?php echo $this->__('Print the recipe'); ?></a>
+				<?php echo $this->getChildHtml('sharing'); ?>
+			</div>		</div>
+		<div class="postMain row">			<div class="postContent col-xs-8 col-md-8 col-sm-12 col-sms-12">
+				<div class="postBanner"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$post->getBanner() ?>" alt="<?php echo $post->getTitle(); ?>" /></div>
+				<div class="postMaking">
+					<ul>
+						<li class="making_time"><?php echo $post->getMaking_time(); ?></li>
+						<?php if($post->getDifficulty() != ''): ?>
+							<li class="difficulty"><?php echo $this->__('Difficulty level').': '.$this->__($post->getDifficulty()); ?></li>
+						<?php endif; ?>
+						<?php if($post->getCooking_type() != ''): ?>
+							<li class="cooking_type"><?php echo $this->__('Cooking Type').': '.$this->__($post->getCooking_type()); ?></li>
+						<?php endif; ?>
+					</ul>
+				</div>				
+				<div class="postContentMain" id="postPrintContent"><?php echo $post->getPostContent(); ?></div>
+				<div class="postContentVideo"><?php echo $post->getPost_video(); ?></div>
+			</div>
+			<?php if($product_id): ?>
+				<?php
+					$product = Mage::getModel('catalog/product')->load($product_id);
+					$type = $product->getTypeId();					
+					$formKey = Mage::getSingleton('core/session')->getFormKey();					
+				?>			
+				<div class="postProduct col-xs-4 col-md-4 col-sm-12 col-sms-12">
+					<?php if($type == 'simple'): ?>
+							<div class="product-grid">
+								<h2><?php echo $this->__('Recipe Item'); ?></h2>							
+									<?php
+										$productBlock = $this->getLayout()->createBlock('catalog/product_price');
+									?>
+									<?php									
+											$stockItem = Mage::getModel('cataloginventory/stock_item')->loadByProduct($product->getId());
+											$decimal = $stockItem->getIs_qty_decimal();
+											if($decimal){
+												$unit = $this->__('KG');
+												if($product->getAttributeText('default_qty')){
+													$default_qty = $product->getAttributeText('default_qty');
+												}
+												else{
+													$default_qty = 0.5;
+												}
+											}
+											else{
+												$unit = $this->__('Unit');
+												$default_qty = 1;
+											}
+									?>
+								   <div class="item">										
+										<div class="product-image-basket">
+											<a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($product->getName()) ?>" class="product-image">
+												<img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(413,281); ?>" alt="<?php echo $this->htmlEscape($product->getName()) ?>" />
+											</a>
+										</div>	
+										<div class="name-price">
+											<p class="product-name"><a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($product->getName()) ?>"><?php echo $product->getName(); ?></a></p>
+											<div>
+												<?php if($product->getId() != '53'): ?>
+													<?php echo $productBlock->getPriceHtml($product, true) ?>
+												<?php else: ?>
+													<div class="price-box bold-price">
+														<span class="regular-price" id="product-price-53">
+															<span class="price"><?php echo $carpaccio; ?>&nbsp;₪</span>
+															<span class="p-unit price"><?php echo $product->getUnit_pack(); ?></span>
+														</span>                        
+													</div>
+												<?php endif; ?>													
+											</div>
+										</div>	
+											<div class="basket use-decimal-<?php echo $decimal; ?>" data-jump="<?php if($product->getId() == '53'): ?>0.1<?php elseif($decimal): ?>0.5<?php else: ?>1<?php endif; ?>">
+												<?php if (!$product->getData('has_options')): ?>
+												<div class="qty-block">
+													<div class="btn-wrap">
+														<a href="javascript:void(0);" class="qty_inc decimal-useg-<?php echo $decimal; ?>" data-jump="<?php echo $default_qty; ?>" id="qty-inc-<?php echo $product->getId(); ?>"><img src="<?php echo $this->getSkinurl(); ?>images/add-plus.png"></a>
+														<a href="javascript:void(0);" class="qty_dic decimal-useg-<?php echo $decimal; ?>" data-jump="<?php echo $default_qty; ?>" id="qty-dic-<?php echo $product->getId(); ?>"><img src="<?php echo $this->getSkinurl(); ?>images/add-minus.png"></a>
+													</div>										
+													<div class="num">
+														<input class="qty-num" id="qty-<?php echo $product->getId(); ?>" type="text" value="<?php if($product->getId() == '53'): ?>0.1<?php elseif($decimal): ?>0.5<?php else: ?>1<?php endif; ?>">
+														<span><?php echo $unit; ?></span>
+													</div>
+												</div>
+												<?php endif; ?>	
+												<?php if($product->isSaleable()): ?>
+													<?php if ($product->getData('has_options')): ?>
+														<a href="javascript:void(0);" data-href="<?php echo $this->getUrl('ajax/product/view/id/' . $product->getId()) ?>" title="<?php echo $this->htmlEscape($product->getName()) ?>" class="ajax quick-view"><?php echo $this->__('Add to Cart') ?></a>
+													<?php else: ?>
+														<button type="button" title="<?php echo $this->quoteEscape($this->__('Add to Cart')) ?>" class="button btn-cart" id="add-qty-<?php echo $product->getId(); ?>" onclick="setLocation('<?php echo Mage::helper('checkout/cart')->getAddUrl($product) ?>')"><span><?php echo $this->__('Add to Cart') ?></span></button>                     
+													<?php endif; ?>		
+												<?php endif; ?>							
+											</div>								
+									</div>
+							</div>					
+					<?php else: ?>
+						<?php $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product); ?>
+						<form action="<?php echo $this->getUrl() ?>checkout/cart/add/product/<?php echo $product_id; ?>" method="post">
+							<input type="hidden" name="form_key" value="<?php echo $formKey; ?>" />
+							<input type="hidden" name="qty" value="1">
+							<div class="product-grid">
+								<h2><?php echo $this->__('Recipe Items'); ?></h2>
+								<?php foreach ($associatedProducts as $_product): ?>							
+									<?php
+										$as_product = Mage::getModel('catalog/product')->load($_product->getId());
+										$productBlock = $this->getLayout()->createBlock('catalog/product_price');
+									?>
+									<?php									
+											$stockItem = Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product->getId());
+											$decimal = $stockItem->getIs_qty_decimal();
+											if($decimal){
+												$unit = $this->__('KG');
+												if($_product->getAttributeText('default_qty')){
+													$default_qty = $_product->getAttributeText('default_qty');
+												}
+												else{
+													$default_qty = 0.5;
+												}
+											}
+											else{
+												$unit = $this->__('Unit');
+												$default_qty = 1;
+											}
+									?>
+								   <div class="item">
+										<input id="super_group_<?php echo $_product->getId(); ?>" type="hidden" name="super_group[<?php echo $_product->getId(); ?>]" maxlength="12" value="1" class="input-text">
+										<div class="product-image-basket">
+											<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image">
+												<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(413,281); ?>" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+											</a>
+										</div>	
+										<div class="name-price">
+											<p class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $_product->getName(); ?></a></p>
+											<div><?php echo $productBlock->getPriceHtml($_product, true) ?></div>
+										</div>	
+											<div class="basket use-decimal-<?php echo $decimal; ?>">
+												<?php if (!$_product->getData('has_options')): ?>
+												<div class="qty-block">
+													<div class="btn-wrap">
+														<a href="javascript:void(0);" class="qty_inc decimal-useg-<?php echo $decimal; ?>" data-jump="1" id="qty-inc-<?php echo $_product->getId(); ?>"><img src="<?php echo $this->getSkinurl(); ?>images/add-plus.png"></a>
+														<a href="javascript:void(0);" class="qty_dic decimal-useg-<?php echo $decimal; ?>" data-jump="1" id="qty-dic-<?php echo $_product->getId(); ?>"><img src="<?php echo $this->getSkinurl(); ?>images/add-minus.png"></a>
+													</div>										
+													<div class="num">
+														<input class="qty-num" id="qty-<?php echo $_product->getId(); ?>" type="text" value="<?php if($decimal): ?>0.5<?php else: ?>1<?php endif; ?>">
+														<span><?php echo $unit; ?></span>
+													</div>
+												</div>
+												<?php endif; ?>	
+												<?php if($_product->isSaleable()): ?>
+													<?php if ($_product->getData('has_options')): ?>
+														<a href="javascript:void(0);" data-href="<?php echo $this->getUrl('ajax/product/view/id/' . $_product->getId()) ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="ajax quick-view"><?php echo $this->__('Add to Cart') ?></a>
+													<?php else: ?>
+														<button type="button" title="<?php echo $this->quoteEscape($this->__('Add to Cart')) ?>" class="button btn-cart" id="add-qty-<?php echo $_product->getId(); ?>" onclick="setLocation('<?php echo Mage::helper('checkout/cart')->getAddUrl($_product) ?>')"><span><?php echo $this->__('Add to Cart') ?></span></button>                     
+													<?php endif; ?>		
+												<?php endif; ?>							
+											</div>								
+									</div>
+								<?php endforeach; ?>
+								<div class="recipe-add-all">
+									<button type="button" title="<?php echo $this->quoteEscape($this->__('Add all to cart')) ?>" class="button btn-cart" onclick="addRecipe(this)"><span><?php echo $this->__('Add all to cart') ?></span></button>	
+								</div>
+							</div>
+						</form>
+					<?php endif; ?>
+				</div>
+			<?php endif; ?>
+		</div>
+	</div>
+	<div class="related_posts">
+		<?php echo $this->getChildHtml('related_posts'); ?>
+	</div>
+<!-- Comment Section -->
+
+<?php if ($this->getCommentsEnabled()): ?>
+<div class="comment_block">
+    <?php $comments = $this->getComment(); ?>
+    <div class="postTitle"><a name="commentBox" ></a>
+        <h2><?php echo $this->__('Recipe Comments') ?></h2>
+    </div>
+	<div class="row">
+	<div class="aw_blog_comments col-xs-6 col-md-6 col-sm-12 col-sms-12">
+    <?php //echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>
+        <?php foreach ($comments as $comment) : ?>
+            <div class="commentWrapper">
+                <div class="commentDetails"><h4 class="username"><?php echo $this->__("From") ?> <?php echo $comment->getUser(); ?></h4></div>
+                <div class="commentContent"><?php echo nl2br($comment->getComment()); ?></div>
+            </div>       
+        <?php endforeach; ?>
+     <?php echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>
+	</div>	
+	<div class="aw_blog_form col-xs-6 col-md-6 col-sm-12 col-sms-12">
+    <?php if ($post->getComments()): ?>
+        <div class="postError"><?php echo Mage::helper('blog')->__('Comments are Closed for this post') ?></div>
+    <?php else: ?>
+        <?php if ($this->getLoginRequired()): ?>
+            <?php if ($this->helper('customer')->isLoggedIn()): ?>
+                <form action="" id="postComment" method="post">  
+                    <fieldset class="group-select">
+                        <h4 class="legend"><?php echo Mage::helper('blog')->__('Submit Comment') ?></h4>
+                        <ul class="form-list">
+                            <li>
+
+                                <div class="input-box aw-blog-comment-area">
+                                    <label for="comment" class="required"><?php echo Mage::helper('blog')->__('Comment') ?><em>*</em></label><br />
+                                    <textarea name="comment" id="comment" title="<?php echo $this->__('Comment') ?>" class="required-entry input-text" style="height:150px;width: 365px;max-width: 100%;" cols="50" rows="5"><?php echo $this->getCommentText(); ?></textarea>
+                                </div>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <div class="button-set" style="width:96%">
+                        <input name="post_id" type="hidden" value="<?php echo $post->getPostId(); ?>" />
+                        <input name="email" type="hidden" value="<?php echo $this->htmlEscape($this->helper('blog')->getUserEmail()) ?>"/>
+                        <input name="user" type="hidden" value="<?php echo $this->htmlEscape($this->helper('blog')->getUserName()) ?>"/>
+                        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+                        <button class="form-button button" type="submit"><span><span><?php echo Mage::helper('blog')->__('Submit Comment') ?></span></span></button>
+                    </div>
+                </form>
+
+                <script type="text/javascript">
+                    var contactForm = new VarienForm('postComment', false);
+                </script>            
+
+            <?php else: ?>
+                <p><?php echo Mage::helper('blog')->__('You must be logged in to post a comment.'); ?></p>
+                <p><a href="<?php echo Mage::helper('customer')->getLoginUrl(); ?>"><?php echo Mage::helper('blog')->__('click here'); ?></a> <?php echo Mage::helper('blog')->__('to log in'); ?></p>
+            <?php endif ?>
+
+        <?php else: ?>
+
+            <form action="" id="postComment" method="post">
+                <fieldset class="group-select">
+                    <h4 class="legend"><?php echo Mage::helper('blog')->__('Submit Comment') ?></h4>
+                    <ul class="form-list">
+                        <li>
+                            <div class="input-box">
+                                <label for="name" class="required"><?php echo Mage::helper('blog')->__('Name') ?><em>*</em></label><br />
+                                <input name="user" id="user" value="<?php echo $this->getCommentName(); ?>" title="<?php echo $this->__('Name') ?>" class="required-entry input-text" type="text" />
+                            </div>
+
+                            <div class="input-box">
+                                <label for="email" class="required"><?php echo Mage::helper('blog')->__('Email') ?><em>*</em></label><br />
+                                <input name="email" id="email" value="<?php echo $this->getCommentEmail(); ?>" title="<?php echo $this->__('Email') ?>" class="required-entry input-text validate-email" type="text" />
+                            </div>
+
+                            <div class="clear"></div>
+
+                            <div class="input-box aw-blog-comment-area">
+                                <label for="comment" class="required"><?php echo Mage::helper('blog')->__('Comment') ?><em>*</em></label><br />
+                                <textarea name="comment" id="comment" title="<?php echo Mage::helper('blog')->__('Comment') ?>" class="required-entry input-text" style="height:150px;width:365px;max-width:100%" cols="50" rows="5"><?php echo $this->getCommentText(); ?></textarea>
+                            </div>
+                        </li>
+
+                        <?php
+                        if (Mage::getStoreConfig('blog/recaptcha/enabled') && !$this->helper('customer')->isLoggedIn()) {
+                            ?><li><?php
+                require_once 'recaptcha/recaptchalib-aw.php';
+
+                // Get a key from http://recaptcha.net/api/getkey
+                $publickey = Mage::getStoreConfig('blog/recaptcha/publickey');
+                $privatekey = Mage::getStoreConfig('blog/recaptcha/privatekey');
+                $error = null;
+
+                echo recaptcha_get_html($publickey, $error);
+                            ?></li><?php
+            }
+                        ?>                        
+                    </ul>
+                </fieldset>
+                <div class="button-set" style="width:96%">
+                    <input name="post_id" type="hidden" value="<?php echo $post->getPostId(); ?>" />
+                    <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+                    <button class="button form-button" type="submit"><span><span><?php echo Mage::helper('blog')->__('Submit Comment') ?></span></span></button>
+                </div>
+            </form>
+
+            <script type="text/javascript">
+                var contactForm = new VarienForm('postComment', false);
+            </script>
+        <?php endif; ?>
+    <?php endif; ?>	
+	</div>
+
+	</div>
+</div>
+<?php endif; ?>	</div>
+<script type="text/javascript">
+function printPageArea(areaID){
+	var prtContent = document.getElementById(areaID);
+	var WinPrint = window.open('', '', 'left=0,top=0,toolbar=0,scrollbars=0,status=0');
+	WinPrint.document.write('<html><head>');
+	WinPrint.document.write('<link rel="stylesheet" href="<?php echo $this->getSkinurl(); ?>css/print.css">');
+	WinPrint.document.write('<link rel="stylesheet" href="<?php echo $this->getSkinurl(); ?>aw_blog/css/style.css">');
+	WinPrint.document.write('</head><body onload="print();close();">');
+	WinPrint.document.write(prtContent.innerHTML);
+	WinPrint.document.write('</body></html>');
+	WinPrint.document.close();
+	WinPrint.focus();
+}
+</script>
+<script type="text/javascript">
+	$j(".postContentVideo a").click(function() {
+		$j.fancybox({
+			'padding'		: 0,
+			'autoScale'		: false,
+			'transitionIn'	: 'none',
+			'transitionOut'	: 'none',
+			'title'			: this.title,
+			'width'			: 640,
+			'height'		: 385,
+			'href'			: this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
+			'type'			: 'swf',
+			'closeBtn'		:false,
+			'swf'			: {
+				'wmode'				: 'transparent',
+				'allowfullscreen'	: 'true'
+			}
+		});
+		return false;
+	});
+</script>
+<script type="text/javascript">
+	$j( "a.ajax" ).click(function() {
+		var url = $j(this).attr('data-href');
+		$j.fancybox({
+			width: 420,
+			hideOnContentClick : true,
+			type: 'iframe',
+			href: url
+		});
+	});
+</script>

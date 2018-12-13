@@ -1,0 +1,170 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Layerednavigation
+ * @version    1.3.2
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><div class="entity-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Manage Options') ?></h4>
+    </div>
+    <div class="box">
+        <div class="grid">
+            <table class="data" cellspacing="0" cellpadding="0">
+                <colgroup>
+                    <col width="300" />
+                    <col width="100"<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?> />
+                    <col />
+                    <col width="100"<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?> />
+                    <col width="70"<?php if (!$this->getIsDefaultStore() || !$this->canChangeOptionPosition()) : ?> style="display: none;"<?php endif; ?> />
+                </colgroup>
+                <thead >
+                    <tr class="headings">
+                        <th><?php echo $this->__('Title'); ?><span class="required">*</span></th>
+                        <th><?php echo $this->__('Enabled'); ?></th>
+                        <th><?php echo $this->__('Description'); ?></th>
+                        <th<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?>><?php echo $this->__('Image'); ?></th>
+                        <th<?php if (!$this->getIsDefaultStore() || !$this->canChangeOptionPosition()) : ?> style="display: none;"<?php endif; ?>><?php echo $this->__('Sort'); ?></th>
+                    </tr>
+                </thead>
+
+                <tbody id="aw-ln-option-list">
+                <?php foreach ($this->getOptionList() as $key => $option) : ?>
+                    <tr>
+                        <td>
+                            <?php $isTitleDefault = $this->isAttributeDefault($option->getId(), 'title'); ?>
+                            <input type="text" name="option[<?php echo $option->getId(); ?>][title]" value="<?php echo htmlentities($option->getTitle(), ENT_QUOTES); ?>" class="input-text required-entry<?php if ($isTitleDefault) :?> disabled<?php endif ?>" <?php if ($isTitleDefault) :?> disabled="disabled"<?php endif; ?> style="width: 98%;" />
+                            <?php if ($this->canDisplayUseDefault()) : ?>
+                                <input type="checkbox" name="option[<?php echo $option->getId(); ?>][use_default][title]" id="title_default_<?php echo $option->getId(); ?>"<?php if ($isTitleDefault): ?> checked="checked"<?php endif; ?> onclick="toggleValueElements(this, this.parentNode)" value="1"/>
+                                <label for="title_default_<?php echo $option->getId(); ?>" class="normal"><?php echo $this->__('Use Default Value') ?></label>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <?php $isStatusDefault = $this->isAttributeDefault($option->getId(), 'is_enabled'); ?>
+                            <?php echo $this->getIsEnabledSelectHtml($option); ?>
+                            <?php if ($this->canDisplayUseDefault()) : ?>
+                                <input type="checkbox" name="option[<?php echo $option->getId(); ?>][use_default][is_enabled]" id="is_enabled_default_<?php echo $option->getId(); ?>"<?php if ($isStatusDefault): ?> checked="checked"<?php endif; ?> onclick="toggleValueElements(this, this.parentNode)" value="1"/>
+                                <label for="is_enabled_default_<?php echo $option->getId(); ?>" class="normal"><?php echo $this->__('Use Default Value') ?></label>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <?php $isDescriptionDefault = $this->isAttributeDefault($option->getId(), 'description'); ?>
+                            <textarea name="option[<?php echo $option->getId(); ?>][description]" class="textarea<?php if ($isDescriptionDefault) :?> disabled<?php endif ?>" <?php if ($isDescriptionDefault) :?> disabled="disabled"<?php endif; ?> style="width:99%;resize:vertical;"><?php echo $option->getDescription(); ?></textarea>
+                            <?php if ($this->canDisplayUseDefault()) : ?>
+                                <input type="checkbox" name="option[<?php echo $option->getId(); ?>][use_default][description]" id="description_default_<?php echo $option->getId(); ?>"<?php if ($isDescriptionDefault): ?> checked="checked"<?php endif; ?> onclick="toggleValueElements(this, this.parentNode)" value="1"/>
+                                <label for="description_default_<?php echo $option->getId(); ?>" class="normal"><?php echo $this->__('Use Default Value') ?></label>
+                            <?php endif; ?>
+                        </td>
+                        <td<?php if (!$this->getIsDefaultStore()) : ?> style="display: none;"<?php endif; ?>>
+                            <?php if ($option->getImage()): ?>
+                                <?php $originalImageUrl = Mage::helper('aw_layerednavigation/image')->getImageUrl($option->getId(), $option->getImage()); ?>
+                                <?php $resizedImageUrl = Mage::helper('aw_layerednavigation/image')->resizeImage($option->getId(), $option->getImage(), 20, 20); ?>
+                                <a href="<?php echo $originalImageUrl; ?>" onclick="awLayerednavigationControl.imagePreview('preview_image_<?php echo $option->getId(); ?>');return false;" id="preview_image_<?php echo $option->getId(); ?>" target="_blank">
+                                    <img src="<?php echo $resizedImageUrl; ?>" title="<?php echo $option->getName(); ?>" alt="<?php echo $option->getName(); ?>" height="22" width="22" class="small-image-preview v-middle">
+                                </a>
+                            <?php endif; ?>
+                            <input type="file" accept="image/*" name="option_<?php echo $option->getId(); ?>_image" class="input-file"  />
+                            <?php if ($option->getImage()): ?>
+                                <span class="delete-image">
+                                    <input type="checkbox" value="1" class="checkbox" id="filter_<?php echo $option->getId(); ?>_image_delete" name="option[<?php echo $option->getId(); ?>][image_delete]">
+                                    <label for="filter_<?php echo $option->getId(); ?>_image_delete"><?php echo $this->__('Delete Image'); ?></label>
+                                </span>
+                            <?php endif; ?>
+                        </td>
+                        <td<?php if (!$this->getIsDefaultStore() || !$this->canChangeOptionPosition()) : ?> style="display: none;"<?php endif; ?>>
+                            <div class="aw-ln-position-el">
+                                <input type="hidden" name="option[<?php echo $option->getId(); ?>][position]" value="<?php echo $option->getPosition(); ?>">
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php if ($this->getIsDefaultStore()) : ?>
+                <?php if (Mage::helper('aw_layerednavigation')->checkMageVersion('1.7.0.0')): ?>
+                <script type="text/javascript">
+                    //<![CDATA[
+                    if (Draggables) {
+                        Draggables.register = function(draggable) {
+                            if(this.drags.length == 0) {
+                                this.eventMouseUp   = this.endDrag.bindAsEventListener(this);
+                                this.eventMouseMove = this.updateDrag.bindAsEventListener(this);
+                                this.eventKeypress  = this.keyPress.bindAsEventListener(this);
+
+                                Event.observe(document, "mouseup", this.eventMouseUp);
+                                Event.observe(document, "mousemove", this.eventMouseMove);
+                                Event.observe(document, "keypress", this.eventKeypress);
+                            }
+                            this.drags.push(draggable);
+                        };
+                        Draggables.unregister = function(draggable) {
+                            this.drags = this.drags.reject(function(d) { return d==draggable });
+                            if(this.drags.length == 0) {
+                                Event.stopObserving(document, "mouseup", this.eventMouseUp);
+                                Event.stopObserving(document, "mousemove", this.eventMouseMove);
+                                Event.stopObserving(document, "keypress", this.eventKeypress);
+                            }
+                        };
+                    }
+                    //]]>
+                </script>
+                <?php endif; ?>
+            <script type="text/javascript">
+                //<![CDATA[
+                var awLnSortableTrInitFn = function() {
+                    var container = $('aw-ln-option-list');
+                    if (!container) {
+                        return;
+                    }
+                    Sortable.create(container, {
+                            tag:"tr",
+                            dropOnEmpty:false,
+                            overlap:'vertical',
+                            constraint:'vertical',
+                            containment: [container],
+                            handle: 'aw-ln-position-el',
+                            onChange: function(item) {
+                                var inputSelector = ".aw-ln-position-el input[type=hidden]";
+                                var value = 1;
+                                container.select(inputSelector).each(function(input){
+                                    input.setValue(value);
+                                    value++;
+                                });
+                            },
+                            starteffect: function(element){
+                                element.addClassName('aw-ln-tr-ondrag');
+                                element.up('table').addClassName('aw-ln-table-ondrag');
+                            },
+                            endeffect: function(element){
+                                element.removeClassName('aw-ln-tr-ondrag');
+                                element.up('table').removeClassName('aw-ln-table-ondrag');
+                            }
+                        }
+                    );
+                };
+                awLnSortableTrInitFn();
+                //]]>
+            </script>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>

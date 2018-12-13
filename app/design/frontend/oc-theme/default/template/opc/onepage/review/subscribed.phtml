@@ -1,0 +1,10 @@
+<?php if ($this->isNewsletterEnabled()): ?>
+<ul class="form-list opc-newsletter">
+	<li class="control">		
+		<div class="input-box">
+			<input type="checkbox" name="is_subscribed" title="<?php echo $this->__('You agree to receive offers and discounts by email') ?>" value="1" id="is_subscribed"<?php if($this->getCheckByDefault()): ?> checked="checked"<?php endif;?> class="checkbox" />
+		</div>
+		<label for="is_subscribed"><?php echo $this->__('You agree to receive offers and discounts by email') ?></label>
+	</li>
+</ul>
+<?php endif ?>

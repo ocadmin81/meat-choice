@@ -1,0 +1,4 @@
+<?php $_product = $this->getParentBlock()->getParentBlock()->getProduct(); ?>
+<?php if (Mage::helper('askfordetails')->checkIfMailForAskForDetailsIsSet()): ?>
+    <a class="button popup" href="/askfordetails/askfordetails?product_id=<?php echo $_product->getId(); ?>"><?php echo Mage::helper('askfordetails')->__('Ask Product Qustion.') ?></a>
+<?php endif; ?>

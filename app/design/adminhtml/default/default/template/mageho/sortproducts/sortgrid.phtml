@@ -1,0 +1,108 @@
+<?php
+ /*
+ * @category   Mageho
+ * @package    Mageho_Sortproducts
+ * @copyright  Copyright (c) 2012  Mageho (http://www.mageho.com)
+ * @license    http://www.mageho.com/license  Proprietary License
+ * @version    1.0.0
+ */
+?>
+<?php if (($_products = $this->getProductsCollection()) && $_products->getSize()): ?>
+<div id="messages"></div>
+<div class="content-header">
+	<div class="content-buttons-placeholder">
+		<p class="content-buttons form-buttons">
+			<button type="button" class="scalable button-open-new-window"><span><?php echo $this->__('Open in New Window'); ?></span></button>
+			<button type="button" class="scalable button-save-sortable"><span><?php echo $this->__('Save Products Position'); ?></span></button>
+		</p>
+	</div>
+</div>
+
+<div id="sortlist-wrapper">
+    <ul id="sortlist">
+        <?php foreach ($_products->getItems() as $_product): ?>
+	        <li id="product_<?php echo $_product->getId(); ?>" class="sorting">
+	        	<div class="product_container">
+
+<?php
+	# Error message for no products with image
+	# core/Mage/Catalog/Helper/Image.php(163): Mage_Catalog_Model_Product_Image->setBaseFile('no_selection')
+	
+	try {
+		$imageUrl = $this->helper('catalog/image')->init($_product, 'thumbnail')->resize($this->getImageWidth());
+	} catch(Exception $e) {
+		$imageUrl = Mage::getDesign()->getSkinUrl('mageho/sortproducts/placeholder.jpg');
+	}
+?>
+	                
+	                <img src="<?php echo $imageUrl; ?>" width="<?php echo $this->getImageWidth(); ?>" alt="<?php echo $this->htmlEscape($_product->getName()); ?>" class="sorting-image" longdesc="<?php echo $this->getProductInfoUrl($_product); ?>" <?php if ($this->isDisabled($_product)): ?>style="opacity:0.3"<?php endif; ?> />   
+	                <?php if (!$_product->isSaleable() && !$_product->isConfigurable()): ?><div class="saleable"><?php echo $this->helper('catalog')->__('Out of stock'); ?></div><?php endif; ?>
+	            </div>
+	        </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<script>
+//<![CDATA[
+document.observe('dom:loaded', function() {
+	Sortable.create('sortlist', {
+		tag: 'li',
+		only: 'sorting',
+		hoverclass: 'over',
+		overlap: 'horizontal',
+		ghosting: false,
+		constraint: false,
+		scroll: window,
+		scrollSensitivity: 30,
+		scrollSpeed: 25
+    })
+    
+    $$('.sorting-image').each(function(image) {
+		image.addTip({ 
+			title: image.alt, 
+			style: 'slick', 
+			ajax: { 
+				url: image.readAttribute('longdesc'), 
+				options: { 
+					parameters: { form_key: '<?php echo $this->getFormKey(); ?>'} 
+				} 
+			} 
+		});
+	});
+
+	var $isInIFrame = (window.location !== window.parent.location);
+	var $window = $isInIFrame ? parent : self;
+    var $buttonSave = $$('button.button-save-sortable')[0];
+    var $buttonOpenNewWindow = $$('button.button-open-new-window')[0];
+    
+    if (! $isInIFrame) {
+	    $buttonOpenNewWindow.hide();
+    }
+    
+    $buttonOpenNewWindow.onclick = function () {
+	    var $win = window.open(window.location.href, '_blank', '');
+	    $win.focus();
+    }
+    
+	$buttonSave.onclick = function() {
+		new Ajax.Request("<?php echo $this->getSaveUrl(); ?>", {
+			method: "post",
+			evalScripts: true,
+			onLoading: function() { 
+				$window.$('loading-mask').show() 
+			},
+			onSuccess: function(transport) { 
+				$window.$('loading-mask').hide() 
+			},
+			onComplete:function(transport) { eval(transport.responseText) },
+			parameters: {
+				data: Sortable.serialize('sortlist'),
+				iframe: $isInIFrame,
+				form_key: '<?php echo $this->getFormKey(); ?>'
+			}
+		})
+	}
+})
+//]]>
+</script>
+<?php endif; ?>

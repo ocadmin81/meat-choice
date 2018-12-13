@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * @category   Mageho
+ * @package    Mageho_Sortproducts
+ * @copyright  Copyright (c) 2012  Mageho (http://www.mageho.com)
+ * @license    http://www.mageho.com/license  Proprietary License
+ */
+-->
+<config>
+    <modules>
+        <Mageho_Sortproducts>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Adminhtml />
+                <Mage_Catalog />
+            </depends>
+        </Mageho_Sortproducts>
+    </modules>
+</config>
