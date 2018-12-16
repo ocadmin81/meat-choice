@@ -62,144 +62,22 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </homecatsbg>						
-						<cat1banner translate="label">
-                            <label>First category Banner</label>
-							<frontend_type>image</frontend_type>
-                            <backend_model>adminhtml/system_config_backend_image</backend_model>
-                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
-                            <base_url type="media" scope_info="1">theme</base_url>
+						<catid translate="label">
+                            <label>Category tabs id</label>
+							<frontend_type>text</frontend_type>
                             <sort_order>2</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </cat1banner>
-						<cat1icon translate="label">
-                            <label>First category Icon</label>
-							<frontend_type>image</frontend_type>
-                            <backend_model>adminhtml/system_config_backend_image</backend_model>
-                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
-                            <base_url type="media" scope_info="1">theme</base_url>
+                        </catid>
+						<firstcatid translate="label">
+                            <label>First Category tabs content</label>
+							<frontend_type>text</frontend_type>
                             <sort_order>3</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </cat1icon>					
-						<cat1text translate="label">
-							<label>First category Title</label>
-							<frontend_type>text</frontend_type>
-							<sort_order>4</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>
-						</cat1text>
-						<cat1sub translate="label">
-							<label>First category Sub Title</label>
-							<frontend_type>text</frontend_type>
-							<sort_order>5</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>
-						</cat1sub>
-						<cat1link translate="label">
-							<label>First category Link</label>
-							<frontend_type>text</frontend_type>
-							<sort_order>6</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>
-						</cat1link>
-						<cat2banner translate="label">
-                            <label>Second category Banner</label>
-							<frontend_type>image</frontend_type>
-                            <backend_model>adminhtml/system_config_backend_image</backend_model>
-                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
-                            <base_url type="media" scope_info="1">theme</base_url>
-                            <sort_order>7</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </cat2banner>
-						<cat2icon translate="label">
-                            <label>Second category Icon</label>
-							<frontend_type>image</frontend_type>
-                            <backend_model>adminhtml/system_config_backend_image</backend_model>
-                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
-                            <base_url type="media" scope_info="1">theme</base_url>
-                            <sort_order>8</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </cat2icon>					
-						<cat2text translate="label">
-							<label>Second category Title</label>
-							<frontend_type>text</frontend_type>
-							<sort_order>9</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>
-						</cat2text>
-						<cat2sub translate="label">
-							<label>Second category Sub Title</label>
-							<frontend_type>text</frontend_type>
-							<sort_order>10</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>
-						</cat2sub>
-						<cat2link translate="label">
-							<label>Second category Link</label>
-							<frontend_type>text</frontend_type>
-							<sort_order>11</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>
-						</cat2link>
-						<cat3banner translate="label">
-                            <label>Third category Banner</label>
-							<frontend_type>image</frontend_type>
-                            <backend_model>adminhtml/system_config_backend_image</backend_model>
-                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
-                            <base_url type="media" scope_info="1">theme</base_url>
-                            <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </cat3banner>
-						<cat3icon translate="label">
-                            <label>Third category Icon</label>
-							<frontend_type>image</frontend_type>
-                            <backend_model>adminhtml/system_config_backend_image</backend_model>
-                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
-                            <base_url type="media" scope_info="1">theme</base_url>
-                            <sort_order>13</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </cat3icon>					
-						<cat3text translate="label">
-							<label>Third category Title</label>
-							<frontend_type>text</frontend_type>
-							<sort_order>14</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>
-						</cat3text>
-						<cat3sub translate="label">
-							<label>Third category Sub Title</label>
-							<frontend_type>text</frontend_type>
-							<sort_order>15</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>
-						</cat3sub>
-						<cat3link translate="label">
-							<label>Third category Link</label>
-							<frontend_type>text</frontend_type>
-							<sort_order>16</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>
-						</cat3link>						
+                        </firstcatid>					
 					</fields>
 				</homecats>	
 				<homeprods translate="label">
@@ -504,6 +382,17 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
+						<desktoplogowhite translate="label">
+                            <label>Logo White</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </desktoplogowhite>
 						<desktoplogo translate="label">
                             <label>Desktop Logo</label>
 							<frontend_type>image</frontend_type>
@@ -514,7 +403,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </desktoplogo>	
+                        </desktoplogo>							
 						<mobilelogo translate="label">
 							<label>Mobile Logo</label>
 							<frontend_type>image</frontend_type>
@@ -525,7 +414,102 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-						</mobilelogo>						
+						</mobilelogo>	
+						<headertop1t translate="label">
+							<label>Top Header text 1</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</headertop1t>	
+						<headertop1img translate="label">
+							<label>Top Header icon 1</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</headertop1img>
+						<headertop2t translate="label">
+							<label>Top Header text 2</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</headertop2t>	
+						<headertop2img translate="label">
+							<label>Top Header icon 2</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</headertop2img>
+						<headertop3t translate="label">
+							<label>Top Header text 3</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</headertop3t>	
+						<headertop3img translate="label">
+							<label>Top Header icon 3</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</headertop3img>
+						<headertop3t translate="label">
+							<label>Top Header text 3</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</headertop3t>	
+						<headertop3img translate="label">
+							<label>Top Header icon 3</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</headertop3img>
+						<headertop4t translate="label">
+							<label>Top Header text 4</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</headertop4t>	
+						<headertop4img translate="label">
+							<label>Top Header icon 4</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</headertop4img>						
 					</fields>					
 				</header>
 				<catalog>

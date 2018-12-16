@@ -3,24 +3,6 @@ $mediaDir = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, true) . 'media
 $themeDirection = Mage::getStoreConfig('webthemeoptions/general/appthemedir');
 //Categories Block
 $showCats = Mage::getStoreConfig('webthemeoptions/homecats/enable');
-//first cat
-$cat1banner = Mage::getStoreConfig('webthemeoptions/homecats/cat1banner');
-$cat1icon = Mage::getStoreConfig('webthemeoptions/homecats/cat1icon');
-$cat1text = Mage::getStoreConfig('webthemeoptions/homecats/cat1text');
-$cat1sub = Mage::getStoreConfig('webthemeoptions/homecats/cat1sub');
-$cat1link = Mage::getStoreConfig('webthemeoptions/homecats/cat1link');
-//second cat
-$cat2banner = Mage::getStoreConfig('webthemeoptions/homecats/cat2banner');
-$cat2icon = Mage::getStoreConfig('webthemeoptions/homecats/cat2icon');
-$cat2text = Mage::getStoreConfig('webthemeoptions/homecats/cat2text');
-$cat2sub = Mage::getStoreConfig('webthemeoptions/homecats/cat2sub');
-$cat2link = Mage::getStoreConfig('webthemeoptions/homecats/cat2link');
-//third cat
-$cat3banner = Mage::getStoreConfig('webthemeoptions/homecats/cat3banner');
-$cat3icon = Mage::getStoreConfig('webthemeoptions/homecats/cat3icon');
-$cat3text = Mage::getStoreConfig('webthemeoptions/homecats/cat3text');
-$cat3sub = Mage::getStoreConfig('webthemeoptions/homecats/cat3sub');
-$cat3link = Mage::getStoreConfig('webthemeoptions/homecats/cat3link');
 //How works Block
 $showHowWorks = Mage::getStoreConfig('webthemeoptions/howworks/enable');
 $Workstitleimg = Mage::getStoreConfig('webthemeoptions/howworks/titleimg');
@@ -68,47 +50,7 @@ if (isset($customerId) && $customerId) {
 <?php if($showCats): ?>
 	<div class="home-block home-cats">
 		<div class="container">
-			<div class="row">
-				<div class="item col-md-4 col-xs-4">
-					<div class="block">
-						<div class="banner">
-							<img src="<?php echo $mediaDir . $cat1banner; ?>" alt="<?php echo $cat1text ?>" />
-						</div>
-						<div class="text">
-							<img src="<?php echo $mediaDir . $cat1icon; ?>" alt="<?php echo $cat1text ?>" />
-							<h3><?php echo $cat1text ?></h3>
-							<div class="subTitle"><?php echo $cat1sub ?></div>
-							<div class="link"><a href="<?php echo $cat1link ?>"><?php echo $this->__('Watch products'); ?> >></a></div>
-						</div>
-					</div>
-				</div>
-				<div class="item col-md-4 col-xs-4">
-					<div class="block">
-						<div class="banner">
-							<img src="<?php echo $mediaDir . $cat2banner; ?>" alt="<?php echo $cat2text ?>" />
-						</div>
-						<div class="text">
-							<img src="<?php echo $mediaDir . $cat2icon; ?>" alt="<?php echo $cat2text ?>" />
-							<h3><?php echo $cat2text ?></h3>
-							<div class="subTitle"><?php echo $cat2sub ?></div>
-							<div class="link"><a href="<?php echo $cat2link ?>"><?php echo $this->__('Watch products'); ?> >></a></div>
-						</div>						
-					</div>
-				</div>
-				<div class="item col-md-4 col-xs-4">
-					<div class="block">
-						<div class="banner">
-							<img src="<?php echo $mediaDir . $cat3banner; ?>" alt="<?php echo $cat3text ?>" />
-						</div>
-						<div class="text">
-							<img src="<?php echo $mediaDir . $cat3icon; ?>" alt="<?php echo $cat3text ?>" />
-							<h3><?php echo $cat3text ?></h3>
-							<div class="subTitle"><?php echo $cat3sub ?></div>
-							<div class="link"><a href="<?php echo $cat3link ?>"><?php echo $this->__('Watch products'); ?> >></a></div>
-						</div>						
-					</div>
-				</div>
-			</div>
+			<?php echo $this->getChildHtml('cats-homepage'); ?>	
 		</div>
 	</div>
 <?php endif; ?>

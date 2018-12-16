@@ -34,14 +34,10 @@ $code = Mage::app()->getStore()->getCode();
 ?>
 <?php if (count($this->getStores()) > 1): ?>
     <div class="form-language">
-
-        <ul id="countryselect">
-            <?php foreach ($this->getStores() as $_lang): ?>
-                <?php $_selected = ($_lang->getId() == $this->getCurrentStoreId()) ? ' class="selected"' : '' ?>
-                <a href="<?php echo $_lang->getCurrentUrl() ?>"><li <?php echo $_selected; ?>><img src="<?php echo $this->getSkinurl(); ?>images/media/<?php echo $_lang->getId(); ?>.jpg" /><?php echo $this->__($_lang->getName()); ?></li></a>
-            <?php endforeach; ?>
-        </ul>
-
-
+        <?php foreach ($this->getStores() as $_lang): ?>
+            <?php if($_lang->getId() != $this->getCurrentStoreId()): ?>
+				<a href="<?php echo $_lang->getCurrentUrl() ?>"><?php echo $this->__($_lang->getName()); ?></a>			
+			<?php endif; ?>
+        <?php endforeach; ?>
     </div>
 <?php endif; ?>

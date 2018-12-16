@@ -79,4 +79,68 @@ class Magentothem_Ajaxcartsuper_IndexController extends Mage_Catalog_ProductCont
 		}
  
     }
+	
+	public function catAction(){
+		header('Content-type: application/json');
+		header('Content-Type: text/html; charset=UTF-8');		
+		$cat_id = $_POST['catId'];
+		$products = Mage::getModel('catalog/category')->load($idLoad)
+			->getProductCollection()
+			->addAttributeToSelect('*')
+			->addAttributeToFilter('status', 1)
+			->addAttributeToFilter('visibility', 4);
+		$productBlock = $this->getLayout()->createBlock('catalog/product_price');
+		$customerId = null;
+		$wishlist = null;
+		if (Mage::getSingleton('customer/session')->isLoggedIn()) {
+			$customer = Mage::getSingleton('customer/session')->getCustomer();
+			$customerId = $customer->getId();
+		}
+		if (isset($customerId) && $customerId) {
+			$wishlist = Mage::getModel('wishlist/wishlist')->loadByCustomer($customerId, true);
+		}		
+		$html = '';
+		$html .= '<div class="owl-carousel owl-theme" id="carousel-'.$cat_id.'"">';
+		foreach ($products as $_product){
+			$hasProduct = false;
+			if (isset($customerId) && isset($wishlist) && $customerId) {
+				$collection = Mage::getModel('wishlist/item')->getCollection()
+					->addFieldToFilter('wishlist_id', $wishlist->getId())
+					->addFieldToFilter('product_id', $_product->getId());
+					$hasProduct = ($collection->count() ? true : false);
+			}
+			$_wishlistItem = Mage::getModel('wishlist/item')->loadByProductWishlist(
+				Mage::helper('wishlist')->getWishlist()->getId(), $_product->getId(), $_product->getStoreId()
+			);			
+			$html .= '<div class="item">' ;
+				$html .= '<div class="product-image-basket">';
+					$html .= '<a href="'.$_product->getProductUrl().'" title="'.$_product->getName().'" class="product-image">';
+						$html .= '<img src="'.Mage::helper('catalog/image')->init($_product, 'small_image')->resize(300,400).'" alt="'.$_product->getName().'" />';
+					$html .= '</a>';
+					$html .= '<div class="cart-block">';
+					$html .= '<span class="hidden wishlistSubmitUrl">'.Mage::helper('wishlist')->getAddUrl($_product).'</span>';
+					$html .= '<span class="hidden productId">'.$_product->getId().'</span>';
+						if($_product->isSaleable())
+							$html .= '<a href="javascript:void(0);" data-href="'.Mage::getUrl('ajax/product/view/id/' . $_product->getId()).'" title="'.$_product->getName().'" class="ajax quick-view">'.$this->__('Add to Cart').' >></a>';
+					$html .= '<ul class="add-to-links">';
+						if ($hasProduct)
+							$html .= '<li id="item-'.$_product->getId().'" class="in-wishlist"><a href="'.Mage::helper('wishlist')->getRemoveUrl($_wishlistItem).'" title="'.$this->__('WHISHLIST').'" class="link-wishlist wishItem-'.$_product->getId().'">&nbsp;</a></li>';
+						else
+							$html .= '<li id="item-'.$_product->getId().'"><a href="'.Mage::helper('wishlist')->getAddUrl($_product).'" title="'.$this->__('WHISHLIST').'" class="link-wishlist wishItem-'.$_product->getId().'">&nbsp;</a></li>';
+					$html .= '</ul>';
+					$html .= '</div>';
+				$html .= '</div>';
+				$html .= '<div class="name-price">';
+					$html .= '<p class="product-name"><a href="'.$_product->getProductUrl().'" title="'.$_product->getName().'">'.$_product->getName().'</a></p>';
+					$html .= '<div>'.$productBlock->getPriceHtml($_product, true).'</div>';
+				$html .= '</div>';
+			$html .= '</div>';
+		}
+		$html .= '</div>';		
+        $output=array();
+        $output['html']=$html;
+        echo json_encode($html);
+		exit;
+	}
+	
 }
