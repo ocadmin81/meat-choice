@@ -7,6 +7,7 @@ $showCats = Mage::getStoreConfig('webthemeoptions/homecats/enable');
 $showHowWorks = Mage::getStoreConfig('webthemeoptions/howworks/enable');
 $Workstitleimg = Mage::getStoreConfig('webthemeoptions/howworks/titleimg');
 $Workstitletext = Mage::getStoreConfig('webthemeoptions/howworks/titletext');
+$titletextsub = Mage::getStoreConfig('webthemeoptions/howworks/titletextsub');
 //first
 $works1banner = Mage::getStoreConfig('webthemeoptions/howworks/works1banner');
 $works1text = Mage::getStoreConfig('webthemeoptions/howworks/works1text');
@@ -23,16 +24,6 @@ $works3sub = Mage::getStoreConfig('webthemeoptions/howworks/works3sub');
 $works4banner = Mage::getStoreConfig('webthemeoptions/howworks/works4banner');
 $works4text = Mage::getStoreConfig('webthemeoptions/howworks/works4text');
 $works4sub = Mage::getStoreConfig('webthemeoptions/howworks/works4sub');
-//check if products block
-$showProds = Mage::getStoreConfig('webthemeoptions/homeprods/enable');
-$homecatid = Mage::getStoreConfig('webthemeoptions/homeprods/homecatid');
-$titletext = Mage::getStoreConfig('webthemeoptions/homeprods/titletext');
-$titleimg = Mage::getStoreConfig('webthemeoptions/homeprods/titleimg');
-$products = Mage::getModel('catalog/category')->load($homecatid)
- ->getProductCollection()
- ->addAttributeToSelect('*')
- ->addAttributeToFilter('status', 1)
- ->addAttributeToFilter('visibility', 4);
 //blog
 $showBlog = Mage::getStoreConfig('webthemeoptions/blog/enable');
 //get customer and load wishlist
@@ -54,99 +45,13 @@ if (isset($customerId) && $customerId) {
 		</div>
 	</div>
 <?php endif; ?>
-<?php if($showProds): ?>
-	<div class="home-block home-prods">
-		<div class="container">
-			<div class="title">
-				<?php if($titleimg): ?>
-					<img src="<?php echo $mediaDir . $titleimg; ?>" alt="<?php echo $titletext ?>" />
-				<?php else: ?>
-					<h3><?php echo $titletext; ?></h3>
-				<?php endif; ?>
-			</div>
-			<div class="home-block sale-block container-products product-grid">
-				<div id="owl-products" class="owl-carousel">
-					<?php $i=0; foreach ($products as $_product): $i++;  ?>
-						<div class="item">
-							<div class="product-image-basket">
-								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image">
-									<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(300,400); ?>" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
-								</a>
-							<div class="cart-block">
-								<?php if($_product->isSaleable()): ?>
-									<a href="javascript:void(0);" data-href="<?php echo $this->getUrl('ajax/product/view/id/' . $_product->getId()) ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="ajax quick-view"><?php echo $this->__('Add to Cart') ?> >></a>
-								<?php endif; ?>
-									<span class="hidden wishlistSubmitUrl"><?php echo $this->helper('wishlist')->getAddUrl($_product); ?></span>
-									<span class="hidden productId"><?php echo $_product->getId(); ?></span>						
-									<ul class="add-to-links">
-										<?php
-										$hasProduct = false;
-										if (isset($customerId) && isset($wishlist) && $customerId) {
-											$collection = Mage::getModel('wishlist/item')->getCollection()
-													->addFieldToFilter('wishlist_id', $wishlist->getId())
-													->addFieldToFilter('product_id', $_product->getId());
-											$hasProduct = ($collection->count() ? true : false);
-										}
-										$_wishlistItem = Mage::getModel('wishlist/item')->loadByProductWishlist(
-												$this->helper('wishlist')->getWishlist()->getId(), $_product->getId(), $_product->getStoreId()
-										);
-										?>
-										<?php if ($hasProduct): ?>
-											<li id="item-<?php echo $_product->getId(); ?>" class="in-wishlist"><a href="<?php echo $this->helper('wishlist')->getRemoveUrl($_wishlistItem); ?>" title="<?php echo $this->__('WHISHLIST') ?>" class="link-wishlist wishItem-<?php echo $_product->getId(); ?>">&nbsp;</a></li>
-										<?php else: ?>
-											<li id="item-<?php echo $_product->getId(); ?>"><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" title="<?php echo $this->__('WHISHLIST') ?>" class="link-wishlist wishItem-<?php echo $_product->getId(); ?>">&nbsp;</a></li>
-										<?php endif; ?>
-									</ul>								
-							</div>
-							</div>	
-							<div class="name-price">
-								<p class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $_product->getName(); ?></a></p>
-								<div><?php echo $this->getPriceHtml($_product, true) ?></div>
-							</div>							
-						</div>					
-					<?php endforeach; ?>
-				</div>		
-			</div>	
-		</div>
-	</div>
-	<script type="text/javascript">
-	$j( document ).ready(function() {
-		$j("#owl-products").owlCarousel({
-			nav:true,
-			autoplay : false,
-			autoplayHoverPause : true,
-			singleItem:true,
-			pagination:false,
-			navigation:true,
-			lazyLoad : false,
-			loop:false,
-			dots:false,
-			rtl:true,
-			margin : 25,
-			responsive:{
-				0:{
-					items:1
-				},
-				767:{
-					items:3
-				},				
-				1400:{
-					items:4
-				}
-			}
-		});	
-	});
-	</script>
-<?php endif; ?>
+
 <?php if($showHowWorks): ?>
 	<div class="home-block how-works">
 		<div class="container">
 			<div class="title">
-				<?php if($Workstitleimg): ?>
-					<img src="<?php echo $mediaDir . $Workstitleimg; ?>" alt="<?php echo $Workstitletext ?>" />
-				<?php else: ?>
-					<h3><?php echo $Workstitletext; ?></h3>
-				<?php endif; ?>
+				<h3><?php echo $Workstitletext; ?></h3>
+				<p><?php echo $titletextsub; ?></p>
 			</div>		
 			<div class="row">
 				<div class="item col-md-3 col-xs-6 first">

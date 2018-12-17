@@ -163,29 +163,28 @@
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
 						</titletext>						
-						<titleimg translate="label">
-                            <label>Title Image</label>
-							<frontend_type>image</frontend_type>
-                            <backend_model>adminhtml/system_config_backend_image</backend_model>
-                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
-                            <base_url type="media" scope_info="1">theme</base_url>
+						<titletextsub translate="label">
+                            <label>Sub Title</label>
+							<frontend_type>text</frontend_type>
                             <sort_order>1</sort_order>
 							<comment>Will show instead ot text title</comment>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </titleimg>							
+                        </titletextsub>							
 						<worksbg translate="label">
-                            <label>Block background color</label>
-                            <frontend_type>text</frontend_type>
-							<validate>color</validate>               
-                            <sort_order>1</sort_order>
+                            <label>Area Background Image</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>2</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </worksbg>						
 						<works1banner translate="label">
-                            <label>Banner</label>
+                            <label>Icon</label>
 							<frontend_type>image</frontend_type>
                             <backend_model>adminhtml/system_config_backend_image</backend_model>
                             <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
@@ -212,7 +211,7 @@
 							<show_in_store>1</show_in_store>
 						</works1sub>
 						<works2banner translate="label">
-                            <label>Banner</label>
+                            <label>Icon</label>
 							<frontend_type>image</frontend_type>
                             <backend_model>adminhtml/system_config_backend_image</backend_model>
                             <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
@@ -239,7 +238,7 @@
 							<show_in_store>1</show_in_store>
 						</works2sub>
 						<works3banner translate="label">
-                            <label>Banner</label>
+                            <label>Icon</label>
 							<frontend_type>image</frontend_type>
                             <backend_model>adminhtml/system_config_backend_image</backend_model>
                             <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
@@ -266,7 +265,7 @@
 							<show_in_store>1</show_in_store>
 						</works3sub>
 						<works4banner translate="label">
-                            <label>Banner</label>
+                            <label>Icon</label>
 							<frontend_type>image</frontend_type>
                             <backend_model>adminhtml/system_config_backend_image</backend_model>
                             <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
@@ -715,17 +714,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </bg>
-						<logo translate="label">
-                            <label>Logo</label>
-							<frontend_type>image</frontend_type>
-                            <backend_model>adminhtml/system_config_backend_image</backend_model>
-                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
-                            <base_url type="media" scope_info="1">theme</base_url>
-                            <sort_order>2</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </logo>	
 						<textcolor translate="label">
                             <label>Text and Links Color</label>
                             <frontend_type>text</frontend_type>

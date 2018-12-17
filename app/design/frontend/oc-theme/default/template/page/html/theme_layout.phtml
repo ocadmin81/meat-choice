@@ -16,8 +16,6 @@ $worksbg = Mage::getStoreConfig('webthemeoptions/howworks/worksbg');
 //footer
 $footerbg = Mage::getStoreConfig('webthemeoptions/footer/bg');
 $footertextcolor = Mage::getStoreConfig('webthemeoptions/footer/textcolor');
-$newsletterbg = Mage::getStoreConfig('webthemeoptions/footer/newsletterbg');
-$sizeN = list($widthN, $heightN) = getimagesize($mediaDir.$newsletterbg);
 ?>
 <style>
 .owl-carousel .owl-controls .owl-dot span,.bx-wrapper .bx-pager.bx-default-pager a{background:#<?php echo $dotoffbackground; ?>;}
@@ -30,13 +28,9 @@ $sizeN = list($widthN, $heightN) = getimagesize($mediaDir.$newsletterbg);
 <?php if($homeprodsbg && $showProds): ?>
 	.home-block.home-prods{background: url(<?php echo $mediaDir.$homeprodsbg; ?>) 0 0 no-repeat;height:auto;background-size: cover;min-height:<?php echo $height; ?>px;}
 <?php endif; ?>
-.how-works{background:#<?php echo $worksbg; ?>}
+.how-works{background:url(<?php echo $mediaDir.$worksbg; ?>) 0 0 no-repeat;}
 <?php if($footerbg): ?>
-	.footer-container{background:#<?php echo $footerbg; ?>;padding: 50px 0;}
-<?php endif; ?>
-<?php if($newsletterbg): ?>
-	.newsletter-container{background: url(<?php echo $mediaDir.$newsletterbg; ?>) 0 0 no-repeat;height:<?php echo $heightN; ?>px;}
+	.footer-container{background:#<?php echo $footerbg; ?>;}
 <?php endif; ?>
 .footer-right li,.footer-right a{color:#<?php echo $footertextcolor; ?>}
-.footer-right{border-color:#<?php echo $footertextcolor; ?>;height:<?php echo $heightN; ?>px;}
 </style>
