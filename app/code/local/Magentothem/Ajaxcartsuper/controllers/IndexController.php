@@ -115,7 +115,7 @@ class Magentothem_Ajaxcartsuper_IndexController extends Mage_Catalog_ProductCont
 			$html .= '<div class="item">' ;
 				$html .= '<div class="product-image-basket">';
 					$html .= '<a href="'.$_product->getProductUrl().'" title="'.$_product->getName().'" class="product-image">';
-						$html .= '<img src="'.Mage::helper('catalog/image')->init($_product, 'small_image')->resize(300,400).'" alt="'.$_product->getName().'" />';
+						$html .= '<img src="'.Mage::helper('catalog/image')->init($_product, 'small_image')->resize(336,259).'" alt="'.$_product->getName().'" />';
 					$html .= '</a>';
 					$html .= '<div class="cart-block">';
 					$html .= '<span class="hidden wishlistSubmitUrl">'.Mage::helper('wishlist')->getAddUrl($_product).'</span>';

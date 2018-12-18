@@ -3,6 +3,14 @@ $mediaDir = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, true) . 'media
 $themeDirection = Mage::getStoreConfig('webthemeoptions/general/appthemedir');
 //Categories Block
 $showCats = Mage::getStoreConfig('webthemeoptions/homecats/enable');
+//recipes
+$showRe = Mage::getStoreConfig('webthemeoptions/homere/enable');
+//about
+$homeabout = Mage::getStoreConfig('webthemeoptions/homeabout/enable');
+$aboutTitle = Mage::getStoreConfig('webthemeoptions/homeabout/titletext');
+$aboutText = Mage::getStoreConfig('webthemeoptions/homeabout/text');
+$aboutLink = Mage::getStoreConfig('webthemeoptions/homeabout/link');
+$aboutBanner = Mage::getStoreConfig('webthemeoptions/homeabout/banner');
 //How works Block
 $showHowWorks = Mage::getStoreConfig('webthemeoptions/howworks/enable');
 $Workstitleimg = Mage::getStoreConfig('webthemeoptions/howworks/titleimg');
@@ -45,7 +53,29 @@ if (isset($customerId) && $customerId) {
 		</div>
 	</div>
 <?php endif; ?>
-
+<?php if($showRe): ?>
+	<div class="home-block home-cats home-re">
+		<div class="container">
+			<?php echo $this->getChildHtml('recipes-homepage'); ?>	
+		</div>
+	</div>
+<?php endif; ?>
+<?php if($homeabout): ?>
+	<div class="home-block homeabout home-cats">
+		<div class="container">
+			<div class="row">
+				<div class="item col-md-7 col-xs-6"><img src="<?php echo $mediaDir . $aboutBanner; ?>" alt="<?php echo $aboutTitle ?>" /></div>
+				<div class="item col-md-5 col-xs-6 about-text">
+					<h3><?php echo $aboutTitle; ?></h3>
+					<p>
+						<?php echo $aboutText; ?>
+						<a href="<?php echo $aboutLink; ?>"><?php echo $this->__('Read More'); ?> >></a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php endif; ?>
 <?php if($showHowWorks): ?>
 	<div class="home-block how-works">
 		<div class="container">

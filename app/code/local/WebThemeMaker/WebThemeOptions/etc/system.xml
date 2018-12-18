@@ -79,7 +79,98 @@
                             <show_in_store>1</show_in_store>
                         </firstcatid>					
 					</fields>
-				</homecats>	
+				</homecats>
+				<homere translate="label">
+ 					<label>Home Recipes</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>9</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<enable translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>       
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                     
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+						<homecatsbg translate="label">
+                            <label>Block background color</label>
+                            <frontend_type>text</frontend_type>
+							<validate>color</validate>               
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </homecatsbg>						
+						<catid translate="label">
+                            <label>Category id</label>
+							<frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </catid>					
+					</fields>
+				</homere>
+				<homeabout translate="label">
+ 					<label>Home About</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>9</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<enable translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>       
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                     
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+						<titletext translate="label">
+							<label>Title Text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</titletext>						
+						<text translate="label">
+                            <label>Sub Title</label>
+							<frontend_type>textarea</frontend_type>
+                            <sort_order>1</sort_order>
+							<comment>Will show instead ot text title</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </text>							
+						<banner translate="label">
+                            <label>Banner</label>
+							<frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">theme</upload_dir>
+                            <base_url type="media" scope_info="1">theme</base_url>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </banner>						
+						<link translate="label">
+                            <label>Link</label>
+							<frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </link>													
+					</fields>
+				</homeabout>					
 				<homeprods translate="label">
  					<label>Home Popular prodcuts</label>
                     <frontend_type>text</frontend_type>
