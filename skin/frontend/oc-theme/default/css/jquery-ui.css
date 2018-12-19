@@ -818,7 +818,7 @@ button.ui-button::-moz-focus-inner {
 }
 
 .ui-slider-horizontal {
-    height: .8em;
+    height:6px;
 }
 
 .ui-slider-horizontal .ui-slider-handle {
@@ -1022,11 +1022,10 @@ body .ui-tooltip {
 }
 
 .ui-widget-header {
-    border: 1px solid #9B1B1E;
-    /*background: #000 url("images/ui-bg_gloss-wave_35_f6a828_500x100.png") 50% 50% repeat-x;*/
+    border: 1px solid #272727;
     color: #ffffff;
     font-weight: bold;
-    background: #9B1B1E;
+    background: #272727;
 }
 
 .ui-datepicker-year,
@@ -1044,7 +1043,10 @@ body .ui-tooltip {
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
-    background: #292929;
+        background: #fff;
+    border: 1px solid #d3d3d3;
+    border-radius: 50%;
+    top: -6px;
 }
 
 .ui-state-default a,

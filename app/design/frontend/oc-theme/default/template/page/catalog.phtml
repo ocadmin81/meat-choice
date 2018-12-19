@@ -47,14 +47,19 @@ $imgUrl = $category->getImageUrl();
         <?php echo $this->getChildHtml('header') ?>
         <div class="main-container col1-layout">
             <div class="main category-wrapper">
-				<div class="cat-top">
-					<img src="<?php echo $imgUrl; ?>" class="cat-img" />
-					<div class="category-description container container-cat"><?php echo $desc; ?></div>
-				</div>
 				<div class="container container-cat container-main">
-					<div class="col-main">
-						<?php echo $this->getChildHtml('global_messages') ?>
-						<?php echo $this->getChildHtml('content') ?>
+					<div class="cat-top">
+						<img src="<?php echo $imgUrl; ?>" class="cat-img" />
+						<div class="cat-title-desc">
+							<h1><?php echo $name; ?></h1>
+							<div class="category-description container container-cat"><?php echo $desc; ?></div>
+						</div>
+					</div>				
+					<div class="container container-cat container-main">
+						<div class="col-main">
+							<?php echo $this->getChildHtml('global_messages') ?>
+							<?php echo $this->getChildHtml('content') ?>
+						</div>
 					</div>
 				</div>
             </div>
