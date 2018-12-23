@@ -1,35 +1,29 @@
 <?php
 	$themeDirection = Mage::getStoreConfig('webthemeoptions/general/appthemedir');
 	$_product = $this->getProduct();
-	$related_ar = $_product->getRelatedPosts();
+	$related_ar = $_product->getRelatedRecipes();
 	$ar_arr=explode(",",$related_ar);
 ?>
 <?php if($related_ar): ?>
-<div class="blog-related">
+<div class="block-related recipes-related">
 	<div class="container">
 		<div class="recipes-homepage">
-			<div class="title">
-				<?php if($homeBlogTitle): ?>
-					<img src="<?php echo $mediaDir.$homeBlogTitle; ?>" />
-				<?php else: ?>
-					<h3><?php echo $homeBlogTitleText; ?></h3>
-				<?php endif; ?>		
-				<div class="subtitle"><?php echo $homeBlogSubTitle; ?></div>
-			</div>
-			<?php if($related_re): ?>
+			<div class="title"><?php echo $this->__('Related Recipes') ?></div>
 					<div class="blog-home re-blog">
 						<div class="home-blog-content">
 							<div id="owl-recipes" class="owl-carousel">
-							<?php foreach ($re_arr as $_product): ?>
+							<?php foreach ($ar_arr as $_product): ?>
 								<?php $_product= Mage::getModel('catalog/product')->load($_product); ?>
 								<div class="item">
-									<div class="post-img">
-										<a href="<?php echo $_product->getProductUrl() ?>"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" /></a>
-									</div>
-									<div class="post-details">
-										<div class="name"><a href="<?php echo $_product->getProductUrl(); ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a></div>
-										<div class="content"><?php echo $_product->getShortDescription(); ?></div>								
-									</div>
+									<div class="product-image-basket">
+										<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image">
+											<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(337,365); ?>" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+										</a>
+									</div>	
+									<div class="name-price">
+										<p class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $_product->getName(); ?></a></p>
+										<a class="read-re" href="<?php echo $_product->getProductUrl() ?>"><?php echo $this->__('Read Recipe'); ?> >></a>
+									</div>							
 								</div>
 							<?php endforeach; ?>
 							</div>
@@ -37,18 +31,7 @@
 					</div> 
 				<script type="text/javascript">
 					$j( document ).ready(function() {
-						var $owlRecipes = $j( '#owl-recipes' );
-						$owlRecipes.on('initialized.owl.carousel', function(event){		
-							var Fheight = $j('.blog-home .owl-carousel .owl-item').height();
-							var Fwidth = $j('.blog-home .owl-carousel .owl-item').width();			
-							$j(this).find( ".owl-controls" ).after( "<div class='fade-item'></div>" );
-							$j(this).find( ".owl-nav" ).after( "<div class='allbtn'><a href='<?php echo $this->getUrl() ?>recipes'><?php echo $this->__('To all Recipes') ?></a></div>" );
-							var BlockTop = $j('.home-blog-content .owl-stage-outer .owl-item:first-child .post-img').height();
-							$j(".home-blog-content .owl-controls").css('top', BlockTop-75);			
-							$j('.home-blog-content .fade-item').css('height',Fheight);
-							$j('.home-blog-content .fade-item').css('width',Fwidth);					
-						});		
-						$owlRecipes.owlCarousel({
+						$j("#owl-recipes").owlCarousel({
 							nav:true,
 							autoplay : false,
 							autoplayHoverPause : true,
@@ -77,102 +60,7 @@
 						});		
 					});
 				</script>
-			<?php endif; ?>
-			<?php if($related_ar): ?>
-					<div class="blog-home ar-blog <?php if($related_ar && $related_re): ?>both-loaded<?php endif; ?>">
-						<div class="home-blog-content">
-							<div id="owl-articles" class="owl-carousel">
-							<?php foreach ($ar_arr as $_product): ?>
-								<?php $_product= Mage::getModel('catalog/product')->load($_product); ?>
-								<div class="item">
-									<div class="post-img">
-										<a href="<?php echo $_product->getProductUrl() ?>"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" /></a>
-									</div>
-									<div class="post-details">
-										<div class="name"><a href="<?php echo $_product->getProductUrl(); ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a></div>
-										<div class="content"><?php echo $_product->getShortDescription(); ?></div>								
-									</div>
-								</div>
-							<?php endforeach; ?>
-							</div>
-						</div> 
-					</div> 
-			<script type="text/javascript">
-				$j( document ).ready(function() {
-					var $owlArticles = $j( '#owl-articles' );
-					$owlArticles.on('initialized.owl.carousel', function(event){		
-						var Fheight = $j('.blog-home .owl-carousel .owl-item').height();
-						var Fwidth = $j('.blog-home .owl-carousel .owl-item').width();			
-						$j(this).find( ".owl-controls" ).after( "<div class='fade-item'></div>" );
-						$j(this).find( ".owl-nav" ).after( "<div class='allbtn'><a href='<?php echo $this->getUrl() ?>articles'><?php echo $this->__('To all Articles') ?></a></div>" );
-						var BlockTop = $j('.home-blog-content .owl-stage-outer .owl-item:first-child .post-img').height();
-						$j(".home-blog-content .owl-controls").css('top', BlockTop-75);			
-						$j('.home-blog-content .fade-item').css('height',Fheight);
-						$j('.home-blog-content .fade-item').css('width',Fwidth);					
-					});		
-					$owlArticles.owlCarousel({
-						nav:true,
-						autoplay : false,
-						autoplayHoverPause : true,
-						singleItem:true,
-						pagination:false,
-						navigation:true,
-						lazyLoad : false,
-						loop:true,
-						dots:false,
-						<?php if($themeDirection == 'rtl'): ?>
-						rtl:true,
-						<?php endif; ?>	
-						margin :1,
-						autoWidth:false,
-						responsive:{
-							0:{
-								items:2
-							},
-							768:{
-								items:3
-							},					
-							992:{
-								items:4
-							}			
-						}
-					});		
-				});
-			</script>
-			<?php endif; ?>
-			<script type="text/javascript">
-				$j( document ).ready(function() {
-					//set post name 1 rows in home
-					$j('.blog-home .post-details .content').ellipsis({
-						row: 1
-					});
-					$j('.blog-home .post-details .name a').ellipsis({
-						row: 1
-					});
-					//active tabs
-					$j(".title h3.for-re").click(function(){
-						$j(".re-blog").css("visibility", "visible");
-						$j(".re-blog").css("opacity", "1");
-						$j(".re-blog").css("height", "auto");
-						$j(".ar-blog").css("visibility", "hidden");
-						$j(".ar-blog").css("opacity", "0");
-						$j(".ar-blog").css("height", "0");	
-						$j('.title h3').removeClass('on');
-						$j('.title h3.for-re').addClass('on');
-					});
-					$j(".title h3.for-ar").click(function(){
-						$j(".re-blog").css("visibility", "hidden");
-						$j(".re-blog").css("opacity", "0");
-						$j(".re-blog").css("height", "0");
-						$j(".ar-blog").css("visibility", "visible");
-						$j(".ar-blog").css("opacity", "1");
-						$j(".ar-blog").css("height", "auto");
-						$j('.title h3').removeClass('on');
-						$j('.title h3.for-ar').addClass('on');			
-					});		
-				});	
-			</script>
-			<?php endif; ?>
 		</div>
 	</div>
 </div>
+<?php endif; ?>

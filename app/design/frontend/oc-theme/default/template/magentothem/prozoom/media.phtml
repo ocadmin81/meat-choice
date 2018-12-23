@@ -20,49 +20,56 @@ $showInsta = $_product->getShow_insta();
 $video = $_product->getVideo_code();
 ?>
 	<?php $_images = $this->getGalleryImages(); ?>
+	<div class="product-img-box main-image slider-big-img-wrap">
+		<?php
+			$_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(689,530).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+		?>
+		<!-- images for lightbox -->
+		<a href="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize($_lightbox_w, $_lightbox_h); ?>" class = "ma-a-lighbox" rel="lightbox[rotation]"></a>
+		<!--++++++++++++-->
+		<a href="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>" class = "cloud-zoom" id="ma-zoom1" style="position: relative;" rel="position: 'inside', adjustX:10, adjustY:-2, zoomWidth:<?php echo $_zoom_w; ?>, zoomHeight:<?php echo $_zoom_h; ?>">
+			<?php echo $_helper->productAttribute($_product, $_img, 'image'); ?>
+		</a>
+	</div>
+	<?php if ( count($this->getGalleryImages()) > 0 ): ?>
 		<div class="product-img-box more-images slider-small-img-wrap">
-			<div class="more-views ma-thumbnail-container product-image">
-				<div class="owl-carousel" id="owl-media">
-					<?php $i=0; foreach ($_images as $_image): ?>
-						<div class="item">
-							<a data-slide-index="<?php echo $i; ?>" href="#">
-								<img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(); ?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" />
+			<div class="more-views ma-thumbnail-container owl-carousel">
+					<?php $i=0; foreach ($this->getGalleryImages() as $_image): ?>
+						<div class="item <?php if($i==0): ?>selected<?php endif; ?>">
+							<a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile())->resize(1200,1200); ?>" class="cloud-zoom-gallery" title="<?php echo $this->htmlEscape($_image->getLabel()) ?>" name="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile())->resize($_lightbox_w, $_lightbox_h); ?>"
+								rel="useZoom: 'ma-zoom1', smallImage: '<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile())->resize(689,530); ?>'">
+								<img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(140,106); ?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" />
 							</a>
 						</div>
 					<?php $i++; endforeach; ?>
-				</div>
-				<?php if($video): ?><a class="video-pop" href="http://www.youtube.com/v/<?php echo $video; ?>?fs=1&autoplay=1"><img src="<?php echo $this->getSkinurl(); ?>images/prod-video.png" /></a><?php endif; ?>
 			</div>
-		</div>		
+		</div>
+	<?php endif; ?>	
 		<script type="text/javascript">
 			$j(document).ready(function() {		
-				$j('#owl-media').owlCarousel({
-					<?php if(count($_images) > 1): ?>
-					nav:false,
-					<?php else: ?>
-					nav:false,
-					<?php endif; ?>
-					dots:true,
+				$j('.more-views').owlCarousel({
+					nav:true,
+					dots:false,
 					autoplay : false,
 					autoplayHoverPause : true,
 					singleItem:true,
 					pagination:false,
-					navigation:false,
+					navigation:true,
 					lazyLoad : false,
 					<?php if($themeDirection == 'rtl'): ?>
 					rtl:true,
 					<?php endif; ?>
 					loop:false,
-					margin : 0,
+					margin : 20,
 					responsive:{
 						0:{
 							items:1
 						},
 						768:{
-							items:1
+							items:3
 						},
 						992:{
-							items:1
+							items:4
 						}
 					}
 				});

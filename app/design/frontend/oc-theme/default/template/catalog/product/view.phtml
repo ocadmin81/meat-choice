@@ -44,6 +44,7 @@ $tab3title = Mage::getStoreConfig('webthemeoptions/product/tab3title');
 <div class="product-view">
 	<div class="container">
 		<div class="product-essential">
+			<div class="row">
 				<form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
 					<?php echo $this->getBlockHtml('formkey') ?>
 					<div class="no-display">
@@ -58,9 +59,6 @@ $tab3title = Mage::getStoreConfig('webthemeoptions/product/tab3title');
 								<div class="product-name product-name-view">
 									<h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
 								</div>
-							<div class="rating-sharing">
-								<?php echo $this->getReviewsSummaryHtml($_product, 'default', false) ?>						
-							</div>
 							<div class="price-info" <?php if($_product->getProduct_type()): ?>style="display:none;"<?php endif; ?>>
 								<?php echo $this->getPriceHtml($_product); ?>
 								<?php echo $this->getChildHtml('bundle_prices') ?>
@@ -69,6 +67,7 @@ $tab3title = Mage::getStoreConfig('webthemeoptions/product/tab3title');
 						</div>
 						<div class="description">
 							<?php echo $this->helper('catalog/output')->productAttribute($this->getProduct(), $_product->getShortDescription(), 'short_description') ?>
+							<div class="sku"><?php echo $this->__('SKU').': '.$_product->getSku(); ?></div>
 						</div>					
 						<?php echo $this->getChildHtml('other'); ?>
 
@@ -89,7 +88,7 @@ $tab3title = Mage::getStoreConfig('webthemeoptions/product/tab3title');
 										<?php echo $this->getChildHtml('addtocart') ?>
 									<?php endif; ?>
 								</div>
-								<?php echo $this->getChildHtml('addto') ?>
+								<?php //echo $this->getChildHtml('addto') ?>
 								<?php echo $this->getChildHtml('extra_buttons') ?>
 							<?php endif; ?>
 						</div>            
@@ -98,27 +97,28 @@ $tab3title = Mage::getStoreConfig('webthemeoptions/product/tab3title');
 							<?php echo $this->getChildChildHtml('container2', '', true, true) ?>
 						<?php endif; ?>
 						<div class="under-btn"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('under-btn')->toHtml(); ?></div>
-						 <?php //echo $this->getChildHtml('additional') ?>
+						 
 						<div class="tabs">
 							<div id="accordion">
 								<h3 class="tab-t-1"><?php echo $tab1title; ?></h3>
-								<div class="roasting_level"><?php echo $this->helper('catalog/output')->productAttribute($this->getProduct(), $_product->getDescription(), 'description') ?></div>
+								<div class="roasting_level"><?php echo $this->getChildHtml('additional') ?></div>
 								<h3 class="tab-t-2"><?php echo $tab2title; ?></h3>
-								<div><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('conservation')->toHtml(); ?></div>
-								<h3 class="tab-t-3"><?php echo $tab3title; ?></h3>
 								<div><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('shipping-tab')->toHtml();  ?></div>
+								<h3 class="tab-t-3"><?php echo $tab3title; ?></h3>
+								<div><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('cashrot')->toHtml(); ?></div>								
 							</div> 						
 						</div>
-						<?php echo $this->getChildHtml('sharing') ?>
+						<?php //echo $this->getChildHtml('sharing') ?>
 					</div>
-				</form>			
-		</div>
-		<div class="blog-related">
-			<?php echo $this->getChildHtml('blog-related') ?>
+				</form>	
+			</div>
 		</div>
 	</div>
 		<?php echo $this->getChildHtml('related_products') ?>			
-		<?php echo $this->getChildHtml('review') ?>
+		<div class="blog-related">
+			<?php echo $this->getChildHtml('blog-related') ?>
+		</div>		
+		<?php //echo $this->getChildHtml('review') ?>
 		<?php echo $this->getChildHtml('upsell_products') ?>
         <script type="text/javascript">
             //<![CDATA[
@@ -188,7 +188,7 @@ $j(document).ready(function() {
 	});	
 	$j( "#accordion" ).accordion({
 		heightStyle: "content",
-		active: false,
+		active: 0,
 		collapsible:true
 	});
 });
