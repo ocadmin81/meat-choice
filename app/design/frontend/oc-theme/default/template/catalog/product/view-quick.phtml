@@ -6,49 +6,61 @@
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
 <div class="product-view product-view-quick">
     <div class="product-essential">
-		<form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
-            <?php echo $this->getBlockHtml('formkey') ?>
-            <div class="no-display">
-                <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
-                <input type="hidden" name="related_product" id="related-products-field" value="" />
-            </div>
-                    <div class="name-price">
-						<div class="product-name product-name-view">
-							<h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
-						</div>
-                        <div class="price-info" <?php if($_product->getProduct_type()): ?>style="display:none;"<?php endif; ?>>
-                            <?php echo $this->getPriceHtml($_product); ?>
-                            <?php echo $this->getChildHtml('bundle_prices') ?>
-                            <?php echo $this->getTierPriceHtml() ?>
-                        </div>                        
-                    </div>
-                    <?php echo $this->getChildHtml('other'); ?>
-
-                    <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
-                        <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
-                    <?php endif; ?>
-                    <div class="extra-info">
-                        <?php echo $this->getChildHtml('product_type_availability'); ?>
-                    </div>
-					<?php echo $this->getChildHtml('alert_urls') ?>					
-                    <div class="add-to-cart-wrapper">
-                        <?php echo $this->getChildHtml('product_type_data') ?>
-                        <?php echo $this->getChildHtml('extrahint') ?>
-                        <?php if (!$this->hasOptions()): ?>
-                            <div class="add-to-box <?php if($_product->getTypeID() == 'giftcards'): ?>gitf-add<?php endif; ?>">
-                                <?php if ($_product->isSaleable() || $_product->getTypeID() == 'giftcards'): ?>
-                                    <?php echo $this->getChildHtml('addtocart') ?>
-                                <?php endif; ?>
-                            </div>
-                            <?php echo $this->getChildHtml('extra_buttons') ?>
-                        <?php endif; ?>
-                    </div> 					
-                    <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
-                        <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
-                    <?php endif; ?>	
-					<div class="under-btn"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('under-btn')->toHtml(); ?></div>	
+		<div class="row">
+			
+			<form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+				<?php echo $this->getBlockHtml('formkey') ?>
+				<div class="no-display">
+					<input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+					<input type="hidden" name="related_product" id="related-products-field" value="" />
+				</div>
+				<div class="product-img-box col-md-6 col-sm-6 col-sms-6">
+					<?php echo $this->getChildHtml('media') ?>		
 					<div class="view-page"><a href="<?php echo $_product->getProductUrl() ?>" target="_parent"><?php echo $this->__('Go to Full Details'); ?> >></a></div>
-		</form>			
+				</div> 		
+				<div class="product-shop col-md-6 col-sm-6 col-sms-6">
+						<div class="name-price">
+							<div class="product-name product-name-view">
+								<h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+							</div>
+							<div class="price-info" <?php if($_product->getProduct_type()): ?>style="display:none;"<?php endif; ?>>
+								<?php echo $this->getPriceHtml($_product); ?>
+								<?php echo $this->getChildHtml('bundle_prices') ?>
+								<?php echo $this->getTierPriceHtml() ?>
+							</div>                        
+						</div>
+						<div class="description">
+							<?php echo $this->helper('catalog/output')->productAttribute($this->getProduct(), $_product->getShortDescription(), 'short_description') ?>
+							<div class="sku"><?php echo $this->__('SKU').': '.$_product->getSku(); ?></div>
+						</div>							
+						<?php echo $this->getChildHtml('other'); ?>
+
+						<?php if ($_product->isSaleable() && $this->hasOptions()): ?>
+							<?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+						<?php endif; ?>
+						<div class="extra-info">
+							<?php echo $this->getChildHtml('product_type_availability'); ?>
+						</div>
+						<?php echo $this->getChildHtml('alert_urls') ?>					
+						<div class="add-to-cart-wrapper">
+							<?php echo $this->getChildHtml('product_type_data') ?>
+							<?php echo $this->getChildHtml('extrahint') ?>
+							<?php if (!$this->hasOptions()): ?>
+								<div class="add-to-box <?php if($_product->getTypeID() == 'giftcards'): ?>gitf-add<?php endif; ?>">
+									<?php if ($_product->isSaleable() || $_product->getTypeID() == 'giftcards'): ?>
+										<?php echo $this->getChildHtml('addtocart') ?>
+									<?php endif; ?>
+								</div>
+								<?php echo $this->getChildHtml('extra_buttons') ?>
+							<?php endif; ?>
+						</div> 					
+						<?php if ($_product->isSaleable() && $this->hasOptions()): ?>
+							<?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+						<?php endif; ?>	
+						<div class="under-btn"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('under-btn')->toHtml(); ?></div>							
+					</div>
+			</form>
+		</div>
 	</div>
 </div>
 <div style="display: none;" id="price-pop" class="price-pop">

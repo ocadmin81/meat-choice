@@ -97,7 +97,7 @@ $tab3title = Mage::getStoreConfig('webthemeoptions/product/tab3title');
 							<?php echo $this->getChildChildHtml('container2', '', true, true) ?>
 						<?php endif; ?>
 						<div class="under-btn"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('under-btn')->toHtml(); ?></div>
-						 
+						 <?php echo $this->getChildHtml('sharing') ?>
 						<div class="tabs">
 							<div id="accordion">
 								<h3 class="tab-t-1"><?php echo $tab1title; ?></h3>
@@ -107,8 +107,7 @@ $tab3title = Mage::getStoreConfig('webthemeoptions/product/tab3title');
 								<h3 class="tab-t-3"><?php echo $tab3title; ?></h3>
 								<div><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('cashrot')->toHtml(); ?></div>								
 							</div> 						
-						</div>
-						<?php //echo $this->getChildHtml('sharing') ?>
+						</div>						
 					</div>
 				</form>	
 			</div>

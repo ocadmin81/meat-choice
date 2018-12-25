@@ -1303,8 +1303,9 @@ $j(document).ready(function() {
 		$j.fancybox({
 			hideOnContentClick : true,
 			type: 'iframe',
-			maxWidth: 600,
-			maxHeight: 600,	
+			maxWidth: 1000,
+			minWidth: 1000,
+			minHeight: 600,
 			href: url
 		});
 	});		

@@ -1,0 +1,46 @@
+<?php
+$subhasproducts = Mage::getStoreConfig('webthemeoptions/catalog/subhasproducts');
+$subcatstyle = Mage::getStoreConfig('webthemeoptions/catalog/subcatstyle');
+$lineincat = Mage::getStoreConfig('webthemeoptions/catalog/lineincat');
+$_productCollection = $this->getLoadedProductCollection();
+$_helper = $this->helper('catalog/output');
+$count = 'col-xs-6 col-md-6 col-sm-6 col-sms-6 mobile';
+?>
+<div class="toolbar-top">	
+	<?php echo $this->getChildHtml('catalog.leftnav') ?>
+	<?php echo $this->getToolbarHtml() ?>
+</div>
+    <?php if (!$_productCollection->count()): ?>
+        <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+    <?php else: ?>
+		<div class="row re-row">
+			<div class="col-main col-xs-12 col-sm-9 left">
+				<div class="category-products re-list">			
+					<div class="product-grid">
+						<div class="row">
+							<?php $i = 0;
+							foreach ($_productCollection as $_product): ?>
+								<?php
+									$rotateImg = $this->helper('greeting_imgalt')->altImage($_product,2,337,365);
+								?>
+								<div class="item <?php echo $count; ?> <?php if ($lineincat): ?>withLine<?php endif; ?>">
+									<div class="product-image-basket">
+										<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image">
+											<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(337,365); ?>" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+										</a>
+									</div>	
+									<div class="name-price">
+										<p class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $_product->getName(); ?></a></p>
+										<a class="read-re" href="<?php echo $_product->getProductUrl() ?>"><?php echo $this->__('Read Recipe'); ?> >></a>
+									</div>	
+								</div>
+							<?php endforeach ?>
+						</div>
+					</div>
+					<div class="toolbar-bottom">
+						<?php echo $this->getToolbarHtml() ?>
+					</div>			
+				</div>
+			</div>
+		</div>
+    <?php endif; ?>

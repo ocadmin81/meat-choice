@@ -52,7 +52,10 @@ $mediaDir = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, true) . 'media
 					<?php if($imgUrl): ?>
 						<img src="<?php echo $mediaDir.$imgUrl; ?>" class="cat-img" />
 					<?php endif; ?>
-					<div class="category-description container container-cat"><?php echo $desc; ?></div>
+					<div class="cat-title-desc">
+						<h1><?php echo $name; ?></h1>
+						<div class="category-description container container-cat"><?php echo $desc; ?></div>
+					</div>
 				</div>
 				<div class="container container-cat container-main">
 					<div class="col-main">

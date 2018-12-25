@@ -30,7 +30,7 @@
             <script type="text/javascript">
                 var awLnUpdaterInstance = new awLnUpdater();
             </script>
-            <div class="block-subtitle block-subtitle--filter"><span><?php echo $this->__('Filter By') ?></span></div>
+            <div class="block-subtitle right block-subtitle--filter"><span><?php echo $this->__('Filter By') ?></span></div>
             <dl id="aw-ln-filters-container" class="aw-ln-filters-container">
                 <?php foreach ($this->getFilterList() as $_filter): ?>
                     <?php if($this->getItemCountByFilter($_filter)): ?>

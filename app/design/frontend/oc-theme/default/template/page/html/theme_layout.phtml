@@ -28,7 +28,7 @@ $footertextcolor = Mage::getStoreConfig('webthemeoptions/footer/textcolor');
 <?php if($homeprodsbg && $showProds): ?>
 	.home-block.home-prods{background: url(<?php echo $mediaDir.$homeprodsbg; ?>) 0 0 no-repeat;height:auto;background-size: cover;min-height:<?php echo $height; ?>px;}
 <?php endif; ?>
-.how-works{background:url(<?php echo $mediaDir.$worksbg; ?>) 0 0 no-repeat;}
+.how-works{background:url(<?php echo $mediaDir.$worksbg; ?>) 0 0 repeat;}
 <?php if($footerbg): ?>
 	.footer-container{background:#<?php echo $footerbg; ?>;}
 <?php endif; ?>
