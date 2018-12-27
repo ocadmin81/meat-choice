@@ -1308,7 +1308,10 @@ $j(document).ready(function() {
 			minHeight: 600,
 			href: url
 		});
-	});		
+	});	
+	$j( ".show-search" ).click(function(event) {	
+		$j('.nav-search-desk form').toggleClass( "active" );
+	});
 });
 function closeme(){
 	$j(".block-cart").removeClass( "skip-active" );	

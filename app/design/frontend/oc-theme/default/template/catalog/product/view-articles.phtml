@@ -1,0 +1,100 @@
+<?php
+/**
+ * Magento
+ 
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wie-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an emai
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<?php $productBlock = $this->getLayout()->createBlock('catalog/product_price'); ?>
+<?php $newFromDate = $_product->getNewsFromDate(); ?>
+<?php $videocode = $_product->getVideoCode(); ?>
+<div class="article-page-main recipe-page">
+	<div class="container">
+		<div class="article-page">
+			<div class="row">
+				<div class="article-desc col-md-7">
+					<div id="postPrintContent">
+						<div class="title">
+							<h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+							<div class="sub_title"><?php echo $_product->getShortDescription() ?></div>
+						</div>
+						<div class="description">			
+							<?php echo $_product->getDescription() ?>				
+						</div>
+					</div>
+					<div class="share-print">
+						<div class="prod-social-wrap">
+							<ul class="social-prod-logos">
+								<li class="social-text"><?php echo $this->__('Loved? <b>Share</b>') ?></li>
+								<?php if ($this->canEmailToFriend()): ?>
+									<li class="email"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>" class="link-email-friend" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Email to a Friend')) ?>"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+								<?php endif; ?>
+								<?php $_helper = $this->helper('catalog/output'); ?>
+								<?php $_productName = urlencode(trim($_helper->productAttribute($_product, $_product->getName(), 'name')))?>
+								<?php $_productImageUrl = urlencode(trim($this->helper('catalog/image')->init($_product, 'image')))?>
+								<?php $_productUrl = urlencode(trim($_product->getProductUrl()))?>
+								<li class="pin">
+									<a href="http://pinterest.com/pin/create/button/?url=<?php echo $_productUrl; ?>&media=<?php echo $_productImageUrl; ?>&description=<?php echo urlencode(trim($_helper->productAttribute($_product, nl2br($_product->getShortDescription())))); ?>" target="_blank" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Share on pinterest')) ?>"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+								</li>
+								<li class="twitt">
+									<a href="<?php echo 'http://twitter.com/home?status=' . $_productName . '+' . $_productUrl; ?>" target="_blank" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Share on Twitter')) ?>" class="link-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+								</li>
+								<li class="face">
+									<?php $_u = 'p[url]=' . $_productUrl . '&p[images][0]=' . $_productImageUrl . '&p[title]=' . $_productName . '&p[summary]=' . urlencode(trim($_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description'))); ?>
+									<a href="<?php echo 'http://www.facebook.com/sharer.php?s=100&' . $_u; ?>" target="_blank" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Share on Facebook')) ?>" class="link-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+								</li>
+							</ul>
+						</div>
+						<?php if($_product->getPageType() != 16): ?>
+							<a href="javascript:void(0);" onclick="printPageArea('postPrintContent')" class="print_link"><?php echo $this->__('Print the recipe'); ?></a>
+						<?php endif; ?>
+					</div>
+				</div>
+				<div class="article-items col-md-5">
+					<?php echo $this->getChildHtml('related_products_re') ?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+function printPageArea(areaID){
+	var prtContent = document.getElementById(areaID);
+	var WinPrint = window.open('', '', 'left=0,top=0,toolbar=0,scrollbars=0,status=0');
+	WinPrint.document.write('<html><head>');
+	WinPrint.document.write('<link rel="stylesheet" href="<?php echo $this->getSkinurl(); ?>css/print.css">');
+	WinPrint.document.write('<link rel="stylesheet" href="<?php echo $this->getSkinurl(); ?>aw_blog/css/style.css">');
+	WinPrint.document.write('</head><body onload="print();close();">');
+	WinPrint.document.write(prtContent.innerHTML);
+	WinPrint.document.write('</body></html>');
+	WinPrint.document.close();
+	WinPrint.focus();
+}
+</script>

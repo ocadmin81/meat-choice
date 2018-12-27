@@ -40,10 +40,10 @@ a.restore-account{font-size: 17px;text-decoration: underline;display: block;marg
 #checkout-shipping-method-load .sp-methods dd .shipping-instructions div.input-box{max-width: 100%;}
 #opc-address-form-shipping{clear: both;display: inline-block;width: 100%;margin-top: 30px;}
  #opc-address-form-shipping h3{margin-bottom: 0;}
-.opc-wrapper-opc .login-trigger{    cursor: pointer;text-decoration: none;font-weight: 500;font-size: 17px;color: #002e76;}
+.opc-wrapper-opc .login-trigger{    cursor: pointer;text-decoration: none;font-weight: 500;font-size: 17px;color: #292929;}
 .checkout-block{margin-top: 20px;}
 .checkout-form{margin-top: 40px;float: right;width: 100%;}
-.checkout-form .block{    background: #f2efef;padding: 0 30px;float: right;width: 100%;min-height:60vh;}
+.checkout-form .block{    border: 1px solid #dfdfdf;padding:0 30px 50px 30px;float: right;width: 100%;}
 .left{float:left !important;}
 .right{float:right !important;}	
 .clear{clear:both !important;}
@@ -53,10 +53,10 @@ a.restore-account{font-size: 17px;text-decoration: underline;display: block;marg
 .opc-review-block .review-td.big{width: 50%;}
 .mini-products-list .item{float: right;width: 100%;border-top: 1px solid #e6e6e6;padding: 15px 0 15px 0;}
 .mini-products-list .item:last-child{border-bottom: 1px solid #e6e6e6;}
-.mini-products-list .item .name{    font-size: 15px;color: #002e76;}
+.mini-products-list .item .name{    font-size: 15px;color: #292929;}
 .opc-review-block .review-td{float: right;width: 25%;}
 .opc-review-block .review-td .product-qty{padding-right: 10px;}
-.opc-review-block .review-td .product-price .price{color: #002e76;}
+.opc-review-block .review-td .product-price .price{color: #292929;}
 .opc-review-block .review-td .product-image{    float: right;width: 40%;}
 .opc-review-block .review-td .product-name{    float: right;width: 60%;padding-right: 10px;}
 .mini-products-title li{color: #5a5a5a;font-size: 16px;}
@@ -98,8 +98,8 @@ a.restore-account{font-size: 17px;text-decoration: underline;display: block;marg
 .checkout-header .skip-cart .label{font-size: 17px;font-weight: 500;margin-left: 0;color: #9b1b1e;padding: 0;display: inline-block;vertical-align: middle;    cursor: pointer;}
 .checkout-header .header-minicart{margin-top: 0;position: absolute;left: 0;top: 50%;z-index: 2;width: 155px;height: 42px;border: 1px solid #dfdfdf;padding: 5px 7px;background: url(../../../images/coupon-close.png) no-repeat 10px 50%;cursor: pointer;}
 .opc-wrapper-opc .control label{padding-left:10px}
-.opc-wrapper-opc h3{font-size: 17px;color: #292929;font-weight: 600;padding-right: 0;line-height: 40px;position: relative;text-align: center;padding-top: 20px;display: inline-block;width: 100%;}
-.opc-wrapper-opc h3 img{margin: 0 auto 5px;}
+.opc-wrapper-opc h3{font-size: 20px;font-weight: 500;padding-right: 0;line-height: 40px;position: relative;text-align: right;padding-top: 20px;display: inline-block;width: 100%;}
+.opc-wrapper-opc h3 img{margin: 0 auto 5px;    display: none;}
 .opc-wrapper-opc h3 span{    font-size: 60px;font-family: "Assistant", sans-serif;font-weight: bold;color: #e3e4e4;position: absolute;top: -13px;right: 5px;}
 .opc-wrapper-opc .validation-advice{font-weight:normal;text-align: right;}
 .opc-wrapper-opc h2{font-size:36px; font-weight:400;text-transform:none !important}
@@ -336,7 +336,7 @@ float:right;margin-left:7px;}
 .opc-wrapper-opc .btn-checkout span{background:transparent;background-color: transparent!important;border: none;color:#363636;font-size:24px;-webkit-border-radius: 3px;border-radius: 3px;width:100%;line-height: 46px;padding: 0 !important;height: 45px;padding: 0;display:block;}
 .opc-wrapper-opc .btn-checkout span span{    color: #fff;font-weight:normal;text-transform:uppercase;font-size:20px;}
 .checkout-payments-notice{display: inline-block;margin-top: 10px;width: 100%;text-align: center;margin-bottom: 15px;}
-.checkout-payments-notice p{font-size: 16px;color: #002e76;margin: 0;text-align: center;}
+.checkout-payments-notice p{font-size: 16px;color: #292929;margin: 0;text-align: center;}
 .opc-wrapper-opc .buttons-set{border:none;margin-top:10px}
 
 .opc-wrapper-opc .btn-checkout.button-disabled{}
@@ -378,7 +378,7 @@ float:right;margin-left:7px;}
 #p_method_paypal_standard +label a{display:none}
 
 #p_method_paypal_express +label img{width: 100px;}
-
+.opc-index-index .account-link{display:block}
 /** review block **/
 .review-menu-block{position:relative;float: left;}
 .review-menu-block a.review-total{width:195px; height:44px;line-height:44px;display:block; background-color:#fff!important;border: 1px solid #363636;border-radius:2px;padding-left:18px;cursor:pointer;}
@@ -399,10 +399,10 @@ float:right;margin-left:7px;}
 .opc-wrapper-opc #opc-review-block h3.review-title{color:#404040;font-size:16px;border-bottom:1px solid #b6b6b6;line-height:1; padding-bottom:13px; padding-left:9px}
 #checkout-review-table-wrapper .sub_total{text-align: center;font-size: 17px;font-weight: 500;padding-bottom: 25px;}
 .checkout-help{margin-top: 25px;float:left}
-.checkout-help p{color:#002e76;text-align: center;font-size:15px;margin: 0;}
-.checkout-help a{color:#002e76;background: url(../../../images/phone-chckout.png) 0 3px no-repeat;padding-left: 25px;font-weight:bold;margin-right: 10px;}
+.checkout-help p{color:#292929;text-align: center;font-size:15px;margin: 0;}
+.checkout-help a{color:#292929;background: url(../../../images/phone-chckout.png) 0 3px no-repeat;padding-left: 25px;font-weight:bold;margin-right: 10px;}
 .page-header-container {margin-top: 0;padding: 10px 0;}
-.checkout-block h1{    font-weight: normal;display: inline-block;vertical-align: middle;margin: 0;font-size: 30px;color: #002e76;min-width: 72px;background: url(../../../images/title-bg.png) right top no-repeat;padding-top: 30px;}
+.checkout-block h1{    font-weight: normal;display: inline-block;vertical-align: middle;margin: 0;font-size: 30px;color: #292929;min-width: 72px;background: url(../../../images/title-bg.png) right top no-repeat;padding-top: 30px;}
 .login-block{display: inline-block;vertical-align: bottom;background: url(../../../images/login-icon-checkout.png) right 5px no-repeat;position: relative;top: -3px;padding-right: 25px;margin-right: 15px;padding-top: 5px;}
 .opc-wrapper-opc .opc-data-table{width:100%;}
 .opc-wrapper-opc .opc-data-table thead th{color:#363636; font-size:15px;padding:0 15px 7px;border-bottom:1px solid #eaeaea}
@@ -423,9 +423,9 @@ float:right;margin-left:7px;}
 .opc-wrapper-opc .opc-data-table .btn-remove img{margin-top: 5px;width: 10px;}
 .opc-wrapper-opc .opc-data-table tfoot tr.last{display:none}
 .opc-wrapper-opc .opc-data-table .btn-remove{display:none}
-.opc-review-actions{ padding:15px 25px 25px;float: right;width: 100%;    border: 1px solid #b2c0d6;padding: 15px 25px;margin-top: 30px;}
-.opc-review-actions h5{    font-size: 18px;font-weight: bold;margin-top: 15px;margin-bottom: 0;color: #002e76;}
-.opc-review-actions h5 span{margin-right:0;color: #002e76;    float: left;}
+.opc-review-actions{ padding:15px 25px 25px;float: right;width: 100%;    border: 1px solid #dfdfdf;padding: 15px 25px;margin-top: 30px;}
+.opc-review-actions h5{    font-size: 18px;font-weight: bold;margin-top: 15px;margin-bottom: 0;color: #292929;}
+.opc-review-actions h5 span{margin-right:0;color: #292929;    float: left;}
 .opc-review-actions h5 span span{margin:0}
 
 /* .review-menu-block a.review-total.open */
@@ -453,7 +453,7 @@ float:right;margin-left:7px;}
 	.checkout_logo .need-help{position: static;margin-top: 20px;}
 }
 
-
+.opc-index-index .header-right{color: #292929;}
 @media (max-width: 767px) {
 	.checkout-header .header-minicart{position: relative;margin-top: 25px;left: 0;}
 	.opc-wrapper-opc .opc-menu .paypal-logo{margin:0 30px 10px 0;}
@@ -467,6 +467,13 @@ float:right;margin-left:7px;}
 	.opc-wrapper-opc{margin-bottom: 30px;}
 	.checkout-header .logo{width: 100%;}
 	.checkout-help{width: 100%;margin-top: 15px;}
+	.opc-index-index .logo-container{position: relative;top: 15px;}
+	.opc-index-index .page-header-top{padding-bottom: 20px;}
+	.opc-index-index .account-link{float: right;}
+	.phone-top{    float: left;padding-left: 15px;}
+	.opc-index-index .page-header{    float: right;width: 100%;padding-bottom: 15px;}
+	.checkout-form .block{padding: 0 15px 50px 15px;}
+	.opc-wrapper-opc label{font-size: 15px;}
 }
 
 /*business-client*/
@@ -488,8 +495,8 @@ float:right;margin-left:7px;}
 .business-client .opc-review-actions{padding: 0;margin-top: 15px;border: none;}
 .business-client.opc-wrapper-opc #opc-review-block{margin-top: 0;}
 .business-client .cart-edit{display: inline-block;vertical-align: bottom;font-size: 22px;font-weight: 300;margin-right: 20px;position: relative;top: -2px;}
-.business-client .cart-edit:before{    content: "";display: block;background: #002e76;width: 1px;height: 18px;position: absolute;right: -11px;top: 9px;}
-.business-client .cart-edit a{color: #002e76;text-decoration: underline;}
+.business-client .cart-edit:before{    content: "";display: block;background: #292929;width: 1px;height: 18px;position: absolute;right: -11px;top: 9px;}
+.business-client .cart-edit a{color: #292929;text-decoration: underline;}
 @media (max-width: 991px) {
 	.business-client .checkout-title{width: 100%;}
 }
