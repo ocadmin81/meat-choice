@@ -37,12 +37,12 @@ $themeDirection = Mage::getStoreConfig('webthemeoptions/general/appthemedir');
 				</div>
 				<div class="data-404">
 					<div class="title"><?php echo $this->__('Nees help?'); ?></div>
-					<div class="contact-us-block">
-						<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('contact-us-404')->toHtml(); ?>
+					<div class="contact-us-block-content">
+						<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('contact-us-block')->toHtml(); ?>
 					</div>
 				</div>
 			</div>
-			<div class="home-top product-404">
+			<div class="home-top product-404" style="display:none;">
 				<div class="home-section">
 				<div class="title">
 					<h2><?php echo $noroutTitle; ?></h2>  

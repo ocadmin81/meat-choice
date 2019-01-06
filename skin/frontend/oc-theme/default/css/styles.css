@@ -1910,46 +1910,54 @@ font-size: 17px;padding-bottom: 10px;
 .my-wishlist .cart-cell .btn-cart:hover{    background: #5cb85c;}
 /*login*/
 .account-login  {
-        padding: 0;
-        direction:   rtl;
-		margin-top: 0;
-		background: url(../images/login-bg.jpg) 0 0 no-repeat;
-    height: 100%;
-    padding-top: 50px;
-    background-size: 100% 100%;
-    padding-bottom: 50px;
+	position:absolute;    top: 310px;
 }
 .account-login .content .title{position: relative;text-align: center;}
-.account-login .content h2{font-size: 24px;
+.account-login  h2,.account-login  h1{    font-size: 26px;
     display: block;
     position: relative;
-    font-weight: 700;
-    text-align: center;}
+    font-weight: 600;
+    color: #fff;}
 .col2-set {
     width: 100%;
     display: inline-block;position: relative;
 }
+.customer-account-create .account-login .registered-users .form-list{    float: right;
+    margin-left: 30px;}
 .account-banner{position: absolute;bottom: 0;}
-.customer-account-login .col2-set .col-2   {padding-left: 26px;}
+.customer-account-login .col2-set .col-2   {    padding-left: 0;
+    position: relative;width: 40%;}
 .account-login .registered-users .content   {
             margin:   0 auto;
 }
 .account-login .container{    max-width: 780px;}
-.account-login .registered-users .form-list,.account-login .registered-users .buttons-set{max-width: 365px;margin: 0 auto;margin-top: 20px;padding: 0 35px;}
+.account-login .registered-users .form-list,.account-login .registered-users .buttons-set{max-width: 365px;
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;}
 .customer-account-create .account-login .registered-users .form-list,.customer-account-create .account-login .registered-users .buttons-set{padding: 0;}
 .customer-account-create .account-login .registered-users .buttons-set button{width: 365px;    height: 45px;max-width: 100%;}
 .account-login .registered-users .content .forgot{font-weight: 400;font-size: 16px;text-decoration: underline;margin-top: 10px;display: block;}
-.account-login .registered-users .form-list .input-box{margin-bottom: 15px;}
-.account-login .registered-users .form-list .input-box a{    font-size: 17px;color: #961f23;text-decoration: underline;display: block;margin-top: 5px;}
+.account-login-block .container{    position: static;}
+.account-login .registered-users .form-list .input-box{margin-bottom: 20px;}
+.account-login .registered-users .form-list .input-box a{     font-size: 16px;
+    color: #fff;
+    text-decoration: underline;
+    display: block;
+    margin-top: 5px;}
 .customer-account-login .col2-set .buttons-set   {
     text-align: right;
     border-top: 0;
     float: none;
-    margin: 0 auto;
+    margin: 0;
     }
-.account-login .new-users .content,.account-login .registered-users .content{background:#eee7e4;padding-top: 25px;    padding-bottom: 55px;}
-.account-login .new-users .content{padding: 120px 35px 197px;text-align: center;    padding-top: 25px;padding-bottom: 55px;}
-.account-login .new-users .content p{font-size: 19px;text-align: center;line-height: 25px;}
+.customer-account-login .col2-set .col-2:after{content:"";background:#fff;width:1px;height:100%;position:absolute;display:block;    top: 0;left: 0;}
+.account-login .new-users .content,.account-login .registered-users .content{    color: #fff;padding-top: 0;    padding-bottom: 55px;}
+.account-login .new-users .content{padding: 120px 35px 197px; padding-top: 0;padding-bottom: 55px;}
+.account-login .col2-set .new-users .buttons-set{    margin-top: 60px;}
+.account-login .col2-set .new-users .buttons-set button{background: transparent;
+    border: 1px solid #fff;}
+.account-login .new-users .content p{font-size: 18px;line-height: 25px;font-weight: 300;}
 .customer-account-login .col2-set .buttons-set button, .customer-account-login .col2-set .buttons-set .button {
     float: none;
     margin: 0;
@@ -1976,7 +1984,7 @@ font-size: 17px;padding-bottom: 10px;
     color: #fff;
     float: none;
 }
-.customer-account-create  .fb-login-block{max-width: 365px;margin: 0 auto;}
+.customer-account-create  .fb-login-block{max-width: 365px;margin: 0;}
 .customer-account-login .col2-set .buttons-set .button.login-link span span {
     padding: 17px 13px 17px 40px;font-size: 16px;
 }
@@ -1986,7 +1994,7 @@ font-size: 17px;padding-bottom: 10px;
             text-decoration:   underline;
     }
 .account-login .col2-set .new-users {
-    padding-right: 27px;
+    padding-right: 20px;width: 40%;
 }
 .account-login .col2-set .new-users .buttons-set {
  margin-top: margin-top: 20px;;
@@ -2414,10 +2422,10 @@ a.skip-link   {
 .main-404 .data-404 .contact-us-block li i{    text-align: center;margin: 0 auto;width: 25px;}
 .main-404 .data-404 .contact-us-block li{margin-bottom: 6px;}
 .main-404 .data-404 .contact-us-block li .title {color: #f7407b;font-size: 16px;font-weight: 500;}
-.main-404 .search-404 .title, .main-404 .data-404 .title{font-size: 20px;font-weight: bold;}
+.main-404 .search-404 .title, .main-404 .data-404 .title{font-size: 20px;font-weight: bold;margin-bottom: 15px;}
 .main-404 .search-404 .searcbox{margin-top: 10px;}
 .main-404 .search-404 .searcbox input{width: 320px;}
-.main-404 .search-404 .searcbox button{height: 40px;position: relative;top: 2px;width: 95px;margin-right: -5px;}
+.main-404 .search-404 .searcbox button{height: 40px;position: relative;top: 0;width: 95px;margin-right: -5px;}
 .main-404 .search-404 .searcbox button.button span span{font-size: 17px;}
 .product-404{margin-top: 50px;}
 @media only screen and (min-width:   992px)   {
@@ -3661,7 +3669,7 @@ display: inline-block;
       }
 	.col2-set{padding: 0 15px;}  
 	.account-banner{padding-left: 15px;}
-	.noRount-main .top-404,.main-404{padding: 0 15px;}
+	.noRount-main{padding: 0 15px;}
 }
 @media only screen and (max-width:   770px)   {
           .footer .form-language,    .footer .currency-switcher   {
@@ -3878,6 +3886,10 @@ width: 45px !important;
 	.block-cart .actions button{float: none;    max-width: 100%;margin-top: 20px;}	
 	.block-calc .calc-inputs .calc-input-block .title{width: 100%;text-align: center;}
 	.toolbar-top{padding: 15px 15px 0;}
+	.customer-account-login .header-ab,.customer-account-create .header-ab {position: relative;background: #272727;}
+	.account-login-block{    background: #272727;    padding: 15px 0;}
+	.account-login-block .bg-login{display:none;}
+	.account-login{    position: static;}
 }
 @media (max-width: 1300px)  {
 	.row{margin: 0;}
@@ -4174,7 +4186,7 @@ width: 45px !important;
 	.account-banner{position: static;padding-left: 0;margin-top: 30px;}
 	.account-login .col2-set .registered-users:after{display:none;}
 	.account-login .col2-set .new-users .buttons-set{margin-top: 0;}
-	.account-login .col2-set .new-users{padding-right: 0;margin-top: 30px;}
+	.account-login .col2-set .new-users{padding-right: 0;margin-top: 0;}
 	.col2-right-layout .sidebar, .col2-right-layout .col-main {width: 100%;padding: 0 0;float: none;}
 	.col2-right-layout .col-main{padding: 0 10px;}
 	.col2-right-layout .sidebar, .col2-right-layout .col-main {padding: 0;width: 100%;}
@@ -4275,7 +4287,9 @@ width: 45px !important;
 	.newsletter-container h3{float: none;}
 	.footer-container{padding: 0;}	
 	.category-wrapper .container-main{border-top: none;padding-top: 0;}
-	.account-login .registered-users .content {padding-right: 20px;padding-left: 20px;}
+	.account-login .registered-users .content {padding-right: 0;padding-left: 0;}
+	.customer-account-create .account-login .registered-users .form-list{width: 100%;}
+	.customer-account-login .account-login{    padding: 0 15px;}
 	.account-login .new-users .content{padding: 25px 20px 35px;}
 	.account-create{padding-right: 20px;padding-left: 20px;}
 	.home-prods{    height: auto!important;padding-bottom: 30px;    padding-top: 40px;min-height: auto!important;}
@@ -4349,6 +4363,7 @@ width: 45px !important;
 	.prod-social-wrap .social-prod-logos{float: none;text-align: center;}
 	.faqs h3.question{padding-right: 40px;}
 	.faqs h3.question:after{right: 10px;left: auto;}
+	.col2-set{padding: 0;}
 }
 @media (max-width:600px)  {
 	.home-top h1{padding: 0 10px;max-width: 80%;}
